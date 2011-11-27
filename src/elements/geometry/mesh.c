@@ -125,6 +125,24 @@ __warning:			default:
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_mesh_check(coco_ctx_t *ctx, coco_mesh_t *mesh)
+{
+	if(mesh == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_mesh_dump(coco_ctx_t *ctx, coco_mesh_t *mesh, int indent)
 {
 	if(mesh == NULL) {

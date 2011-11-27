@@ -64,6 +64,24 @@ coco_scene_t *coco_scene_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_scene_check(coco_ctx_t *ctx, coco_scene_t *scene)
+{
+	if(scene == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_scene_dump(coco_ctx_t *ctx, coco_scene_t *scene, int indent)
 {
 	if(scene == NULL) {

@@ -104,6 +104,24 @@ coco_lambert_t *coco_lambert_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_lambert_check(coco_ctx_t *ctx, coco_lambert_t *lambert)
+{
+	if(lambert == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_lambert_dump(coco_ctx_t *ctx, coco_lambert_t *lambert, int indent)
 {
 	if(lambert == NULL) {

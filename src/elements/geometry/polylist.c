@@ -94,6 +94,24 @@ coco_polylist_t *coco_polylist_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_polylist_check(coco_ctx_t *ctx, coco_polylist_t *polylist)
+{
+	if(polylist == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_polylist_dump(coco_ctx_t *ctx, coco_polylist_t *polylist, int indent)
 {
 	if(polylist == NULL) {

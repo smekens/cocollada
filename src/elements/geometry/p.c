@@ -40,6 +40,24 @@ coco_p_t *coco_p_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_p_check(coco_ctx_t *ctx, coco_p_t *p)
+{
+	if(p == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_p_dump(coco_ctx_t *ctx, coco_p_t *p, int indent)
 {
 	if(p == NULL) {

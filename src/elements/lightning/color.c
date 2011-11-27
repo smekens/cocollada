@@ -69,6 +69,24 @@ coco_color_t *coco_color_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_color_check(coco_ctx_t *ctx, coco_color_t *color)
+{
+	if(color == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_color_dump(coco_ctx_t *ctx, coco_color_t *color, int indent)
 {
 	if(color == NULL) {

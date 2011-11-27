@@ -65,6 +65,24 @@ coco_asset_contributor_t *coco_asset_contributor_parse(coco_ctx_t *ctx, yaxp_nod
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_asset_contributor_check(coco_ctx_t *ctx, coco_asset_contributor_t *asset_contributor)
+{
+	if(asset_contributor == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_asset_contributor_dump(coco_ctx_t *ctx, coco_asset_contributor_t *asset_contributor, int indent)
 {
 	if(asset_contributor == NULL) {
@@ -172,6 +190,24 @@ coco_asset_t *coco_asset_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 	}
 
 	/**/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
+bool coco_asset_check(coco_ctx_t *ctx, coco_asset_t *asset)
+{
+	if(asset == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
 
 	return result;
 }

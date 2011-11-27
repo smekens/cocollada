@@ -57,6 +57,24 @@ coco_lookat_t *coco_lookat_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_lookat_check(coco_ctx_t *ctx, coco_lookat_t *lookat)
+{
+	if(lookat == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_lookat_dump(coco_ctx_t *ctx, coco_lookat_t *lookat, int indent)
 {
 	if(lookat == NULL) {

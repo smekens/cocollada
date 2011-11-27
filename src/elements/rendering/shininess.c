@@ -62,6 +62,24 @@ coco_shininess_t *coco_shininess_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_shininess_check(coco_ctx_t *ctx, coco_shininess_t *shininess)
+{
+	if(shininess == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_shininess_dump(coco_ctx_t *ctx, coco_shininess_t *shininess, int indent)
 {
 	if(shininess == NULL) {

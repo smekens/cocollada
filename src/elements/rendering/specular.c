@@ -69,6 +69,24 @@ coco_specular_t *coco_specular_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_specular_check(coco_ctx_t *ctx, coco_specular_t *specular)
+{
+	if(specular == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_specular_dump(coco_ctx_t *ctx, coco_specular_t *specular, int indent)
 {
 	if(specular == NULL) {

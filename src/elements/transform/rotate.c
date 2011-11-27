@@ -57,6 +57,24 @@ coco_rotate_t *coco_rotate_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_rotate_check(coco_ctx_t *ctx, coco_rotate_t *rotate)
+{
+	if(rotate == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_rotate_dump(coco_ctx_t *ctx, coco_rotate_t *rotate, int indent)
 {
 	if(rotate == NULL) {

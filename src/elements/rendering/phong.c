@@ -118,6 +118,24 @@ coco_phong_t *coco_phong_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_phong_check(coco_ctx_t *ctx, coco_phong_t *phong)
+{
+	if(phong == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_phong_dump(coco_ctx_t *ctx, coco_phong_t *phong, int indent)
 {
 	if(phong == NULL) {

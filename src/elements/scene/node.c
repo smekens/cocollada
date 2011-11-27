@@ -185,6 +185,24 @@ __warning:		default:
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_node_check(coco_ctx_t *ctx, coco_node_t *node)
+{
+	if(node == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_node_dump(coco_ctx_t *ctx, coco_node_t *node, int indent)
 {
 	if(node == NULL) {

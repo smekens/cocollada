@@ -91,6 +91,24 @@ coco_profile_common_technique_t *coco_profile_common_technique_parse(coco_ctx_t 
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_profile_common_technique_check(coco_ctx_t *ctx, coco_profile_common_technique_t *profile_common_technique)
+{
+	if(profile_common_technique == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_profile_common_technique_dump(coco_ctx_t *ctx, coco_profile_common_technique_t *profile_common_technique, int indent)
 {
 	if(profile_common_technique == NULL) {
@@ -190,6 +208,24 @@ coco_profile_common_t *coco_profile_common_parse(coco_ctx_t *ctx, yaxp_node_t *n
 	}
 
 	/**/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
+bool coco_profile_common_check(coco_ctx_t *ctx, coco_profile_common_t *profile_common)
+{
+	if(profile_common == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
 
 	return result;
 }

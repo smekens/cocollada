@@ -69,6 +69,24 @@ coco_emission_t *coco_emission_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_emission_check(coco_ctx_t *ctx, coco_emission_t *emission)
+{
+	if(emission == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_emission_dump(coco_ctx_t *ctx, coco_emission_t *emission, int indent)
 {
 	if(emission == NULL) {

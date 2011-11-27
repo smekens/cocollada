@@ -85,6 +85,24 @@ coco_spot_t *coco_spot_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_spot_check(coco_ctx_t *ctx, coco_spot_t *spot)
+{
+	if(spot == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_spot_dump(coco_ctx_t *ctx, coco_spot_t *spot, int indent)
 {
 	if(spot == NULL) {

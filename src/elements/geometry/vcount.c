@@ -40,6 +40,24 @@ coco_vcount_t *coco_vcount_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_vcount_check(coco_ctx_t *ctx, coco_vcount_t *vcount)
+{
+	if(vcount == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_vcount_dump(coco_ctx_t *ctx, coco_vcount_t *vcount, int indent)
 {
 	if(vcount == NULL) {

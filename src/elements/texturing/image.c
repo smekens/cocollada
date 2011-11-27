@@ -113,6 +113,24 @@ coco_image_t *coco_image_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_image_check(coco_ctx_t *ctx, coco_image_t *image)
+{
+	if(image == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_image_dump(coco_ctx_t *ctx, coco_image_t *image, int indent)
 {
 	if(image == NULL) {

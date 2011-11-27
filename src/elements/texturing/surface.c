@@ -56,6 +56,24 @@ coco_surface_init_from_t *coco_surface_init_from_parse(coco_ctx_t *ctx, yaxp_nod
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_surface_init_from_check(coco_ctx_t *ctx, coco_surface_init_from_t *surface_init_from)
+{
+	if(surface_init_from == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_surface_init_from_dump(coco_ctx_t *ctx, coco_surface_init_from_t *init_from, int indent)
 {
 	if(init_from == NULL) {
@@ -149,6 +167,24 @@ coco_surface_t *coco_surface_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 	}
 
 	/**/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
+bool coco_surface_check(coco_ctx_t *ctx, coco_surface_t *surface)
+{
+	if(surface == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
 
 	return result;
 }

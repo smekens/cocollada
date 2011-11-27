@@ -62,6 +62,24 @@ coco_index_of_refraction_t *coco_index_of_refraction_parse(coco_ctx_t *ctx, yaxp
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_index_of_refraction_check(coco_ctx_t *ctx, coco_index_of_refraction_t *index_of_refraction)
+{
+	if(index_of_refraction == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_index_of_refraction_dump(coco_ctx_t *ctx, coco_index_of_refraction_t *index_of_refraction, int indent)
 {
 	if(index_of_refraction == NULL) {

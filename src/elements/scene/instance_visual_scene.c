@@ -74,6 +74,24 @@ coco_instance_visual_scene_t *coco_instance_visual_scene_parse(coco_ctx_t *ctx, 
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_instance_visual_scene_check(coco_ctx_t *ctx, coco_instance_visual_scene_t *instance_visual_scene)
+{
+	if(instance_visual_scene == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_instance_visual_scene_dump(coco_ctx_t *ctx, coco_instance_visual_scene_t *instance_visual_scene, int indent)
 {
 	if(instance_visual_scene == NULL) {

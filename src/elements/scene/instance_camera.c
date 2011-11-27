@@ -74,6 +74,24 @@ coco_instance_camera_t *coco_instance_camera_parse(coco_ctx_t *ctx, yaxp_node_t 
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_instance_camera_check(coco_ctx_t *ctx, coco_instance_camera_t *instance_camera)
+{
+	if(instance_camera == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_instance_camera_dump(coco_ctx_t *ctx, coco_instance_camera_t *instance_camera, int indent)
 {
 	if(instance_camera == NULL) {

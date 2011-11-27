@@ -50,6 +50,24 @@ coco_instance_effect_technique_hint_t *coco_instance_effect_technique_hint_parse
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_instance_effect_technique_hint_check(coco_ctx_t *ctx, coco_instance_effect_technique_hint_t *instance_effect_technique_hint)
+{
+	if(instance_effect_technique_hint == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_instance_effect_technique_hint_dump(coco_ctx_t *ctx, coco_instance_effect_technique_hint_t *technique_hint, int indent)
 {
 	if(technique_hint == NULL) {
@@ -139,6 +157,24 @@ coco_instance_effect_t *coco_instance_effect_parse(coco_ctx_t *ctx, yaxp_node_t 
 	}
 
 	/**/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
+bool coco_instance_effect_check(coco_ctx_t *ctx, coco_instance_effect_t *instance_effect)
+{
+	if(instance_effect == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
 
 	return result;
 }

@@ -74,6 +74,24 @@ coco_instance_light_t *coco_instance_light_parse(coco_ctx_t *ctx, yaxp_node_t *n
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_instance_light_check(coco_ctx_t *ctx, coco_instance_light_t *instance_light)
+{
+	if(instance_light == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_instance_light_dump(coco_ctx_t *ctx, coco_instance_light_t *instance_light, int indent)
 {
 	if(instance_light == NULL) {

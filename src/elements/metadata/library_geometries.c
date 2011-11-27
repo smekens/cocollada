@@ -71,6 +71,24 @@ coco_library_geometries_t *coco_library_geometries_parse(coco_ctx_t *ctx, yaxp_n
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_library_geometries_check(coco_ctx_t *ctx, coco_library_geometries_t *library_geometries)
+{
+	if(library_geometries == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_library_geometries_dump(coco_ctx_t *ctx, coco_library_geometries_t *library_geometries, int indent)
 {
 	if(library_geometries == NULL) {

@@ -55,6 +55,24 @@ coco_source_technique_common_t *coco_source_technique_common_parse(coco_ctx_t *c
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_source_technique_common_check(coco_ctx_t *ctx, coco_source_technique_common_t *source_technique_common)
+{
+	if(source_technique_common == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_source_technique_common_dump(coco_ctx_t *ctx, coco_source_technique_common_t *technique_common, int indent)
 {
 	if(technique_common == NULL) {
@@ -174,6 +192,24 @@ __warning:		default:
 	coco_ctx_register(ctx, result, result->id);
 
 	/**/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
+bool coco_source_check(coco_ctx_t *ctx, coco_source_t *source)
+{
+	if(source == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
 
 	return result;
 }

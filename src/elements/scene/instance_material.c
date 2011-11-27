@@ -87,6 +87,24 @@ coco_instance_material_t *coco_instance_material_parse(coco_ctx_t *ctx, yaxp_nod
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_instance_material_check(coco_ctx_t *ctx, coco_instance_material_t *instance_material)
+{
+	if(instance_material == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_instance_material_dump(coco_ctx_t *ctx, coco_instance_material_t *instance_material, int indent)
 {
 	if(instance_material == NULL) {

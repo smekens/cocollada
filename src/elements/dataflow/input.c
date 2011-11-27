@@ -50,6 +50,24 @@ coco_input_t *coco_input_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_input_check(coco_ctx_t *ctx, coco_input_t *input)
+{
+	if(input == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_input_dump(coco_ctx_t *ctx, coco_input_t *input, int indent)
 {
 	if(input == NULL) {

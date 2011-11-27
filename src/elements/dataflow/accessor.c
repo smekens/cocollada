@@ -56,6 +56,24 @@ coco_accessor_param_t *coco_accessor_param_parse(coco_ctx_t *ctx, yaxp_node_t *n
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_accessor_param_check(coco_ctx_t *ctx, coco_accessor_param_t *accessor_param)
+{
+	if(accessor_param == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_accessor_param_dump(coco_ctx_t *ctx, coco_accessor_param_t *accessor_param, int indent)
 {
 	if(accessor_param == NULL) {
@@ -139,6 +157,24 @@ coco_accessor_t *coco_accessor_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 	}
 
 	/**/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
+bool coco_accessor_check(coco_ctx_t *ctx, coco_accessor_t *accessor)
+{
+	if(accessor == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
 
 	return result;
 }

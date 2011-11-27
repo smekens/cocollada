@@ -90,6 +90,24 @@ coco_material_t *coco_material_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_material_check(coco_ctx_t *ctx, coco_material_t *material)
+{
+	if(material == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_material_dump(coco_ctx_t *ctx, coco_material_t *material, int indent)
 {
 	if(material == NULL) {

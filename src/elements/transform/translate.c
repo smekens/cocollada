@@ -57,6 +57,24 @@ coco_translate_t *coco_translate_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_translate_check(coco_ctx_t *ctx, coco_translate_t *translate)
+{
+	if(translate == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_translate_dump(coco_ctx_t *ctx, coco_translate_t *translate, int indent)
 {
 	if(translate == NULL) {

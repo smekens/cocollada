@@ -74,6 +74,24 @@ coco_orthographic_t *coco_orthographic_parse(coco_ctx_t *ctx, yaxp_node_t *node0
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_orthographic_check(coco_ctx_t *ctx, coco_orthographic_t *orthographic)
+{
+	if(orthographic == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_orthographic_dump(coco_ctx_t *ctx, coco_orthographic_t *orthographic, int indent)
 {
 	if(orthographic == NULL) {

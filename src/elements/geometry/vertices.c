@@ -46,6 +46,24 @@ coco_vertices_input_t *coco_vertices_input_parse(coco_ctx_t *ctx, yaxp_node_t *n
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_vertices_input_check(coco_ctx_t *ctx, coco_vertices_input_t *vertices_input)
+{
+	if(vertices_input == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_vertices_input_dump(coco_ctx_t *ctx, coco_vertices_input_t *vertices_input, int indent)
 {
 	if(vertices_input == NULL) {
@@ -129,6 +147,24 @@ coco_vertices_t *coco_vertices_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 	coco_ctx_register(ctx, result, result->id);
 
 	/**/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
+bool coco_vertices_check(coco_ctx_t *ctx, coco_vertices_t *vertices)
+{
+	if(vertices == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
 
 	return result;
 }

@@ -74,6 +74,24 @@ coco_instance_node_t *coco_instance_node_parse(coco_ctx_t *ctx, yaxp_node_t *nod
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_instance_node_check(coco_ctx_t *ctx, coco_instance_node_t *instance_node)
+{
+	if(instance_node == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_instance_node_dump(coco_ctx_t *ctx, coco_instance_node_t *instance_node, int indent)
 {
 	if(instance_node == NULL) {

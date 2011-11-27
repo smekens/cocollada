@@ -62,6 +62,24 @@ coco_reflectivity_t *coco_reflectivity_parse(coco_ctx_t *ctx, yaxp_node_t *node0
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_reflectivity_check(coco_ctx_t *ctx, coco_reflectivity_t *reflectivity)
+{
+	if(reflectivity == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_reflectivity_dump(coco_ctx_t *ctx, coco_reflectivity_t *reflectivity, int indent)
 {
 	if(reflectivity == NULL) {

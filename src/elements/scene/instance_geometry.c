@@ -82,6 +82,24 @@ coco_instance_geometry_t *coco_instance_geometry_parse(coco_ctx_t *ctx, yaxp_nod
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_instance_geometry_check(coco_ctx_t *ctx, coco_instance_geometry_t *instance_geometry)
+{
+	if(instance_geometry == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_instance_geometry_dump(coco_ctx_t *ctx, coco_instance_geometry_t *instance_geometry, int indent)
 {
 	if(instance_geometry == NULL) {

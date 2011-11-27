@@ -69,6 +69,24 @@ coco_diffuse_t *coco_diffuse_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_diffuse_check(coco_ctx_t *ctx, coco_diffuse_t *diffuse)
+{
+	if(diffuse == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_diffuse_dump(coco_ctx_t *ctx, coco_diffuse_t *diffuse, int indent)
 {
 	if(diffuse == NULL) {

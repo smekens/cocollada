@@ -96,6 +96,24 @@ __warning:		default:
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_visual_scene_check(coco_ctx_t *ctx, coco_visual_scene_t *visual_scene)
+{
+	if(visual_scene == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_visual_scene_dump(coco_ctx_t *ctx, coco_visual_scene_t *visual_scene, int indent)
 {
 	if(visual_scene == NULL) {

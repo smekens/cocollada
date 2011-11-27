@@ -77,6 +77,24 @@ coco_light_technique_common_t *coco_light_technique_common_parse(coco_ctx_t *ctx
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_light_technique_common_check(coco_ctx_t *ctx, coco_light_technique_common_t *light_technique_common)
+{
+	if(light_technique_common == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_light_technique_common_dump(coco_ctx_t *ctx, coco_light_technique_common_t *technique_common, int indent)
 {
 	if(technique_common == NULL) {
@@ -173,6 +191,24 @@ coco_light_t *coco_light_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 	coco_ctx_register(ctx, result, result->id);
 
 	/**/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
+bool coco_light_check(coco_ctx_t *ctx, coco_light_t *light)
+{
+	if(light == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
 
 	return result;
 }

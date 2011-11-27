@@ -76,6 +76,24 @@ coco_newparam_t *coco_newparam_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_newparam_check(coco_ctx_t *ctx, coco_newparam_t *newparam)
+{
+	if(newparam == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_newparam_dump(coco_ctx_t *ctx, coco_newparam_t *newparam, int indent)
 {
 	if(newparam == NULL) {

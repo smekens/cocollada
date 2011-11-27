@@ -69,6 +69,24 @@ coco_reflective_t *coco_reflective_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_reflective_check(coco_ctx_t *ctx, coco_reflective_t *reflective)
+{
+	if(reflective == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_reflective_dump(coco_ctx_t *ctx, coco_reflective_t *reflective, int indent)
 {
 	if(reflective == NULL) {

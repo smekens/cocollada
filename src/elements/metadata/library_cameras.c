@@ -71,6 +71,24 @@ coco_library_cameras_t *coco_library_cameras_parse(coco_ctx_t *ctx, yaxp_node_t 
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_library_cameras_check(coco_ctx_t *ctx, coco_library_cameras_t *library_cameras)
+{
+	if(library_cameras == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_library_cameras_dump(coco_ctx_t *ctx, coco_library_cameras_t *library_cameras, int indent)
 {
 	if(library_cameras == NULL) {

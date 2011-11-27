@@ -71,6 +71,24 @@ coco_library_images_t *coco_library_images_parse(coco_ctx_t *ctx, yaxp_node_t *n
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_library_images_check(coco_ctx_t *ctx, coco_library_images_t *library_images)
+{
+	if(library_images == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_library_images_dump(coco_ctx_t *ctx, coco_library_images_t *library_images, int indent)
 {
 	if(library_images == NULL) {

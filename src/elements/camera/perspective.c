@@ -74,6 +74,24 @@ coco_perspective_t *coco_perspective_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_perspective_check(coco_ctx_t *ctx, coco_perspective_t *perspective)
+{
+	if(perspective == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_perspective_dump(coco_ctx_t *ctx, coco_perspective_t *perspective, int indent)
 {
 	if(perspective == NULL) {

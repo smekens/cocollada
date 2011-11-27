@@ -55,6 +55,24 @@ coco_bind_material_param_t *coco_bind_material_param_parse(coco_ctx_t *ctx, yaxp
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_bind_material_param_check(coco_ctx_t *ctx, coco_bind_material_param_t *bind_material_param)
+{
+	if(bind_material_param == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_bind_material_param_dump(coco_ctx_t *ctx, coco_bind_material_param_t *param, int indent)
 {
 	if(param == NULL) {
@@ -122,6 +140,24 @@ coco_bind_material_technique_common_t *coco_bind_material_technique_common_parse
 	}
 
 	/**/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
+bool coco_bind_material_technique_common_check(coco_ctx_t *ctx, coco_bind_material_technique_common_t *bind_material_technique_common)
+{
+	if(bind_material_technique_common == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
 
 	return result;
 }
@@ -207,6 +243,24 @@ coco_bind_material_t *coco_bind_material_parse(coco_ctx_t *ctx, yaxp_node_t *nod
 	}
 
 	/**/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
+bool coco_bind_material_check(coco_ctx_t *ctx, coco_bind_material_t *bind_material)
+{
+	if(bind_material == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
 
 	return result;
 }

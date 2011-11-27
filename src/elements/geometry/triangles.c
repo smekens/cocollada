@@ -87,6 +87,24 @@ coco_triangles_t *coco_triangles_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_triangles_check(coco_ctx_t *ctx, coco_triangles_t *triangles)
+{
+	if(triangles == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_triangles_dump(coco_ctx_t *ctx, coco_triangles_t *triangles, int indent)
 {
 	if(triangles == NULL) {

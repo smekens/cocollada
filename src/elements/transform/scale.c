@@ -57,6 +57,24 @@ coco_scale_t *coco_scale_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_scale_check(coco_ctx_t *ctx, coco_scale_t *scale)
+{
+	if(scale == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_scale_dump(coco_ctx_t *ctx, coco_scale_t *scale, int indent)
 {
 	if(scale == NULL) {

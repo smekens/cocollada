@@ -103,6 +103,24 @@ __warning:		default:
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_geometry_check(coco_ctx_t *ctx, coco_geometry_t *geometry)
+{
+	if(geometry == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_geometry_dump(coco_ctx_t *ctx, coco_geometry_t *geometry, int indent)
 {
 	if(geometry == NULL) {

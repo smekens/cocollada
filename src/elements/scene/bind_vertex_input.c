@@ -50,6 +50,24 @@ coco_bind_vertex_input_t *coco_bind_vertex_input_parse(coco_ctx_t *ctx, yaxp_nod
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_bind_vertex_input_check(coco_ctx_t *ctx, coco_bind_vertex_input_t *bind_vertex_input)
+{
+	if(bind_vertex_input == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_bind_vertex_input_dump(coco_ctx_t *ctx, coco_bind_vertex_input_t *bind_vertex_input, int indent)
 {
 	if(bind_vertex_input == NULL) {

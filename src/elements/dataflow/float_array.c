@@ -67,6 +67,24 @@ coco_float_array_t *coco_float_array_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_float_array_check(coco_ctx_t *ctx, coco_float_array_t *float_array)
+{
+	if(float_array == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_float_array_dump(coco_ctx_t *ctx, coco_float_array_t *float_array, int indent)
 {
 	if(float_array == NULL) {

@@ -63,6 +63,24 @@ coco_optics_technique_common_t *coco_optics_technique_common_parse(coco_ctx_t *c
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_optics_technique_common_check(coco_ctx_t *ctx, coco_optics_technique_common_t *optics_technique_common)
+{
+	if(optics_technique_common == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_optics_technique_common_dump(coco_ctx_t *ctx, coco_optics_technique_common_t *technique_common, int indent)
 {
 	if(technique_common == NULL) {
@@ -129,6 +147,24 @@ coco_optics_t *coco_optics_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 	}
 
 	/**/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
+bool coco_optics_check(coco_ctx_t *ctx, coco_optics_t *optics)
+{
+	if(optics == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
 
 	return result;
 }

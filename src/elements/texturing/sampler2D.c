@@ -110,6 +110,24 @@ coco_sampler2D_t *coco_sampler2D_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_sampler2D_check(coco_ctx_t *ctx, coco_sampler2D_t *sampler2D)
+{
+	if(sampler2D == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_sampler2D_dump(coco_ctx_t *ctx, coco_sampler2D_t *sampler2D, int indent)
 {
 	if(sampler2D == NULL) {

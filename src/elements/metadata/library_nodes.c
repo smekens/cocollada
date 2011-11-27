@@ -71,6 +71,24 @@ coco_library_nodes_t *coco_library_nodes_parse(coco_ctx_t *ctx, yaxp_node_t *nod
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_library_nodes_check(coco_ctx_t *ctx, coco_library_nodes_t *library_nodes)
+{
+	if(library_nodes == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_library_nodes_dump(coco_ctx_t *ctx, coco_library_nodes_t *library_nodes, int indent)
 {
 	if(library_nodes == NULL) {

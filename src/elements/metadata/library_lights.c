@@ -71,6 +71,24 @@ coco_library_lights_t *coco_library_lights_parse(coco_ctx_t *ctx, yaxp_node_t *n
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_library_lights_check(coco_ctx_t *ctx, coco_library_lights_t *library_lights)
+{
+	if(library_lights == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_library_lights_dump(coco_ctx_t *ctx, coco_library_lights_t *library_lights, int indent)
 {
 	if(library_lights == NULL) {

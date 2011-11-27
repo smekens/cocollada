@@ -40,6 +40,24 @@ coco_technique_core_t *coco_technique_core_parse(coco_ctx_t *ctx, yaxp_node_t *n
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_technique_core_check(coco_ctx_t *ctx, coco_technique_core_t *technique_core)
+{
+	if(technique_core == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_technique_core_dump(coco_ctx_t *ctx, coco_technique_core_t *technique_core, int indent)
 {
 	if(technique_core == NULL) {

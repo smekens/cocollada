@@ -71,6 +71,24 @@ coco_library_effects_t *coco_library_effects_parse(coco_ctx_t *ctx, yaxp_node_t 
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_library_effects_check(coco_ctx_t *ctx, coco_library_effects_t *library_effects)
+{
+	if(library_effects == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_library_effects_dump(coco_ctx_t *ctx, coco_library_effects_t *library_effects, int indent)
 {
 	if(library_effects == NULL) {

@@ -57,6 +57,24 @@ coco_matrix_t *coco_matrix_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_matrix_check(coco_ctx_t *ctx, coco_matrix_t *matrix)
+{
+	if(matrix == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_matrix_dump(coco_ctx_t *ctx, coco_matrix_t *matrix, int indent)
 {
 	if(matrix == NULL) {

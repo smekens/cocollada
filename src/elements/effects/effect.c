@@ -103,6 +103,24 @@ coco_effect_t *coco_effect_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_effect_check(coco_ctx_t *ctx, coco_effect_t *effect)
+{
+	if(effect == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_effect_dump(coco_ctx_t *ctx, coco_effect_t *effect, int indent)
 {
 	if(effect == NULL) {

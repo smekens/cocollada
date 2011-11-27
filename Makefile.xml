@@ -12,17 +12,23 @@
   </dep>
 
   <dep name="libctnr" lang="c">
-    <desc host="tux, osx, ios, android, win">
+    <desc host="osx, ios, android, win">
       <inc value="-I../game/SDK/libctnr/include" />
       <lib value="-L../game/SDK/libctnr/lib -lctnr" />
+    </desc>
+    <desc host="tux">
+      <inc value="-I../game/SDK/libctnr/include" />
       <lib value="-L../game/SDK/libctnr/lib64 -lctnr" />
     </desc>
   </dep>
 
   <dep name="libyaxp" lang="c">
-    <desc host="tux, osx, ios, android, win">
+    <desc host="osx, ios, android, win">
       <inc value="-I../game/SDK/libyaxp/include" />
       <lib value="-L../game/SDK/libyaxp/lib -lyaxp" />
+    </desc>
+    <desc host="tux">
+      <inc value="-I../game/SDK/libyaxp/include" />
       <lib value="-L../game/SDK/libyaxp/lib64 -lyaxp" />
     </desc>
   </dep>
@@ -45,7 +51,7 @@
   </target>
 
   <target name="coco_check" type="exe" link="shared">
-    <src path="./src/test/cooco_check.c" opt="-std=c89" />
+    <src path="./src/test/coco_check.c" opt="-std=c89" />
     <use name="libobjc" optional="no" />
     <use name="libctnr" optional="no" />
     <use name="libyaxp" optional="no" />

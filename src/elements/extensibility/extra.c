@@ -81,6 +81,24 @@ coco_extra_t *coco_extra_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_extra_check(coco_ctx_t *ctx, coco_extra_t *extra)
+{
+	if(extra == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_extra_dump(coco_ctx_t *ctx, coco_extra_t *extra, int indent)
 {
 	if(extra == NULL) {

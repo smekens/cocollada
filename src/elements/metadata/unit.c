@@ -37,6 +37,24 @@ coco_unit_t *coco_unit_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_unit_check(coco_ctx_t *ctx, coco_unit_t *unit)
+{
+	if(unit == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_unit_dump(coco_ctx_t *ctx, coco_unit_t *unit, int indent)
 {
 	if(unit == NULL) {

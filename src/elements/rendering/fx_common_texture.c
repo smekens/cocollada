@@ -69,6 +69,24 @@ coco_fx_common_texture_t *coco_fx_common_texture_parse(coco_ctx_t *ctx, yaxp_nod
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_fx_common_texture_check(coco_ctx_t *ctx, coco_fx_common_texture_t *fx_common_texture)
+{
+	if(fx_common_texture == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_fx_common_texture_dump(coco_ctx_t *ctx, coco_fx_common_texture_t *fx_common_texture, int indent)
 {
 	if(fx_common_texture == NULL) {

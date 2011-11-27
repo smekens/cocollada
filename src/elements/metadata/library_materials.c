@@ -71,6 +71,24 @@ coco_library_materials_t *coco_library_materials_parse(coco_ctx_t *ctx, yaxp_nod
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_library_materials_check(coco_ctx_t *ctx, coco_library_materials_t *library_materials)
+{
+	if(library_materials == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_library_materials_dump(coco_ctx_t *ctx, coco_library_materials_t *library_materials, int indent)
 {
 	if(library_materials == NULL) {

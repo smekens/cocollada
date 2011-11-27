@@ -54,6 +54,24 @@ coco_fx_common_float_t *coco_fx_common_float_parse(coco_ctx_t *ctx, yaxp_node_t 
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_fx_common_float_check(coco_ctx_t *ctx, coco_fx_common_float_t *fx_common_float)
+{
+	if(fx_common_float == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_fx_common_float_dump(coco_ctx_t *ctx, coco_fx_common_float_t *fx_common_float, int indent)
 {
 	if(fx_common_float == NULL) {

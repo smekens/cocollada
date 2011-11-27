@@ -56,6 +56,24 @@ coco_directional_t *coco_directional_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_directional_check(coco_ctx_t *ctx, coco_directional_t *directional)
+{
+	if(directional == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_directional_dump(coco_ctx_t *ctx, coco_directional_t *directional, int indent)
 {
 	if(directional == NULL) {

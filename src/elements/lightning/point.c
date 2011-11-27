@@ -74,6 +74,24 @@ coco_point_t *coco_point_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_point_check(coco_ctx_t *ctx, coco_point_t *point)
+{
+	if(point == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_point_dump(coco_ctx_t *ctx, coco_point_t *point, int indent)
 {
 	if(point == NULL) {

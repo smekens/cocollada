@@ -78,6 +78,24 @@ coco_transparent_t *coco_transparent_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_transparent_check(coco_ctx_t *ctx, coco_transparent_t *transparent)
+{
+	if(transparent == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_transparent_dump(coco_ctx_t *ctx, coco_transparent_t *transparent, int indent)
 {
 	if(transparent == NULL) {

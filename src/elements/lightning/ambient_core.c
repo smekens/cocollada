@@ -56,6 +56,24 @@ coco_ambient_core_t *coco_ambient_core_parse(coco_ctx_t *ctx, yaxp_node_t *node0
 
 /*-------------------------------------------------------------------------*/
 
+bool coco_ambient_core_check(coco_ctx_t *ctx, coco_ambient_core_t *ambient_core)
+{
+	if(ambient_core == NULL)
+	{
+		return false;
+	}
+
+	/**/
+
+	bool result = true;
+
+	/*-----------------------------------------------------------------*/
+
+	return result;
+}
+
+/*-------------------------------------------------------------------------*/
+
 void coco_ambient_core_dump(coco_ctx_t *ctx, coco_ambient_core_t *ambient_core, int indent)
 {
 	if(ambient_core == NULL) {
