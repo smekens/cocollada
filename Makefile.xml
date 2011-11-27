@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<xml>
+
+  <dep name="libobjc" lang="objective-c">
+    <desc host="tux, osx, ios, android">
+      <lib value="-lobjc" />
+    </desc>
+    <desc host="win">
+      <lib value="-L/usr/i686-pc-mingw32/sys-root/mingw/bin -lobjc-2" />
+    </desc>
+  </dep>
+
+  <target name="libcollada" type="lib" link="static">
+    <src path="src/*.c" opt="-std=c89" />
+    <src path="src/elements/animation/*.c" opt="-std=c89" />
+    <src path="src/elements/camera/*.c" opt="-std=c89" />
+    <src path="src/elements/controller/*.c" opt="-std=c89" />
+    <src path="src/elements/dataflow/*.c" opt="-std=c89" />
+    <src path="src/elements/effects/*.c" opt="-std=c89" />
+    <src path="src/elements/extensibility/*.c" opt="-std=c89" />
+    <src path="src/elements/geometry/*.c" opt="-std=c89" />
+    <src path="src/elements/lightning/*.c" opt="-std=c89" />
+    <src path="src/elements/materials/*.c" opt="-std=c89" />
+    <src path="src/elements/metadata/*.c" opt="-std=c89" />
+    <src path="src/elements/physics_material/*.c" opt="-std=c89" />
+    <src path="src/elements/physics_model/*.c" opt="-std=c89" />
+    <src path="src/elements/rendering/*.c" opt="-std=c89" />
+    <src path="src/elements/scene/*.c" opt="-std=c89" />
+    <src path="src/elements/shader/*.c" opt="-std=c89" />
+    <src path="src/elements/texturing/*.c" opt="-std=c89" />
+    <src path="src/elements/transform/*.c" opt="-std=c89" />
+  </target>
+
+  <target name="collada_dump" type="exe" link="shared">
+    <src path="./src/test/collada_dump.c" opt="-std=c89" />
+    <use name="libobjc" optional="no" />
+    <lib value="-L../libcollada/$(LIB) -lcollada" />
+    <lib value="-L../libctnr/$(LIB) -lctnr" />
+    <lib value="-L../libyaxp/$(LIB) -lyaxp" />
+    <lib value="-lm" />
+  </target>
+
+  <target name="collada_check" type="exe" link="shared">
+    <src path="./src/test/collada_check.c" opt="-std=c89" />
+    <use name="libobjc" optional="no" />
+    <lib value="-L../libcollada/$(LIB) -lcollada" />
+    <lib value="-L../libctnr/$(LIB) -lctnr" />
+    <lib value="-L../libyaxp/$(LIB) -lyaxp" />
+    <lib value="-lm" />
+  </target>
+
+</xml>
+
