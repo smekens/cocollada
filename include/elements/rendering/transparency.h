@@ -4,29 +4,29 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_TRANSPARENCY_H
-#define __COLLADA_TRANSPARENCY_H
+#ifndef __COCO_TRANSPARENCY_H
+#define __COCO_TRANSPARENCY_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_transparency_s
+typedef struct coco_transparency_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_transparency_s *prev, *next;
+	struct coco_transparency_s *prev, *next;
 
 	/**/
 
-	struct collada_fx_common_float_s *flt;
-	struct collada_fx_common_param_s *param_list;
+	struct coco_fx_common_float_s *flt;
+	struct coco_fx_common_param_s *param_list;
 
-} collada_transparency_t;
+} coco_transparency_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -34,11 +34,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_transparency_s *collada_transparency_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_transparency_s *coco_transparency_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_transparency_check(struct collada_ctx_s *, struct collada_transparency_s *);
+DLL_PUBLIC bool coco_transparency_check(struct coco_ctx_s *, struct coco_transparency_s *);
 
-DLL_PUBLIC void collada_transparency_dump(struct collada_ctx_s *, struct collada_transparency_s *, int);
+DLL_PUBLIC void coco_transparency_dump(struct coco_ctx_s *, struct coco_transparency_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -46,7 +46,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_TRANSPARENCY_H */
+#endif /* __COCO_TRANSPARENCY_H */
 
 /*-------------------------------------------------------------------------*/
 

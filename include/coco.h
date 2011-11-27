@@ -4,27 +4,27 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_H
-#define __COLLADA_H
+#ifndef __COCO_H
+#define __COCO_H
 
 /*-------------------------------------------------------------------------*/
 
-#include "../../libctnr/include/ctnr.h"
-#include "../../libyaxp/include/yaxp.h"
+#include <ctnr.h>
+#include <yaxp.h>
 
 /*-------------------------------------------------------------------------*/
 
-struct collada_ctx_s;
+struct coco_ctx_s;
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_base_s
+typedef struct coco_base_s
 {
 	const char *id;
 
@@ -35,9 +35,9 @@ typedef struct collada_base_s
 
 	/**/
 
-	struct collada_base_s *prev, *next;
+	struct coco_base_s *prev, *next;
 
-} collada_base_t;
+} coco_base_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -129,14 +129,14 @@ typedef struct collada_base_s
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_ctx_s
+typedef struct coco_ctx_s
 {
-	struct collada_s *collada;
+	struct coco_collada_s *collada;
 
 	/**/
 
 	struct ctnr_hash_list_s hash_list;
-	struct ctnr_hash_list_s element_list;
+	struct ctnr_hash_list_s elem_list;
 
 	struct ctnr_pool_s pool;
 
@@ -145,13 +145,13 @@ typedef struct collada_ctx_s
 	int wrn_nr;
 	int err_nr;
 
-} collada_ctx_t;
+} coco_ctx_t;
 
 /*-------------------------------------------------------------------------*/
 /* LOG									   */
 /*-------------------------------------------------------------------------*/
 
-typedef enum collada_log_type_e
+typedef enum coco_log_type_e
 {
 	TYPE_NOTICE = 0
 	,
@@ -163,11 +163,11 @@ typedef enum collada_log_type_e
 	,
 	TYPE_FATAL = 4
 
-} collada_log_type_t;
+} coco_log_type_t;
 
-#define collada_log(ctx, type, line, column, ...) __collada_log(ctx, type, __FILE__, __LINE__, line, column, __VA_ARGS__)
+#define coco_log(ctx, type, line, column, ...) __coco_log(ctx, type, __FILE__, __LINE__, line, column, __VA_ARGS__)
 
-DLL_PUBLIC void __collada_log(struct collada_ctx_s *, collada_log_type_t type, const char *, int, int, int, const char *, ...) __attribute__ ((format(printf, 7, 8)));
+DLL_PUBLIC void __coco_log(struct coco_ctx_s *, coco_log_type_t type, const char *, int, int, int, const char *, ...) __attribute__ ((format(printf, 7, 8)));
 
 /*-------------------------------------------------------------------------*/
 
@@ -175,14 +175,14 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC void collada_ctx_initialize(struct collada_ctx_s *);
-DLL_PUBLIC void collada_ctx_finalize(struct collada_ctx_s *);
+DLL_PUBLIC void coco_ctx_initialize(struct coco_ctx_s *);
+DLL_PUBLIC void coco_ctx_finalize(struct coco_ctx_s *);
 
 /*-------------------------------------------------------------------------*/
 
-#define collada_ctx_factory(__ctx, __type)										\
+#define coco_ctx_factory(__ctx, __type)										\
 	({														\
-		struct collada_base_s *base = ctnr_cast(struct collada_base_s *, ctnr_pool_new(&__ctx->pool, __type));	\
+		struct coco_base_s *base = ctnr_cast(struct coco_base_s *, ctnr_pool_new(&__ctx->pool, __type));	\
 															\
 		base->type = ctnr_hash(#__type);									\
 															\
@@ -191,64 +191,64 @@ DLL_PUBLIC void collada_ctx_finalize(struct collada_ctx_s *);
 
 /*-------------------------------------------------------------------------*/
 
-#define collada_ctx_register_element(__ctx, __type, __elm_parser, __elm_check, __elm_dump) \
-		__collada_ctx_register_element(__ctx, #__type, __elm_parser, __elm_check, __elm_dump)
+#define coco_ctx_register_element(__ctx, __type, __elm_parse, __elm_check, __elm_dump) \
+		__coco_ctx_register_element(__ctx, #__type, __elm_parse, __elm_check, __elm_dump)
 
-DLL_PUBLIC void __collada_ctx_register_element(struct collada_ctx_s *, const char *, void *, void *, void *);
-
-/*-------------------------------------------------------------------------*/
-
-#define collada_ctx_parser(__ctx, __type, __node) \
-		ctnr_cast(__type *(*)(collada_ctx_t *, yaxp_node_t *), __collada_ctx_get_parser(ctx, ctnr_hash(#__type)))(__ctx, __node)
-
-DLL_PUBLIC void *__collada_ctx_get_parser(struct collada_ctx_s *, unsigned);
+DLL_PUBLIC void __coco_ctx_register_element(struct coco_ctx_s *, const char *, void *, void *, void *);
 
 /*-------------------------------------------------------------------------*/
 
-#define collada_ctx_check(__ctx, __type, __object) \
-		ctnr_cast(bool (*)(collada_ctx_t *, __type *), __collada_ctx_get_check(__ctx, ctnr_hash(#__type)))(__ctx, __object)
+#define coco_ctx_parse(__ctx, __type, __node) \
+		ctnr_cast(__type *(*)(coco_ctx_t *, yaxp_node_t *), __coco_ctx_get_parse(ctx, ctnr_hash(#__type)))(__ctx, __node)
 
-DLL_PUBLIC void *__collada_ctx_get_check(struct collada_ctx_s *, unsigned);
-
-/*-------------------------------------------------------------------------*/
-
-#define collada_ctx_dump(__ctx, __type, __object, __indent) \
-		ctnr_cast(void (*)(collada_ctx_t *, __type *, int), __collada_ctx_get_dump(__ctx, ctnr_hash(#__type)))(__ctx, __object, __indent)
-
-DLL_PUBLIC void *__collada_ctx_get_dump(struct collada_ctx_s *, unsigned);
+DLL_PUBLIC void *__coco_ctx_get_parse(struct coco_ctx_s *, unsigned);
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC bool collada_ctx_loader(struct collada_ctx_s *, BUFF_t, size_t);
+#define coco_ctx_check(__ctx, __type, __object) \
+		ctnr_cast(bool (*)(coco_ctx_t *, __type *), __coco_ctx_get_check(__ctx, ctnr_hash(#__type)))(__ctx, __object)
 
-DLL_PUBLIC bool collada_ctx_check_all(struct collada_ctx_s *);
-
-DLL_PUBLIC void collada_ctx_dump_all(struct collada_ctx_s *);
+DLL_PUBLIC void *__coco_ctx_get_check(struct coco_ctx_s *, unsigned);
 
 /*-------------------------------------------------------------------------*/
 
-#define collada_ctx_register(__ctx, __elm, __id)		\
+#define coco_ctx_dump(__ctx, __type, __object, __indent) \
+		ctnr_cast(void (*)(coco_ctx_t *, __type *, int), __coco_ctx_get_dump(__ctx, ctnr_hash(#__type)))(__ctx, __object, __indent)
+
+DLL_PUBLIC void *__coco_ctx_get_dump(struct coco_ctx_s *, unsigned);
+
+/*-------------------------------------------------------------------------*/
+
+DLL_PUBLIC bool coco_ctx_loader(struct coco_ctx_s *, BUFF_t, size_t);
+
+DLL_PUBLIC bool coco_ctx_check_all(struct coco_ctx_s *);
+
+DLL_PUBLIC void coco_ctx_dump_all(struct coco_ctx_s *);
+
+/*-------------------------------------------------------------------------*/
+
+#define coco_ctx_register(__ctx, __elm, __id)		\
 	({							\
 		__elm->base.id = __id;				\
 		ctnr_hash_add(&__ctx->hash_list, __elm);	\
 	})
 
-#define collada_ctx_unregister(__ctx, __elm)			\
+#define coco_ctx_unregister(__ctx, __elm)			\
 		ctnr_hash_del(&__ctx->hash_list, __elm);
 
 
-#define collada_ctx_lookup_by_hash(ctx, type, hash) \
-		ctnr_cast(type *, __collada_ctx_lookup_by_hash(ctx, ctnr_hash(#type), hash))
+#define coco_ctx_lookup_by_hash(ctx, type, hash) \
+		ctnr_cast(type *, __coco_ctx_lookup_by_hash(ctx, ctnr_hash(#type), hash))
 
-#define collada_ctx_lookup_by_name(ctx, type, name) \
-		ctnr_cast(type *, __collada_ctx_lookup_by_name(ctx, ctnr_hash(#type), name))
+#define coco_ctx_lookup_by_name(ctx, type, name) \
+		ctnr_cast(type *, __coco_ctx_lookup_by_name(ctx, ctnr_hash(#type), name))
 
-DLL_PUBLIC struct collada_base_s *__collada_ctx_lookup_by_hash(struct collada_ctx_s *, unsigned, unsigned);
-DLL_PUBLIC struct collada_base_s *__collada_ctx_lookup_by_name(struct collada_ctx_s *, unsigned, const char *);
+DLL_PUBLIC struct coco_base_s *__coco_ctx_lookup_by_hash(struct coco_ctx_s *, unsigned, unsigned);
+DLL_PUBLIC struct coco_base_s *__coco_ctx_lookup_by_name(struct coco_ctx_s *, unsigned, const char *);
 
 /*-------------------------------------------------------------------------*/
 
-const char *collada_ctx_strdup(struct collada_ctx_s *, const char *);
+const char *coco_ctx_strdup(struct coco_ctx_s *, const char *);
 
 /*-------------------------------------------------------------------------*/
 
@@ -256,7 +256,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_H */
+#endif /* __COCO_H */
 
 /*-------------------------------------------------------------------------*/
 

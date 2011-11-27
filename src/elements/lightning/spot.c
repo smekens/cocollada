@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,20 +14,20 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_spot_t *collada_spot_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_spot_t *coco_spot_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_spot_t *result = collada_ctx_factory(ctx, collada_spot_t);
+	coco_spot_t *result = coco_ctx_factory(ctx, coco_spot_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_color_t *color;
+	coco_color_t *color;
 
 	/**/
 
@@ -48,7 +48,7 @@ collada_spot_t *collada_spot_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x2802D184: /* color */
-				color = collada_ctx_parser(ctx, collada_color_t, node1);
+				color = coco_ctx_parse(ctx, coco_color_t, node1);
 
 				result->color = color;
 				break;
@@ -74,7 +74,7 @@ collada_spot_t *collada_spot_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -85,7 +85,7 @@ collada_spot_t *collada_spot_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_spot_dump(collada_ctx_t *ctx, collada_spot_t *spot, int indent)
+void coco_spot_dump(coco_ctx_t *ctx, coco_spot_t *spot, int indent)
 {
 	if(spot == NULL) {
 		return;
@@ -93,41 +93,35 @@ void collada_spot_dump(collada_ctx_t *ctx, collada_spot_t *spot, int indent)
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Spot:\n");
+	COCO_DUMP_INDENT(indent, "Spot:\n");
 
 	indent++;
 
-	collada_ctx_dump(ctx, collada_color_t, spot->color, indent);
+	coco_ctx_dump(ctx, coco_color_t, spot->color, indent);
 
 	if(spot->constant_attenuation != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Constant attenuation: %f\n", spot->constant_attenuation);
+		COCO_DUMP_INDENT(indent, "Constant attenuation: %f\n", spot->constant_attenuation);
 	}
 
 	if(spot->linear_attenuation != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Linear attenuation: %f\n", spot->linear_attenuation);
+		COCO_DUMP_INDENT(indent, "Linear attenuation: %f\n", spot->linear_attenuation);
 	}
 
 	if(spot->quadratic_attenuation != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Quadratic attenuation: %f\n", spot->quadratic_attenuation);
+		COCO_DUMP_INDENT(indent, "Quadratic attenuation: %f\n", spot->quadratic_attenuation);
 	}
 
 	if(spot->falloff_angle != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Falloff angle: %f\n", spot->falloff_angle);
+		COCO_DUMP_INDENT(indent, "Falloff angle: %f\n", spot->falloff_angle);
 	}
 
 	if(spot->falloff_exponent != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Falloff exponent: %f\n", spot->falloff_exponent);
+		COCO_DUMP_INDENT(indent, "Falloff exponent: %f\n", spot->falloff_exponent);
 	}
 }
 

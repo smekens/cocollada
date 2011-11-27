@@ -4,37 +4,37 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_GEOMETRY_H
-#define __COLLADA_GEOMETRY_H
+#ifndef __COCO_GEOMETRY_H
+#define __COCO_GEOMETRY_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_geometry_s
+typedef struct coco_geometry_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_geometry_s *prev, *next;
+	struct coco_geometry_s *prev, *next;
 
 	/**/
 
 	const char *id;
 	const char *name;
 
-	struct collada_asset_s *asset;
+	struct coco_asset_s *asset;
 
-	/* TODO struct collada_convex_mesh_s *convex_mesh;*/
-	struct collada_mesh_s *mesh;
-	/* TODO struct collada_spline_s *spline;*/
+	/* TODO struct coco_convex_mesh_s *convex_mesh;*/
+	struct coco_mesh_s *mesh;
+	/* TODO struct coco_spline_s *spline;*/
 
-	struct collada_extra_s *extra_list;
+	struct coco_extra_s *extra_list;
 
-} collada_geometry_t;
+} coco_geometry_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -42,11 +42,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_geometry_s *collada_geometry_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_geometry_s *coco_geometry_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_geometry_check(struct collada_ctx_s *, struct collada_geometry_s *);
+DLL_PUBLIC bool coco_geometry_check(struct coco_ctx_s *, struct coco_geometry_s *);
 
-DLL_PUBLIC void collada_geometry_dump(struct collada_ctx_s *, struct collada_geometry_s *, int);
+DLL_PUBLIC void coco_geometry_dump(struct coco_ctx_s *, struct coco_geometry_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -54,7 +54,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_GEOMETRY_H */
+#endif /* __COCO_GEOMETRY_H */
 
 /*-------------------------------------------------------------------------*/
 

@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,13 +14,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_input_t *collada_input_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_input_t *coco_input_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_input_t *result = collada_ctx_factory(ctx, collada_input_t);
+	coco_input_t *result = coco_ctx_factory(ctx, coco_input_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -33,12 +33,12 @@ collada_input_t *collada_input_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 	str = YAXP_GET_STR_ATTR(node0, "semantic", NULL);
 	if(str != NULL) {
-		result->semantic = collada_ctx_strdup(ctx, str);
+		result->semantic = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "source", NULL);
 	if(str != NULL) {
-		result->source = collada_ctx_strdup(ctx, str);
+		result->source = coco_ctx_strdup(ctx, str);
 	}
 
 	result->set = YAXP_GET_INT_ATTR(node0, "set", "-1");
@@ -50,7 +50,7 @@ collada_input_t *collada_input_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_input_dump(collada_ctx_t *ctx, collada_input_t *input, int indent)
+void coco_input_dump(coco_ctx_t *ctx, coco_input_t *input, int indent)
 {
 	if(input == NULL) {
 		return;
@@ -58,33 +58,28 @@ void collada_input_dump(collada_ctx_t *ctx, collada_input_t *input, int indent)
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Input:\n");
+	COCO_DUMP_INDENT(indent, "Input:\n");
 
 	indent++;
 
 	if(input->offset >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Offset: %d\n", input->offset);
+		COCO_DUMP_INDENT(indent, "Offset: %d\n", input->offset);
 	}
 
 	if(input->semantic != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Semantic: %s\n", input->semantic);
+		COCO_DUMP_INDENT(indent, "Semantic: %s\n", input->semantic);
 	}
 
 	if(input->source != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Source: %s\n", input->source);
+		COCO_DUMP_INDENT(indent, "Source: %s\n", input->source);
 	}
 
 	if(input->set >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Stride: %d\n", input->set);
+		COCO_DUMP_INDENT(indent, "Stride: %d\n", input->set);
 	}
 }
 

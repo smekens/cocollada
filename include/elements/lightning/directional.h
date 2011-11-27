@@ -4,28 +4,28 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_DIRECTIONAL_H
-#define __COLLADA_DIRECTIONAL_H
+#ifndef __COCO_DIRECTIONAL_H
+#define __COCO_DIRECTIONAL_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_directional_s
+typedef struct coco_directional_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_directional_s *prev, *next;
+	struct coco_directional_s *prev, *next;
 
 	/**/
 
-	struct collada_color_s *color;
+	struct coco_color_s *color;
 
-} collada_directional_t;
+} coco_directional_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -33,11 +33,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_directional_s *collada_directional_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_directional_s *coco_directional_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_directional_check(struct collada_ctx_s *, struct collada_directional_s *);
+DLL_PUBLIC bool coco_directional_check(struct coco_ctx_s *, struct coco_directional_s *);
 
-DLL_PUBLIC void collada_directional_dump(struct collada_ctx_s *, struct collada_directional_s *, int);
+DLL_PUBLIC void coco_directional_dump(struct coco_ctx_s *, struct coco_directional_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -45,7 +45,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_DIRECTIONAL_H */
+#endif /* __COCO_DIRECTIONAL_H */
 
 /*-------------------------------------------------------------------------*/
 

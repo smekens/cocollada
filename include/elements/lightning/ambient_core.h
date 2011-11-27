@@ -4,28 +4,28 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_AMBIENT_CORE_H
-#define __COLLADA_AMBIENT_CORE_H
+#ifndef __COCO_AMBIENT_CORE_H
+#define __COCO_AMBIENT_CORE_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_ambient_core_s
+typedef struct coco_ambient_core_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_ambient_core_s *prev, *next;
+	struct coco_ambient_core_s *prev, *next;
 
 	/**/
 
-	struct collada_color_s *color;
+	struct coco_color_s *color;
 
-} collada_ambient_core_t;
+} coco_ambient_core_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -33,11 +33,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_ambient_core_s *collada_ambient_core_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_ambient_core_s *coco_ambient_core_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_ambient_core_check(struct collada_ctx_s *, struct collada_ambient_core_s *);
+DLL_PUBLIC bool coco_ambient_core_check(struct coco_ctx_s *, struct coco_ambient_core_s *);
 
-DLL_PUBLIC void collada_ambient_core_dump(struct collada_ctx_s *, struct collada_ambient_core_s *, int);
+DLL_PUBLIC void coco_ambient_core_dump(struct coco_ctx_s *, struct coco_ambient_core_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -45,7 +45,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_AMBIENT_CORE_H */
+#endif /* __COCO_AMBIENT_CORE_H */
 
 /*-------------------------------------------------------------------------*/
 

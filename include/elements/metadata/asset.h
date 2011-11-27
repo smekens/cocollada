@@ -4,22 +4,22 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_ASSET_H
-#define __COLLADA_ASSET_H
+#ifndef __COCO_ASSET_H
+#define __COCO_ASSET_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_asset_contributor_s
+typedef struct coco_asset_contributor_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_asset_contributor_s *prev, *next;
+	struct coco_asset_contributor_s *prev, *next;
 
 	/**/
 
@@ -29,19 +29,19 @@ typedef struct collada_asset_contributor_s
 	const char *copyright;
 	const char *source_data;
 
-} collada_asset_contributor_t;
+} coco_asset_contributor_t;
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_asset_s
+typedef struct coco_asset_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_asset_s *prev, *next;
+	struct coco_asset_s *prev, *next;
 
 	/**/
 
-	struct collada_asset_contributor_s *contributor_list;
+	struct coco_asset_contributor_s *contributor_list;
 
 	const char *created;
 	const char *keywords;
@@ -50,11 +50,11 @@ typedef struct collada_asset_s
 	const char *subject;
 	const char *title;
 
-	struct collada_unit_s *unit;
+	struct coco_unit_s *unit;
 
 	const char *up_axis;
 
-} collada_asset_t;
+} coco_asset_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -62,19 +62,19 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_asset_contributor_s *collada_asset_contributor_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_asset_contributor_s *coco_asset_contributor_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_asset_contributor_check(struct collada_ctx_s *, struct collada_asset_contributor_s *);
+DLL_PUBLIC bool coco_asset_contributor_check(struct coco_ctx_s *, struct coco_asset_contributor_s *);
 
-DLL_PUBLIC void collada_asset_contributor_dump(struct collada_ctx_s *, struct collada_asset_contributor_s *, int);
+DLL_PUBLIC void coco_asset_contributor_dump(struct coco_ctx_s *, struct coco_asset_contributor_s *, int);
 
 /**/
 
-DLL_PUBLIC struct collada_asset_s *collada_asset_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_asset_s *coco_asset_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_asset_check(struct collada_ctx_s *, struct collada_asset_s *);
+DLL_PUBLIC bool coco_asset_check(struct coco_ctx_s *, struct coco_asset_s *);
 
-DLL_PUBLIC void collada_asset_dump(struct collada_ctx_s *, struct collada_asset_s *, int);
+DLL_PUBLIC void coco_asset_dump(struct coco_ctx_s *, struct coco_asset_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -82,7 +82,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_ASSET_H */
+#endif /* __COCO_ASSET_H */
 
 /*-------------------------------------------------------------------------*/
 

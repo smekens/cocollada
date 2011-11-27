@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,21 +14,21 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_optics_technique_common_t *collada_optics_technique_common_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_optics_technique_common_t *coco_optics_technique_common_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_optics_technique_common_t *result = collada_ctx_factory(ctx, collada_optics_technique_common_t);
+	coco_optics_technique_common_t *result = coco_ctx_factory(ctx, coco_optics_technique_common_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_orthographic_t *orthographic;
-	collada_perspective_t *perspective;
+	coco_orthographic_t *orthographic;
+	coco_perspective_t *perspective;
 
 	/**/
 
@@ -40,19 +40,19 @@ collada_optics_technique_common_t *collada_optics_technique_common_parser(collad
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x5780895E: /* orthographic */
-				orthographic = collada_ctx_parser(ctx, collada_orthographic_t, node1);
+				orthographic = coco_ctx_parse(ctx, coco_orthographic_t, node1);
 
 				result->orthographic = orthographic;
 				break;
 
 			case 0xCAFFBEBC: /* perspective */
-				perspective = collada_ctx_parser(ctx, collada_perspective_t, node1);
+				perspective = coco_ctx_parse(ctx, coco_perspective_t, node1);
 
 				result->perspective = perspective;
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -63,7 +63,7 @@ collada_optics_technique_common_t *collada_optics_technique_common_parser(collad
 
 /*-------------------------------------------------------------------------*/
 
-void collada_optics_technique_common_dump(collada_ctx_t *ctx, collada_optics_technique_common_t *technique_common, int indent)
+void coco_optics_technique_common_dump(coco_ctx_t *ctx, coco_optics_technique_common_t *technique_common, int indent)
 {
 	if(technique_common == NULL) {
 		return;
@@ -71,31 +71,30 @@ void collada_optics_technique_common_dump(collada_ctx_t *ctx, collada_optics_tec
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Technique common:\n");
+	COCO_DUMP_INDENT(indent, "Technique common:\n");
 
 	indent++;
 
-	collada_ctx_dump(ctx, collada_orthographic_t, technique_common->orthographic, indent);
+	coco_ctx_dump(ctx, coco_orthographic_t, technique_common->orthographic, indent);
 
-	collada_ctx_dump(ctx, collada_perspective_t, technique_common->perspective, indent);
+	coco_ctx_dump(ctx, coco_perspective_t, technique_common->perspective, indent);
 }
 
 /*-------------------------------------------------------------------------*/
 
-collada_optics_t *collada_optics_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_optics_t *coco_optics_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_optics_t *result = collada_ctx_factory(ctx, collada_optics_t);
+	coco_optics_t *result = coco_ctx_factory(ctx, coco_optics_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_optics_technique_common_t *technique_common;
-	collada_technique_core_t *technique;
+	coco_optics_technique_common_t *technique_common;
+	coco_technique_core_t *technique;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
@@ -107,25 +106,25 @@ collada_optics_t *collada_optics_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x8BA567DA: /* technique_common */
-				technique_common = collada_ctx_parser(ctx, collada_optics_technique_common_t, node1);
+				technique_common = coco_ctx_parse(ctx, coco_optics_technique_common_t, node1);
 
 				result->technique_common = technique_common;
 				break;
 
 			case 0x2477201A: /* technique */
-				technique = collada_ctx_parser(ctx, collada_technique_core_t, node1);
+				technique = coco_ctx_parse(ctx, coco_technique_core_t, node1);
 
 				ctnr_list_add(result->technique_list, technique);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
-				extra = collada_ctx_parser(ctx, collada_extra_t, node1);
+				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
 				ctnr_list_add(result->extra_list, extra);
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -136,7 +135,7 @@ collada_optics_t *collada_optics_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_optics_dump(collada_ctx_t *ctx, collada_optics_t *optics, int indent)
+void coco_optics_dump(coco_ctx_t *ctx, coco_optics_t *optics, int indent)
 {
 	if(optics == NULL) {
 		return;
@@ -146,25 +145,24 @@ void collada_optics_dump(collada_ctx_t *ctx, collada_optics_t *optics, int inden
 
 	int nr;
 
-	collada_technique_core_t *technique;
+	coco_technique_core_t *technique;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Optics:\n");
+	COCO_DUMP_INDENT(indent, "Optics:\n");
 
 	indent++;
 
-	collada_ctx_dump(ctx, collada_optics_technique_common_t, optics->technique_common, indent);
+	coco_ctx_dump(ctx, coco_optics_technique_common_t, optics->technique_common, indent);
 
 	ctnr_list_foreach(optics->technique_list, technique, nr) {
-		collada_ctx_dump(ctx, collada_technique_core_t, technique, indent);
+		coco_ctx_dump(ctx, coco_technique_core_t, technique, indent);
 	}
 
 	ctnr_list_foreach(optics->extra_list, extra, nr) {
-		collada_ctx_dump(ctx, collada_extra_t, extra, indent);
+		coco_ctx_dump(ctx, coco_extra_t, extra, indent);
 	}
 }
 

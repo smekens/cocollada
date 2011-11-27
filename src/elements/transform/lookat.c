@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,13 +14,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_lookat_t *collada_lookat_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_lookat_t *coco_lookat_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_lookat_t *result = collada_ctx_factory(ctx, collada_lookat_t);
+	coco_lookat_t *result = coco_ctx_factory(ctx, coco_lookat_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -31,13 +31,13 @@ collada_lookat_t *collada_lookat_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 	str = YAXP_GET_STR_ATTR(node0, "sid", NULL);
 	if(str != NULL) {
-		result->sid = collada_ctx_strdup(ctx, str);
+		result->sid = coco_ctx_strdup(ctx, str);
 	}
 
 	/**/
 
-	collada_vector_flt_t vector;
-	collada_string_to_vector_flt(ctx, &vector, YAXP_GET_STR_TEXT(node0, ""));
+	coco_vector_flt_t vector;
+	coco_string_to_vector_flt(ctx, &vector, YAXP_GET_STR_TEXT(node0, ""));
 
 	if(vector.nr == 9)
 	{
@@ -45,10 +45,10 @@ collada_lookat_t *collada_lookat_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 	}
 	else
 	{
-		collada_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "number of values should be 9 !\n");
+		coco_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "number of values should be 9 !\n");
 	}
 
-	collada_vector_flt_free(ctx, &vector);
+	coco_vector_flt_free(ctx, &vector);
 
 	/**/
 
@@ -57,7 +57,7 @@ collada_lookat_t *collada_lookat_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_lookat_dump(collada_ctx_t *ctx, collada_lookat_t *lookat, int indent)
+void coco_lookat_dump(coco_ctx_t *ctx, coco_lookat_t *lookat, int indent)
 {
 	if(lookat == NULL) {
 		return;
@@ -69,13 +69,11 @@ void collada_lookat_dump(collada_ctx_t *ctx, collada_lookat_t *lookat, int inden
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Lookat:\n");
+	COCO_DUMP_INDENT(indent, "Lookat:\n");
 
 	indent++;
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Array:");
+	COCO_DUMP_INDENT(indent, "Array:");
 
 	for(i = 0; i < 9; i++){
 		printf(" %f", lookat->array[i]);

@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,13 +14,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_accessor_param_t *collada_accessor_param_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_accessor_param_t *coco_accessor_param_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_accessor_param_t *result = collada_ctx_factory(ctx, collada_accessor_param_t);
+	coco_accessor_param_t *result = coco_ctx_factory(ctx, coco_accessor_param_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -31,22 +31,22 @@ collada_accessor_param_t *collada_accessor_param_parser(collada_ctx_t *ctx, yaxp
 
 	str = YAXP_GET_STR_ATTR(node0, "name", NULL);
 	if(str != NULL) {
-		result->name = collada_ctx_strdup(ctx, str);
+		result->name = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "sid", NULL);
 	if(str != NULL) {
-		result->sid = collada_ctx_strdup(ctx, str);
+		result->sid = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "semantic", NULL);
 	if(str != NULL) {
-		result->semantic = collada_ctx_strdup(ctx, str);
+		result->semantic = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "type", NULL);
 	if(str != NULL) {
-		result->type = collada_ctx_strdup(ctx, str);
+		result->type = coco_ctx_strdup(ctx, str);
 	}
 
 	/**/
@@ -56,7 +56,7 @@ collada_accessor_param_t *collada_accessor_param_parser(collada_ctx_t *ctx, yaxp
 
 /*-------------------------------------------------------------------------*/
 
-void collada_accessor_param_dump(collada_ctx_t *ctx, collada_accessor_param_t *accessor_param, int indent)
+void coco_accessor_param_dump(coco_ctx_t *ctx, coco_accessor_param_t *accessor_param, int indent)
 {
 	if(accessor_param == NULL) {
 		return;
@@ -64,48 +64,43 @@ void collada_accessor_param_dump(collada_ctx_t *ctx, collada_accessor_param_t *a
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Param:\n");
+	COCO_DUMP_INDENT(indent, "Param:\n");
 
 	indent++;
 
 	if(accessor_param->name != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Name: %s\n", accessor_param->name);
+		COCO_DUMP_INDENT(indent, "Name: %s\n", accessor_param->name);
 	}
 
 	if(accessor_param->sid != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Sid: %s\n", accessor_param->sid);
+		COCO_DUMP_INDENT(indent, "Sid: %s\n", accessor_param->sid);
 	}
 
 	if(accessor_param->semantic != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Semantic: %s\n", accessor_param->semantic);
+		COCO_DUMP_INDENT(indent, "Semantic: %s\n", accessor_param->semantic);
 	}
 
 	if(accessor_param->type != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Type: %s\n", accessor_param->type);
+		COCO_DUMP_INDENT(indent, "Type: %s\n", accessor_param->type);
 	}
 }
 
 /*-------------------------------------------------------------------------*/
 
-collada_accessor_t *collada_accessor_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_accessor_t *coco_accessor_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_accessor_t *result = collada_ctx_factory(ctx, collada_accessor_t);
+	coco_accessor_t *result = coco_ctx_factory(ctx, coco_accessor_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_accessor_param_t *param;
+	coco_accessor_param_t *param;
 
 	/**/
 
@@ -117,7 +112,7 @@ collada_accessor_t *collada_accessor_parser(collada_ctx_t *ctx, yaxp_node_t *nod
 
 	str = YAXP_GET_STR_ATTR(node0, "source", NULL);
 	if(str != NULL) {
-		result->source = collada_ctx_strdup(ctx, str);
+		result->source = coco_ctx_strdup(ctx, str);
 	}
 
 	result->stride = YAXP_GET_INT_ATTR(node0, "stride", "-1");
@@ -133,13 +128,13 @@ collada_accessor_t *collada_accessor_parser(collada_ctx_t *ctx, yaxp_node_t *nod
 		{
 			case 0x657C2B30: /* param */
 			{
-				param = collada_ctx_parser(ctx, collada_accessor_param_t, node1);
+				param = coco_ctx_parse(ctx, coco_accessor_param_t, node1);
 
 				ctnr_list_add(result->param_list, param);
 				break;
 			}
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -150,7 +145,7 @@ collada_accessor_t *collada_accessor_parser(collada_ctx_t *ctx, yaxp_node_t *nod
 
 /*-------------------------------------------------------------------------*/
 
-void collada_accessor_dump(collada_ctx_t *ctx, collada_accessor_t *accessor, int indent)
+void coco_accessor_dump(coco_ctx_t *ctx, coco_accessor_t *accessor, int indent)
 {
 	if(accessor == NULL) {
 		return;
@@ -160,41 +155,36 @@ void collada_accessor_dump(collada_ctx_t *ctx, collada_accessor_t *accessor, int
 
 	int nr;
 
-	collada_accessor_param_t *param;
+	coco_accessor_param_t *param;
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Accessor:\n");
+	COCO_DUMP_INDENT(indent, "Accessor:\n");
 
 	indent++;
 
 	if(accessor->count >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Count: %d\n", accessor->count);
+		COCO_DUMP_INDENT(indent, "Count: %d\n", accessor->count);
 	}
 
 	if(accessor->offset >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Offset: %d\n", accessor->offset);
+		COCO_DUMP_INDENT(indent, "Offset: %d\n", accessor->offset);
 	}
 
 	if(accessor->source != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Source: %s\n", accessor->source);
+		COCO_DUMP_INDENT(indent, "Source: %s\n", accessor->source);
 	}
 
 	if(accessor->stride >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Stride: %d\n", accessor->stride);
+		COCO_DUMP_INDENT(indent, "Stride: %d\n", accessor->stride);
 	}
 
 	ctnr_list_foreach(accessor->param_list, param, nr) {
-		collada_ctx_dump(ctx, collada_accessor_param_t, param, indent);
+		coco_ctx_dump(ctx, coco_accessor_param_t, param, indent);
 	}
 }
 

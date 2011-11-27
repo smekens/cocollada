@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,20 +14,20 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_directional_t *collada_directional_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_directional_t *coco_directional_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_directional_t *result = collada_ctx_factory(ctx, collada_directional_t);
+	coco_directional_t *result = coco_ctx_factory(ctx, coco_directional_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_color_t *color;
+	coco_color_t *color;
 
 	/**/
 
@@ -39,13 +39,13 @@ collada_directional_t *collada_directional_parser(collada_ctx_t *ctx, yaxp_node_
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x2802D184: /* color */
-				color = collada_ctx_parser(ctx, collada_color_t, node1);
+				color = coco_ctx_parse(ctx, coco_color_t, node1);
 
 				result->color = color;
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -56,7 +56,7 @@ collada_directional_t *collada_directional_parser(collada_ctx_t *ctx, yaxp_node_
 
 /*-------------------------------------------------------------------------*/
 
-void collada_directional_dump(collada_ctx_t *ctx, collada_directional_t *directional, int indent)
+void coco_directional_dump(coco_ctx_t *ctx, coco_directional_t *directional, int indent)
 {
 	if(directional == NULL) {
 		return;
@@ -64,12 +64,11 @@ void collada_directional_dump(collada_ctx_t *ctx, collada_directional_t *directi
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Directional:\n");
+	COCO_DUMP_INDENT(indent, "Directional:\n");
 
 	indent++;
 
-	collada_ctx_dump(ctx, collada_color_t, directional->color, indent);
+	coco_ctx_dump(ctx, coco_color_t, directional->color, indent);
 }
 
 /*-------------------------------------------------------------------------*/

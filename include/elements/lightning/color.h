@@ -4,22 +4,22 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_COLOR_H
-#define __COLLADA_COLOR_H
+#ifndef __COCO_COLOR_H
+#define __COCO_COLOR_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_color_s
+typedef struct coco_color_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_color_s *prev, *next;
+	struct coco_color_s *prev, *next;
 
 	/**/
 
@@ -30,7 +30,7 @@ typedef struct collada_color_s
 	float b;
 	float a;
 
-} collada_color_t;
+} coco_color_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -38,11 +38,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_color_s *collada_color_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_color_s *coco_color_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_color_check(struct collada_ctx_s *, struct collada_color_s *);
+DLL_PUBLIC bool coco_color_check(struct coco_ctx_s *, struct coco_color_s *);
 
-DLL_PUBLIC void collada_color_dump(struct collada_ctx_s *, struct collada_color_s *, int);
+DLL_PUBLIC void coco_color_dump(struct coco_ctx_s *, struct coco_color_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -50,7 +50,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_COLOR_H */
+#endif /* __COCO_COLOR_H */
 
 /*-------------------------------------------------------------------------*/
 

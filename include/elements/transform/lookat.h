@@ -4,22 +4,22 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_LOOKAT_H
-#define __COLLADA_LOOKAT_H
+#ifndef __COCO_LOOKAT_H
+#define __COCO_LOOKAT_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_lookat_s
+typedef struct coco_lookat_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_lookat_s *prev, *next;
+	struct coco_lookat_s *prev, *next;
 
 	/**/
 
@@ -27,7 +27,7 @@ typedef struct collada_lookat_s
 
 	float array[9];
 
-} collada_lookat_t;
+} coco_lookat_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -35,11 +35,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_lookat_s *collada_lookat_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_lookat_s *coco_lookat_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_lookat_check(struct collada_ctx_s *, struct collada_lookat_s *);
+DLL_PUBLIC bool coco_lookat_check(struct coco_ctx_s *, struct coco_lookat_s *);
 
-DLL_PUBLIC void collada_lookat_dump(struct collada_ctx_s *, struct collada_lookat_s *, int);
+DLL_PUBLIC void coco_lookat_dump(struct coco_ctx_s *, struct coco_lookat_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -47,7 +47,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_LOOKAT_H */
+#endif /* __COCO_LOOKAT_H */
 
 /*-------------------------------------------------------------------------*/
 

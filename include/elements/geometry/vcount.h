@@ -4,22 +4,22 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_VCOUNT_H
-#define __COLLADA_VCOUNT_H
+#ifndef __COCO_VCOUNT_H
+#define __COCO_VCOUNT_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_vcount_s
+typedef struct coco_vcount_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_vcount_s *prev, *next;
+	struct coco_vcount_s *prev, *next;
 
 	/**/
 
@@ -27,7 +27,7 @@ typedef struct collada_vcount_s
 
 	int *array;
 
-} collada_vcount_t;
+} coco_vcount_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -35,11 +35,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_vcount_s *collada_vcount_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_vcount_s *coco_vcount_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_vcount_check(struct collada_ctx_s *, struct collada_vcount_s *);
+DLL_PUBLIC bool coco_vcount_check(struct coco_ctx_s *, struct coco_vcount_s *);
 
-DLL_PUBLIC void collada_vcount_dump(struct collada_ctx_s *, struct collada_vcount_s *, int);
+DLL_PUBLIC void coco_vcount_dump(struct coco_ctx_s *, struct coco_vcount_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -47,7 +47,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_VCOUNT_H */
+#endif /* __COCO_VCOUNT_H */
 
 /*-------------------------------------------------------------------------*/
 

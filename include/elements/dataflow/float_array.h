@@ -4,22 +4,22 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_FLOAT_ARRAY_H
-#define __COLLADA_FLOAT_ARRAY_H
+#ifndef __COCO_FLOAT_ARRAY_H
+#define __COCO_FLOAT_ARRAY_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_float_array_s
+typedef struct coco_float_array_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_float_array_s *prev, *next;
+	struct coco_float_array_s *prev, *next;
 
 	/**/
 
@@ -32,7 +32,7 @@ typedef struct collada_float_array_s
 
 	float *array;
 
-} collada_float_array_t;
+} coco_float_array_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -40,11 +40,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_float_array_s *collada_float_array_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_float_array_s *coco_float_array_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_float_array_check(struct collada_ctx_s *, struct collada_float_array_s *);
+DLL_PUBLIC bool coco_float_array_check(struct coco_ctx_s *, struct coco_float_array_s *);
 
-DLL_PUBLIC void collada_float_array_dump(struct collada_ctx_s *, struct collada_float_array_s *, int);
+DLL_PUBLIC void coco_float_array_dump(struct coco_ctx_s *, struct coco_float_array_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -52,7 +52,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_FLOAT_ARRAY_H */
+#endif /* __COCO_FLOAT_ARRAY_H */
 
 /*-------------------------------------------------------------------------*/
 

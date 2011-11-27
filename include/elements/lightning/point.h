@@ -4,32 +4,32 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_POINT_H
-#define __COLLADA_POINT_H
+#ifndef __COCO_POINT_H
+#define __COCO_POINT_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_point_s
+typedef struct coco_point_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_point_s *prev, *next;
+	struct coco_point_s *prev, *next;
 
 	/**/
 
-	struct collada_color_s *color;
+	struct coco_color_s *color;
 
 	float constant_attenuation;
 	float linear_attenuation;
 	float quadratic_attenuation;
 
-} collada_point_t;
+} coco_point_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -37,11 +37,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_point_s *collada_point_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_point_s *coco_point_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_point_check(struct collada_ctx_s *, struct collada_point_s *);
+DLL_PUBLIC bool coco_point_check(struct coco_ctx_s *, struct coco_point_s *);
 
-DLL_PUBLIC void collada_point_dump(struct collada_ctx_s *, struct collada_point_s *, int);
+DLL_PUBLIC void coco_point_dump(struct coco_ctx_s *, struct coco_point_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -49,7 +49,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_POINT_H */
+#endif /* __COCO_POINT_H */
 
 /*-------------------------------------------------------------------------*/
 

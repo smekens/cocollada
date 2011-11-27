@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,11 +14,11 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-#include "collada_internal.h"
+#include "coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-void __collada_log(collada_ctx_t *ctx, collada_log_type_t type, const char *fname, int fline, int xml_line, int xml_column, const char *format, ...)
+void __coco_log(coco_ctx_t *ctx, coco_log_type_t type, const char *fname, int fline, int xml_line, int xml_column, const char *format, ...)
 {
 	va_list ap;
 

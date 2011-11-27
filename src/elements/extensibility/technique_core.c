@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -13,13 +13,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_technique_core_t *collada_technique_core_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_technique_core_t *coco_technique_core_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_technique_core_t *result = collada_ctx_factory(ctx, collada_technique_core_t);
+	coco_technique_core_t *result = coco_ctx_factory(ctx, coco_technique_core_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -30,7 +30,7 @@ collada_technique_core_t *collada_technique_core_parser(collada_ctx_t *ctx, yaxp
 
 	str = YAXP_GET_STR_ATTR(node0, "profile", NULL);
 	if(str != NULL) {
-		result->profile = collada_ctx_strdup(ctx, str);
+		result->profile = coco_ctx_strdup(ctx, str);
 	}
 
 	/**/
@@ -40,7 +40,7 @@ collada_technique_core_t *collada_technique_core_parser(collada_ctx_t *ctx, yaxp
 
 /*-------------------------------------------------------------------------*/
 
-void collada_technique_core_dump(collada_ctx_t *ctx, collada_technique_core_t *technique_core, int indent)
+void coco_technique_core_dump(coco_ctx_t *ctx, coco_technique_core_t *technique_core, int indent)
 {
 	if(technique_core == NULL) {
 		return;
@@ -48,15 +48,13 @@ void collada_technique_core_dump(collada_ctx_t *ctx, collada_technique_core_t *t
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Technique (core):\n");
+	COCO_DUMP_INDENT(indent, "Technique (core):\n");
 
 	indent++;
 
 	if(technique_core->profile != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Profile: %s\n", technique_core->profile);
+		COCO_DUMP_INDENT(indent, "Profile: %s\n", technique_core->profile);
 	}
 }
 

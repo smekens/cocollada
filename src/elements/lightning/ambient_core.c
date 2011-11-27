@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,20 +14,20 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_ambient_core_t *collada_ambient_core_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_ambient_core_t *coco_ambient_core_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_ambient_core_t *result = collada_ctx_factory(ctx, collada_ambient_core_t);
+	coco_ambient_core_t *result = coco_ctx_factory(ctx, coco_ambient_core_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_color_t *color;
+	coco_color_t *color;
 
 	/**/
 
@@ -39,13 +39,13 @@ collada_ambient_core_t *collada_ambient_core_parser(collada_ctx_t *ctx, yaxp_nod
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x2802D184: /* color */
-				color = collada_ctx_parser(ctx, collada_color_t, node1);
+				color = coco_ctx_parse(ctx, coco_color_t, node1);
 
 				result->color = color;
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -56,7 +56,7 @@ collada_ambient_core_t *collada_ambient_core_parser(collada_ctx_t *ctx, yaxp_nod
 
 /*-------------------------------------------------------------------------*/
 
-void collada_ambient_core_dump(collada_ctx_t *ctx, collada_ambient_core_t *ambient_core, int indent)
+void coco_ambient_core_dump(coco_ctx_t *ctx, coco_ambient_core_t *ambient_core, int indent)
 {
 	if(ambient_core == NULL) {
 		return;
@@ -64,12 +64,11 @@ void collada_ambient_core_dump(collada_ctx_t *ctx, collada_ambient_core_t *ambie
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Ambient (core):\n");
+	COCO_DUMP_INDENT(indent, "Ambient (core):\n");
 
 	indent++;
 
-	collada_ctx_dump(ctx, collada_color_t, ambient_core->color, indent);
+	coco_ctx_dump(ctx, coco_color_t, ambient_core->color, indent);
 }
 
 /*-------------------------------------------------------------------------*/

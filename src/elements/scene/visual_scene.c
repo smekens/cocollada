@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -13,25 +13,25 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_visual_scene_t *collada_visual_scene_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_visual_scene_t *coco_visual_scene_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_visual_scene_t *result = collada_ctx_factory(ctx, collada_visual_scene_t);
+	coco_visual_scene_t *result = coco_ctx_factory(ctx, coco_visual_scene_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_asset_t *asset;
+	coco_asset_t *asset;
 
-	collada_node_t *node;
-	/* TODO collada_evaluate_scene_t *evaluate_scene;*/
+	coco_node_t *node;
+	/* TODO coco_evaluate_scene_t *evaluate_scene;*/
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
@@ -39,12 +39,12 @@ collada_visual_scene_t *collada_visual_scene_parser(collada_ctx_t *ctx, yaxp_nod
 
 	str = YAXP_GET_STR_ATTR(node0, "id", NULL);
 	if(str != NULL) {
-		result->id = collada_ctx_strdup(ctx, str);
+		result->id = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "name", NULL);
 	if(str != NULL) {
-		result->name = collada_ctx_strdup(ctx, str);
+		result->name = coco_ctx_strdup(ctx, str);
 	}
 
 	/**/
@@ -57,37 +57,37 @@ collada_visual_scene_t *collada_visual_scene_parser(collada_ctx_t *ctx, yaxp_nod
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x3BCDA5FD: /* asset */
-				asset = collada_ctx_parser(ctx, collada_asset_t, node1);
+				asset = coco_ctx_parse(ctx, coco_asset_t, node1);
 
 				result->asset = asset;
 				break;
 
 			case 0xA173AB66: /* node */
-				node = collada_ctx_parser(ctx, collada_node_t, node1);
+				node = coco_ctx_parse(ctx, coco_node_t, node1);
 
 				ctnr_list_add(result->node_list, node);
 				break;
 
 			case 0x9711B324: /* evaluate_scene */
-				/* TODO evaluate_scene = collada_sevaluate_scene_parser(ctx, node1);	*/
+				/* TODO evaluate_scene = coco_sevaluate_scene_parse(ctx, node1);	*/
 				/* TODO									*/
 				/* TODO ctnr_list_add(result->evaluate_scene, evaluate_scene);	*/
 				goto __warning;
 
 			case 0x2FAFA2F4: /* extra */
-				extra = collada_ctx_parser(ctx, collada_extra_t, node1);
+				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
 				ctnr_list_add(result->extra_list, extra);
 				break;
 
 __warning:		default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
 	/**/
 
-	collada_ctx_register(ctx, result, result->id);
+	coco_ctx_register(ctx, result, result->id);
 
 	/**/
 
@@ -96,7 +96,7 @@ __warning:		default:
 
 /*-------------------------------------------------------------------------*/
 
-void collada_visual_scene_dump(collada_ctx_t *ctx, collada_visual_scene_t *visual_scene, int indent)
+void coco_visual_scene_dump(coco_ctx_t *ctx, coco_visual_scene_t *visual_scene, int indent)
 {
 	if(visual_scene == NULL) {
 		return;
@@ -106,42 +106,39 @@ void collada_visual_scene_dump(collada_ctx_t *ctx, collada_visual_scene_t *visua
 
 	int nr;
 
-	collada_node_t *node;
-	/* TODO collada_evaluate_scene_t *evaluate_scene;*/
+	coco_node_t *node;
+	/* TODO coco_evaluate_scene_t *evaluate_scene;*/
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Visual scene:\n");
+	COCO_DUMP_INDENT(indent, "Visual scene:\n");
 
 	indent++;
 
 	if(visual_scene->id != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Id: %s\n", visual_scene->id);
+		COCO_DUMP_INDENT(indent, "Id: %s\n", visual_scene->id);
 	}
 
 	if(visual_scene->name != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Name: %s\n", visual_scene->name);
+		COCO_DUMP_INDENT(indent, "Name: %s\n", visual_scene->name);
 	}
 
-	collada_ctx_dump(ctx, collada_asset_t, visual_scene->asset, indent);
+	coco_ctx_dump(ctx, coco_asset_t, visual_scene->asset, indent);
 
 	ctnr_list_foreach(visual_scene->node_list, node, nr) {
-		collada_ctx_dump(ctx, collada_node_t, node, indent);
+		coco_ctx_dump(ctx, coco_node_t, node, indent);
 	}
 
 	/* TODO ctnr_list_foreach(visual_scene->extra_list, evaluate_scene, nr) { 	*/
-	/* TODO 	collada_evaluate_scene_dump(evaluate_scene, indent);		*/
+	/* TODO 	coco_evaluate_scene_dump(evaluate_scene, indent);		*/
 	/* TODO }									*/
 
 	ctnr_list_foreach(visual_scene->extra_list, extra, nr) {
-		collada_ctx_dump(ctx, collada_extra_t, extra, indent);
+		coco_ctx_dump(ctx, coco_extra_t, extra, indent);
 	}
 }
 

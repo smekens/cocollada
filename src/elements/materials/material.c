@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,24 +14,24 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_material_t *collada_material_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_material_t *coco_material_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_material_t *result = collada_ctx_factory(ctx, collada_material_t);
+	coco_material_t *result = coco_ctx_factory(ctx, coco_material_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_asset_t *asset;
+	coco_asset_t *asset;
 
-	collada_instance_effect_t *instance_effect;
+	coco_instance_effect_t *instance_effect;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
@@ -39,12 +39,12 @@ collada_material_t *collada_material_parser(collada_ctx_t *ctx, yaxp_node_t *nod
 
 	str = YAXP_GET_STR_ATTR(node0, "id", NULL);
 	if(str != NULL) {
-		result->id = collada_ctx_strdup(ctx, str);
+		result->id = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "name", NULL);
 	if(str != NULL) {
-		result->name = collada_ctx_strdup(ctx, str);
+		result->name = coco_ctx_strdup(ctx, str);
 	}
 
 	/**/
@@ -57,31 +57,31 @@ collada_material_t *collada_material_parser(collada_ctx_t *ctx, yaxp_node_t *nod
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x3BCDA5FD: /* asset */
-				asset = collada_ctx_parser(ctx, collada_asset_t, node1);
+				asset = coco_ctx_parse(ctx, coco_asset_t, node1);
 
 				result->asset = asset;
 				break;
 
 			case 0x9FE65945: /* instance_effect */
-				instance_effect = collada_ctx_parser(ctx, collada_instance_effect_t, node1);
+				instance_effect = coco_ctx_parse(ctx, coco_instance_effect_t, node1);
 
 				result->instance_effect = instance_effect;
 				break;
 
 			case 0x2FAFA2F4: /* extra */
-				extra = collada_ctx_parser(ctx, collada_extra_t, node1);
+				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
 				ctnr_list_add(result->extra_list, extra);
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
 	/**/
 
-	collada_ctx_register(ctx, result, result->id);
+	coco_ctx_register(ctx, result, result->id);
 
 	/**/
 
@@ -90,7 +90,7 @@ collada_material_t *collada_material_parser(collada_ctx_t *ctx, yaxp_node_t *nod
 
 /*-------------------------------------------------------------------------*/
 
-void collada_material_dump(collada_ctx_t *ctx, collada_material_t *material, int indent)
+void coco_material_dump(coco_ctx_t *ctx, coco_material_t *material, int indent)
 {
 	if(material == NULL) {
 		return;
@@ -100,33 +100,30 @@ void collada_material_dump(collada_ctx_t *ctx, collada_material_t *material, int
 
 	int nr;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Material:\n");
+	COCO_DUMP_INDENT(indent, "Material:\n");
 
 	indent++;
 
 	if(material->id != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Id: %s\n", material->id);
+		COCO_DUMP_INDENT(indent, "Id: %s\n", material->id);
 	}
 
 	if(material->name != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Name: %s\n", material->name);
+		COCO_DUMP_INDENT(indent, "Name: %s\n", material->name);
 	}
 
-	collada_ctx_dump(ctx, collada_asset_t, material->asset, indent);
+	coco_ctx_dump(ctx, coco_asset_t, material->asset, indent);
 
-	collada_ctx_dump(ctx, collada_instance_effect_t, material->instance_effect, indent);
+	coco_ctx_dump(ctx, coco_instance_effect_t, material->instance_effect, indent);
 
 	ctnr_list_foreach(material->extra_list, extra, nr) {
-		collada_ctx_dump(ctx, collada_extra_t, extra, indent);
+		coco_ctx_dump(ctx, coco_extra_t, extra, indent);
 	}
 }
 

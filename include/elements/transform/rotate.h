@@ -4,22 +4,22 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_ROTATE_H
-#define __COLLADA_ROTATE_H
+#ifndef __COCO_ROTATE_H
+#define __COCO_ROTATE_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_rotate_s
+typedef struct coco_rotate_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_rotate_s *prev, *next;
+	struct coco_rotate_s *prev, *next;
 
 	/**/
 
@@ -27,7 +27,7 @@ typedef struct collada_rotate_s
 
 	float array[4];
 
-} collada_rotate_t;
+} coco_rotate_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -35,11 +35,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_rotate_s *collada_rotate_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_rotate_s *coco_rotate_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_rotate_check(struct collada_ctx_s *, struct collada_rotate_s *);
+DLL_PUBLIC bool coco_rotate_check(struct coco_ctx_s *, struct coco_rotate_s *);
 
-DLL_PUBLIC void collada_rotate_dump(struct collada_ctx_s *, struct collada_rotate_s *, int);
+DLL_PUBLIC void coco_rotate_dump(struct coco_ctx_s *, struct coco_rotate_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -47,7 +47,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_ROTATE_H */
+#endif /* __COCO_ROTATE_H */
 
 /*-------------------------------------------------------------------------*/
 

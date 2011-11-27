@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,13 +14,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_float_array_t *collada_float_array_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_float_array_t *coco_float_array_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_float_array_t *result = collada_ctx_factory(ctx, collada_float_array_t);
+	coco_float_array_t *result = coco_ctx_factory(ctx, coco_float_array_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -31,12 +31,12 @@ collada_float_array_t *collada_float_array_parser(collada_ctx_t *ctx, yaxp_node_
 
 	str = YAXP_GET_STR_ATTR(node0, "id", NULL);
 	if(str != NULL) {
-		result->id = collada_ctx_strdup(ctx, str);
+		result->id = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "name", NULL);
 	if(str != NULL) {
-		result->name = collada_ctx_strdup(ctx, str);
+		result->name = coco_ctx_strdup(ctx, str);
 	}
 
 	result->count = YAXP_GET_INT_ATTR(node0, "count", "-1");
@@ -46,8 +46,8 @@ collada_float_array_t *collada_float_array_parser(collada_ctx_t *ctx, yaxp_node_
 
 	/**/
 
-	collada_vector_flt_t vector;
-	collada_string_to_vector_flt(ctx, &vector, YAXP_GET_STR_TEXT(node0, ""));
+	coco_vector_flt_t vector;
+	coco_string_to_vector_flt(ctx, &vector, YAXP_GET_STR_TEXT(node0, ""));
 
 	if(result->count == vector.nr)
 	{
@@ -55,9 +55,9 @@ collada_float_array_t *collada_float_array_parser(collada_ctx_t *ctx, yaxp_node_
 	}
 	else
 	{
-		collada_vector_flt_free(ctx, &vector);
+		coco_vector_flt_free(ctx, &vector);
 
-		collada_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "count (%d) does not match array size (%d)!\n", result->count, vector.nr);
+		coco_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "count (%d) does not match array size (%d)!\n", result->count, vector.nr);
 	}
 
 	/**/
@@ -67,7 +67,7 @@ collada_float_array_t *collada_float_array_parser(collada_ctx_t *ctx, yaxp_node_
 
 /*-------------------------------------------------------------------------*/
 
-void collada_float_array_dump(collada_ctx_t *ctx, collada_float_array_t *float_array, int indent)
+void coco_float_array_dump(coco_ctx_t *ctx, coco_float_array_t *float_array, int indent)
 {
 	if(float_array == NULL) {
 		return;
@@ -79,45 +79,38 @@ void collada_float_array_dump(collada_ctx_t *ctx, collada_float_array_t *float_a
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Float array:\n");
+	COCO_DUMP_INDENT(indent, "Float array:\n");
 
 	indent++;
 
 	if(float_array->id != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Id: %s\n", float_array->id);
+		COCO_DUMP_INDENT(indent, "Id: %s\n", float_array->id);
 	}
 
 	if(float_array->name != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Name: %s\n", float_array->name);
+		COCO_DUMP_INDENT(indent, "Name: %s\n", float_array->name);
 	}
 
 	if(float_array->count >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Count: %d\n", float_array->count);
+		COCO_DUMP_INDENT(indent, "Count: %d\n", float_array->count);
 	}
 
 	if(float_array->digits >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Digits: %d\n", float_array->digits);
+		COCO_DUMP_INDENT(indent, "Digits: %d\n", float_array->digits);
 	}
 
 	if(float_array->magnitude >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Magnitude: %d\n", float_array->magnitude);
+		COCO_DUMP_INDENT(indent, "Magnitude: %d\n", float_array->magnitude);
 	}
 
 	if(float_array->count >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Array:");
+		COCO_DUMP_INDENT(indent, "Array:");
 
 		for(i = 0; i < float_array->count && i < 10; i++){
 			printf(" %f", float_array->array[i]);

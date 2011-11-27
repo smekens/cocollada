@@ -4,22 +4,22 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_INSTANCE_NODE_H
-#define __COLLADA_INSTANCE_NODE_H
+#ifndef __COCO_INSTANCE_NODE_H
+#define __COCO_INSTANCE_NODE_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_instance_node_s
+typedef struct coco_instance_node_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_instance_node_s *prev, *next;
+	struct coco_instance_node_s *prev, *next;
 
 	/**/
 
@@ -27,9 +27,9 @@ typedef struct collada_instance_node_s
 	const char *sid;
 	const char *name;
 
-	struct collada_extra_s *extra_list;
+	struct coco_extra_s *extra_list;
 
-} collada_instance_node_t;
+} coco_instance_node_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -37,11 +37,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_instance_node_s *collada_instance_node_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_instance_node_s *coco_instance_node_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_instance_node_check(struct collada_ctx_s *, struct collada_instance_node_s *);
+DLL_PUBLIC bool coco_instance_node_check(struct coco_ctx_s *, struct coco_instance_node_s *);
 
-DLL_PUBLIC void collada_instance_node_dump(struct collada_ctx_s *, struct collada_instance_node_s *, int);
+DLL_PUBLIC void coco_instance_node_dump(struct coco_ctx_s *, struct coco_instance_node_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -49,7 +49,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_INSTANCE_NODE_H */
+#endif /* __COCO_INSTANCE_NODE_H */
 
 /*-------------------------------------------------------------------------*/
 

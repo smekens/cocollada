@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -13,13 +13,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_fx_common_param_t *collada_fx_common_param_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_fx_common_param_t *coco_fx_common_param_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_fx_common_param_t *result = collada_ctx_factory(ctx, collada_fx_common_param_t);
+	coco_fx_common_param_t *result = coco_ctx_factory(ctx, coco_fx_common_param_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -30,7 +30,7 @@ collada_fx_common_param_t *collada_fx_common_param_parser(collada_ctx_t *ctx, ya
 
 	str = YAXP_GET_STR_ATTR(node0, "ref", NULL);
 	if(str != NULL) {
-		result->ref = collada_ctx_strdup(ctx, str);
+		result->ref = coco_ctx_strdup(ctx, str);
 	}
 
 	/**/
@@ -40,7 +40,7 @@ collada_fx_common_param_t *collada_fx_common_param_parser(collada_ctx_t *ctx, ya
 
 /*-------------------------------------------------------------------------*/
 
-void collada_fx_common_param_dump(collada_ctx_t *ctx, collada_fx_common_param_t *fx_common_param, int indent)
+void coco_fx_common_param_dump(coco_ctx_t *ctx, coco_fx_common_param_t *fx_common_param, int indent)
 {
 	if(fx_common_param == NULL) {
 		return;
@@ -48,15 +48,13 @@ void collada_fx_common_param_dump(collada_ctx_t *ctx, collada_fx_common_param_t 
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Param (FX):\n");
+	COCO_DUMP_INDENT(indent, "Param (FX):\n");
 
 	indent++;
 
 	if(fx_common_param->ref != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Ref: %s\n", fx_common_param->ref);
+		COCO_DUMP_INDENT(indent, "Ref: %s\n", fx_common_param->ref);
 	}
 }
 

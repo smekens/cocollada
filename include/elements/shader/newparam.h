@@ -4,35 +4,35 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_NEWPARAM_H
-#define __COLLADA_NEWPARAM_H
+#ifndef __COCO_NEWPARAM_H
+#define __COCO_NEWPARAM_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_newparam_s
+typedef struct coco_newparam_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_newparam_s *prev, *next;
+	struct coco_newparam_s *prev, *next;
 
 	/**/
 
 	const char *sid;
 
-	/* TODO struct collada_annotate_s *annotate_list;*/
-	/* TODO struct collada_semantic_s *semantic;*/
-	/* TODO struct collada_modifier_s *modifier;*/
+	/* TODO struct coco_annotate_s *annotate_list;*/
+	/* TODO struct coco_semantic_s *semantic;*/
+	/* TODO struct coco_modifier_s *modifier;*/
 
-	struct collada_surface_s *surface;
-	struct collada_sampler2D_s *sampler2D;
+	struct coco_surface_s *surface;
+	struct coco_sampler2D_s *sampler2D;
 
-} collada_newparam_t;
+} coco_newparam_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -40,11 +40,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_newparam_s *collada_newparam_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_newparam_s *coco_newparam_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_newparam_check(struct collada_ctx_s *, struct collada_newparam_s *);
+DLL_PUBLIC bool coco_newparam_check(struct coco_ctx_s *, struct coco_newparam_s *);
 
-DLL_PUBLIC void collada_newparam_dump(struct collada_ctx_s *, struct collada_newparam_s *, int);
+DLL_PUBLIC void coco_newparam_dump(struct coco_ctx_s *, struct coco_newparam_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -52,7 +52,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_NEWPARAM_H */
+#endif /* __COCO_NEWPARAM_H */
 
 /*-------------------------------------------------------------------------*/
 

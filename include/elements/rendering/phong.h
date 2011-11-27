@@ -4,37 +4,37 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_PHONG_H
-#define __COLLADA_PHONG_H
+#ifndef __COCO_PHONG_H
+#define __COCO_PHONG_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_phong_s
+typedef struct coco_phong_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_phong_s *prev, *next;
+	struct coco_phong_s *prev, *next;
 
 	/**/
 
-	struct collada_emission_s *emission;
-	struct collada_ambient_fx_s *ambient;
-	struct collada_diffuse_s *diffuse;
-	struct collada_specular_s *specular;
-	struct collada_shininess_s *shininess;
-	struct collada_reflective_s *reflective;
-	struct collada_reflectivity_s *reflectivity;
-	struct collada_transparent_s *transparent;
-	struct collada_transparency_s *transparency;
-	struct collada_index_of_refraction_s *index_of_refraction;
+	struct coco_emission_s *emission;
+	struct coco_ambient_fx_s *ambient;
+	struct coco_diffuse_s *diffuse;
+	struct coco_specular_s *specular;
+	struct coco_shininess_s *shininess;
+	struct coco_reflective_s *reflective;
+	struct coco_reflectivity_s *reflectivity;
+	struct coco_transparent_s *transparent;
+	struct coco_transparency_s *transparency;
+	struct coco_index_of_refraction_s *index_of_refraction;
 
-} collada_phong_t;
+} coco_phong_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -42,11 +42,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_phong_s *collada_phong_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_phong_s *coco_phong_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_phong_check(struct collada_ctx_s *, struct collada_phong_s *);
+DLL_PUBLIC bool coco_phong_check(struct coco_ctx_s *, struct coco_phong_s *);
 
-DLL_PUBLIC void collada_phong_dump(struct collada_ctx_s *, struct collada_phong_s *, int);
+DLL_PUBLIC void coco_phong_dump(struct coco_ctx_s *, struct coco_phong_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -54,7 +54,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_PHONG_H */
+#endif /* __COCO_PHONG_H */
 
 /*-------------------------------------------------------------------------*/
 

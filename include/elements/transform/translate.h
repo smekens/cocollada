@@ -4,22 +4,22 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_TRANSLATE_H
-#define __COLLADA_TRANSLATE_H
+#ifndef __COCO_TRANSLATE_H
+#define __COCO_TRANSLATE_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_translate_s
+typedef struct coco_translate_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_translate_s *prev, *next;
+	struct coco_translate_s *prev, *next;
 
 	/**/
 
@@ -27,7 +27,7 @@ typedef struct collada_translate_s
 
 	float array[3];
 
-} collada_translate_t;
+} coco_translate_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -35,11 +35,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_translate_s *collada_translate_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_translate_s *coco_translate_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_translate_check(struct collada_ctx_s *, struct collada_translate_s *);
+DLL_PUBLIC bool coco_translate_check(struct coco_ctx_s *, struct coco_translate_s *);
 
-DLL_PUBLIC void collada_translate_dump(struct collada_ctx_s *, struct collada_translate_s *, int);
+DLL_PUBLIC void coco_translate_dump(struct coco_ctx_s *, struct coco_translate_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -47,7 +47,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_TRANSLATE_H */
+#endif /* __COCO_TRANSLATE_H */
 
 /*-------------------------------------------------------------------------*/
 

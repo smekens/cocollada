@@ -4,24 +4,24 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_INTERNAL_H
-#define __COLLADA_INTERNAL_H
+#ifndef __COCO_INTERNAL_H
+#define __COCO_INTERNAL_H
 
 /*-------------------------------------------------------------------------*/
 
-#include "../include/collada.h"
+#include "../include/coco.h"
 
 /*-------------------------------------------------------------------------*/
 /* CONTEXT								   */
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_ctx_element_s
+typedef struct coco_ctx_element_s
 {
 	const char *name;
 
@@ -31,15 +31,15 @@ typedef struct collada_ctx_element_s
 
 	/**/
 
-	struct collada_ctx_element_s *prev, *next;
+	struct coco_ctx_element_s *prev, *next;
 
-} collada_ctx_element_t;
+} coco_ctx_elem_t;
 
 /*-------------------------------------------------------------------------*/
 /* DUMP									   */
 /*-------------------------------------------------------------------------*/
 
-#define COLLADA_DUMP_INDENT(indent, format, ...)	\
+#define COCO_DUMP_INDENT(indent, ...)	\
   {							\
 	int __i;					\
 							\
@@ -52,40 +52,40 @@ typedef struct collada_ctx_element_s
 							\
 	printf("\033[0m");				\
 							\
-	
+	printf(__VA_ARGS__);				\
   }
 
 /*-------------------------------------------------------------------------*/
 /* VECTORS								   */
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_vector_shr_s
+typedef struct coco_vector_shr_s
 {
 	int nr;
 
 	int16_t *array;
 
-} collada_vector_shr_t;
+} coco_vector_shr_t;
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_vector_int_s
+typedef struct coco_vector_int_s
 {
 	int nr;
 
 	int32_t *array;
 
-} collada_vector_int_t;
+} coco_vector_int_t;
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_vector_flt_s
+typedef struct coco_vector_flt_s
 {
 	int nr;
 
 	float *array;
 
-} collada_vector_flt_t;
+} coco_vector_flt_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -93,19 +93,19 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC void collada_vector_shr_alloc(struct collada_ctx_s *, struct collada_vector_shr_s *, int);
-DLL_PUBLIC void collada_vector_int_alloc(struct collada_ctx_s *, struct collada_vector_int_s *, int);
-DLL_PUBLIC void collada_vector_flt_alloc(struct collada_ctx_s *, struct collada_vector_flt_s *, int);
+DLL_PUBLIC void coco_vector_shr_alloc(struct coco_ctx_s *, struct coco_vector_shr_s *, int);
+DLL_PUBLIC void coco_vector_int_alloc(struct coco_ctx_s *, struct coco_vector_int_s *, int);
+DLL_PUBLIC void coco_vector_flt_alloc(struct coco_ctx_s *, struct coco_vector_flt_s *, int);
 
-DLL_PUBLIC void collada_vector_shr_free(struct collada_ctx_s *, struct collada_vector_shr_s *);
-DLL_PUBLIC void collada_vector_int_free(struct collada_ctx_s *, struct collada_vector_int_s *);
-DLL_PUBLIC void collada_vector_flt_free(struct collada_ctx_s *, struct collada_vector_flt_s *);
+DLL_PUBLIC void coco_vector_shr_free(struct coco_ctx_s *, struct coco_vector_shr_s *);
+DLL_PUBLIC void coco_vector_int_free(struct coco_ctx_s *, struct coco_vector_int_s *);
+DLL_PUBLIC void coco_vector_flt_free(struct coco_ctx_s *, struct coco_vector_flt_s *);
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC void collada_string_to_vector_shr(struct collada_ctx_s *, struct collada_vector_shr_s *, const char *);
-DLL_PUBLIC void collada_string_to_vector_int(struct collada_ctx_s *, struct collada_vector_int_s *, const char *);
-DLL_PUBLIC void collada_string_to_vector_flt(struct collada_ctx_s *, struct collada_vector_flt_s *, const char *);
+DLL_PUBLIC void coco_string_to_vector_shr(struct coco_ctx_s *, struct coco_vector_shr_s *, const char *);
+DLL_PUBLIC void coco_string_to_vector_int(struct coco_ctx_s *, struct coco_vector_int_s *, const char *);
+DLL_PUBLIC void coco_string_to_vector_flt(struct coco_ctx_s *, struct coco_vector_flt_s *, const char *);
 
 /*-------------------------------------------------------------------------*/
 
@@ -113,7 +113,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_INTERNAL_H */
+#endif /* __COCO_INTERNAL_H */
 
 /*-------------------------------------------------------------------------*/
 

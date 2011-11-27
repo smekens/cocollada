@@ -4,30 +4,30 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_DIFFUSE_H
-#define __COLLADA_DIFFUSE_H
+#ifndef __COCO_DIFFUSE_H
+#define __COCO_DIFFUSE_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_diffuse_s
+typedef struct coco_diffuse_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_diffuse_s *prev, *next;
+	struct coco_diffuse_s *prev, *next;
 
 	/**/
 
-	struct collada_color_s *color;
-	struct collada_fx_common_param_s *param_list;
-	struct collada_fx_common_texture_s *texture_list;
+	struct coco_color_s *color;
+	struct coco_fx_common_param_s *param_list;
+	struct coco_fx_common_texture_s *texture_list;
 
-} collada_diffuse_t;
+} coco_diffuse_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -35,11 +35,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_diffuse_s *collada_diffuse_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_diffuse_s *coco_diffuse_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_diffuse_check(struct collada_ctx_s *, struct collada_diffuse_s *);
+DLL_PUBLIC bool coco_diffuse_check(struct coco_ctx_s *, struct coco_diffuse_s *);
 
-DLL_PUBLIC void collada_diffuse_dump(struct collada_ctx_s *, struct collada_diffuse_s *, int);
+DLL_PUBLIC void coco_diffuse_dump(struct coco_ctx_s *, struct coco_diffuse_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -47,7 +47,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_DIFFUSE_H */
+#endif /* __COCO_DIFFUSE_H */
 
 /*-------------------------------------------------------------------------*/
 

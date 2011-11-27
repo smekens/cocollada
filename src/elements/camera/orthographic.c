@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,13 +14,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_orthographic_t *collada_orthographic_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_orthographic_t *coco_orthographic_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_orthographic_t *result = collada_ctx_factory(ctx, collada_orthographic_t);
+	coco_orthographic_t *result = coco_ctx_factory(ctx, coco_orthographic_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -63,7 +63,7 @@ collada_orthographic_t *collada_orthographic_parser(collada_ctx_t *ctx, yaxp_nod
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -74,7 +74,7 @@ collada_orthographic_t *collada_orthographic_parser(collada_ctx_t *ctx, yaxp_nod
 
 /*-------------------------------------------------------------------------*/
 
-void collada_orthographic_dump(collada_ctx_t *ctx, collada_orthographic_t *orthographic, int indent)
+void coco_orthographic_dump(coco_ctx_t *ctx, coco_orthographic_t *orthographic, int indent)
 {
 	if(orthographic == NULL) {
 		return;
@@ -82,39 +82,33 @@ void collada_orthographic_dump(collada_ctx_t *ctx, collada_orthographic_t *ortho
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Orthographic:\n");
+	COCO_DUMP_INDENT(indent, "Orthographic:\n");
 
 	indent++;
 
 	if(orthographic->xmag != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Xmag: %f\n", orthographic->xmag);
+		COCO_DUMP_INDENT(indent, "Xmag: %f\n", orthographic->xmag);
 	}
 
 	if(orthographic->ymag != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Ymag: %f\n", orthographic->ymag);
+		COCO_DUMP_INDENT(indent, "Ymag: %f\n", orthographic->ymag);
 	}
 
 	if(orthographic->aspect_ratio != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Aspect ratio: %f\n", orthographic->aspect_ratio);
+		COCO_DUMP_INDENT(indent, "Aspect ratio: %f\n", orthographic->aspect_ratio);
 	}
 
 	if(orthographic->znear != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Znear: %f\n", orthographic->znear);
+		COCO_DUMP_INDENT(indent, "Znear: %f\n", orthographic->znear);
 	}
 
 	if(orthographic->zfar != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Zfar: %f\n", orthographic->zfar);
+		COCO_DUMP_INDENT(indent, "Zfar: %f\n", orthographic->zfar);
 	}
 }
 

@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -13,27 +13,27 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_lambert_t *collada_lambert_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_lambert_t *coco_lambert_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_lambert_t *result = collada_ctx_factory(ctx, collada_lambert_t);
+	coco_lambert_t *result = coco_ctx_factory(ctx, coco_lambert_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_emission_t *emission;
-	collada_ambient_fx_t *ambient;
-	collada_diffuse_t *diffuse;
-	collada_reflective_t *reflective;
-	collada_reflectivity_t *reflectivity;
-	collada_transparent_t *transparent;
-	collada_transparency_t *transparency;
-	collada_index_of_refraction_t *index_of_refraction;
+	coco_emission_t *emission;
+	coco_ambient_fx_t *ambient;
+	coco_diffuse_t *diffuse;
+	coco_reflective_t *reflective;
+	coco_reflectivity_t *reflectivity;
+	coco_transparent_t *transparent;
+	coco_transparency_t *transparency;
+	coco_index_of_refraction_t *index_of_refraction;
 
 	/**/
 
@@ -45,55 +45,55 @@ collada_lambert_t *collada_lambert_parser(collada_ctx_t *ctx, yaxp_node_t *node0
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x67E8B767: /* emission */
-				emission = collada_ctx_parser(ctx, collada_emission_t, node1);
+				emission = coco_ctx_parse(ctx, coco_emission_t, node1);
 
 				result->emission = emission;
 				break;
 
 			case 0xC0799E13: /* ambient */
-				ambient = collada_ctx_parser(ctx, collada_ambient_fx_t, node1);
+				ambient = coco_ctx_parse(ctx, coco_ambient_fx_t, node1);
 
 				result->ambient = ambient;
 				break;
 
 			case 0x31C098DC: /* diffuse */
-				diffuse = collada_ctx_parser(ctx, collada_diffuse_t, node1);
+				diffuse = coco_ctx_parse(ctx, coco_diffuse_t, node1);
 
 				result->diffuse = diffuse;
 				break;
 
 			case 0x6C0FF7D6: /* reflective */
-				reflective = collada_ctx_parser(ctx, collada_reflective_t, node1);
+				reflective = coco_ctx_parse(ctx, coco_reflective_t, node1);
 
 				result->reflective = reflective;
 				break;
 
 			case 0x10187EF2: /* reflectivity */
-				reflectivity = collada_ctx_parser(ctx, collada_reflectivity_t, node1);
+				reflectivity = coco_ctx_parse(ctx, coco_reflectivity_t, node1);
 
 				result->reflectivity = reflectivity;
 				break;
 
 			case 0xADCDAC65: /* transparent */
-				transparent = collada_ctx_parser(ctx, collada_transparent_t, node1);
+				transparent = coco_ctx_parse(ctx, coco_transparent_t, node1);
 
 				result->transparent = transparent;
 				break;
 
 			case 0x93A230A0: /* transparency */
-				transparency = collada_ctx_parser(ctx, collada_transparency_t, node1);
+				transparency = coco_ctx_parse(ctx, coco_transparency_t, node1);
 
 				result->transparency = transparency;
 				break;
 
 			case 0xCC908315: /* index_of_refraction */
-				index_of_refraction = collada_ctx_parser(ctx, collada_index_of_refraction_t, node1);
+				index_of_refraction = coco_ctx_parse(ctx, coco_index_of_refraction_t, node1);
 
 				result->index_of_refraction = index_of_refraction;
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -104,7 +104,7 @@ collada_lambert_t *collada_lambert_parser(collada_ctx_t *ctx, yaxp_node_t *node0
 
 /*-------------------------------------------------------------------------*/
 
-void collada_lambert_dump(collada_ctx_t *ctx, collada_lambert_t *lambert, int indent)
+void coco_lambert_dump(coco_ctx_t *ctx, coco_lambert_t *lambert, int indent)
 {
 	if(lambert == NULL) {
 		return;
@@ -112,26 +112,25 @@ void collada_lambert_dump(collada_ctx_t *ctx, collada_lambert_t *lambert, int in
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Lambert:\n");
+	COCO_DUMP_INDENT(indent, "Lambert:\n");
 
 	indent++;
 
-	collada_ctx_dump(ctx, collada_emission_t, lambert->emission, indent);
+	coco_ctx_dump(ctx, coco_emission_t, lambert->emission, indent);
 
-	collada_ctx_dump(ctx, collada_ambient_fx_t, lambert->ambient, indent);
+	coco_ctx_dump(ctx, coco_ambient_fx_t, lambert->ambient, indent);
 
-	collada_ctx_dump(ctx, collada_diffuse_t, lambert->diffuse, indent);
+	coco_ctx_dump(ctx, coco_diffuse_t, lambert->diffuse, indent);
 
-	collada_ctx_dump(ctx, collada_reflective_t, lambert->reflective, indent);
+	coco_ctx_dump(ctx, coco_reflective_t, lambert->reflective, indent);
 
-	collada_ctx_dump(ctx, collada_reflectivity_t, lambert->reflectivity, indent);
+	coco_ctx_dump(ctx, coco_reflectivity_t, lambert->reflectivity, indent);
 
-	collada_ctx_dump(ctx, collada_transparent_t, lambert->transparent, indent);
+	coco_ctx_dump(ctx, coco_transparent_t, lambert->transparent, indent);
 
-	collada_ctx_dump(ctx, collada_transparency_t, lambert->transparency, indent);
+	coco_ctx_dump(ctx, coco_transparency_t, lambert->transparency, indent);
 
-	collada_ctx_dump(ctx, collada_index_of_refraction_t, lambert->index_of_refraction, indent);
+	coco_ctx_dump(ctx, coco_index_of_refraction_t, lambert->index_of_refraction, indent);
 }
 
 /*-------------------------------------------------------------------------*/

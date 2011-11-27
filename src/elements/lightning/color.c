@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -13,13 +13,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_color_t *collada_color_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_color_t *coco_color_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_color_t *result = collada_ctx_factory(ctx, collada_color_t);
+	coco_color_t *result = coco_ctx_factory(ctx, coco_color_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -30,11 +30,11 @@ collada_color_t *collada_color_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 	str = YAXP_GET_STR_ATTR(node0, "sid", NULL);
 	if(str != NULL) {
-		result->sid = collada_ctx_strdup(ctx, str);
+		result->sid = coco_ctx_strdup(ctx, str);
 	}
 
-	collada_vector_flt_t vector;
-	collada_string_to_vector_flt(ctx, &vector, YAXP_GET_STR_TEXT(node0, ""));
+	coco_vector_flt_t vector;
+	coco_string_to_vector_flt(ctx, &vector, YAXP_GET_STR_TEXT(node0, ""));
 
 	/**/ if(vector.nr == 3)
 	{
@@ -57,10 +57,10 @@ collada_color_t *collada_color_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 		result->b = -9999.0f;
 		result->a = -9999.0f;
 
-		collada_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "number of values should be 3 or 4 !\n");
+		coco_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "number of values should be 3 or 4 !\n");
 	}
 
-	collada_vector_flt_free(ctx, &vector);
+	coco_vector_flt_free(ctx, &vector);
 
 	/**/
 
@@ -69,7 +69,7 @@ collada_color_t *collada_color_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_color_dump(collada_ctx_t *ctx, collada_color_t *color, int indent)
+void coco_color_dump(coco_ctx_t *ctx, coco_color_t *color, int indent)
 {
 	if(color == NULL) {
 		return;
@@ -77,30 +77,24 @@ void collada_color_dump(collada_ctx_t *ctx, collada_color_t *color, int indent)
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Color:\n");
+	COCO_DUMP_INDENT(indent, "Color:\n");
 
 	indent++;
 
 	if(color->sid != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Sid: %s\n", color->sid);
+		COCO_DUMP_INDENT(indent, "Sid: %s\n", color->sid);
 	}
 
 	if(color->r >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Red: %f\n", color->r);
+		COCO_DUMP_INDENT(indent, "Red: %f\n", color->r);
 
-		COLLADA_DUMP_INDENT(indent);
-		printf("Green: %f\n", color->g);
+		COCO_DUMP_INDENT(indent, "Green: %f\n", color->g);
 
-		COLLADA_DUMP_INDENT(indent);
-		printf("Blue: %f\n", color->b);
+		COCO_DUMP_INDENT(indent, "Blue: %f\n", color->b);
 
-		COLLADA_DUMP_INDENT(indent);
-		printf("Alpha: %f\n", color->a);
+		COCO_DUMP_INDENT(indent, "Alpha: %f\n", color->a);
 	}
 }
 

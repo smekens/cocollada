@@ -4,39 +4,39 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_MESH_H
-#define __COLLADA_MESH_H
+#ifndef __COCO_MESH_H
+#define __COCO_MESH_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_mesh_s
+typedef struct coco_mesh_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_mesh_s *prev, *next;
+	struct coco_mesh_s *prev, *next;
 
 	/**/
 
-	struct collada_source_s *source_list;
-	struct collada_vertices_s *vertices;
+	struct coco_source_s *source_list;
+	struct coco_vertices_s *vertices;
 
-	/* TODO struct collada_lines_s *lines_list;*/
-	/* TODO struct collada_linestrips_s *linestrips_list;*/
-	/* TODO struct collada_polygons_s *polygons_list;*/
-	struct collada_polylist_s *polylist_list;
-	struct collada_triangles_s *triangles_list;
-	/* TODO struct collada_trifans_s *trifans_list;*/
-	/* TODO struct collada_tristrips_s *tristrips_list;*/
+	/* TODO struct coco_lines_s *lines_list;*/
+	/* TODO struct coco_linestrips_s *linestrips_list;*/
+	/* TODO struct coco_polygons_s *polygons_list;*/
+	struct coco_polylist_s *polylist_list;
+	struct coco_triangles_s *triangles_list;
+	/* TODO struct coco_trifans_s *trifans_list;*/
+	/* TODO struct coco_tristrips_s *tristrips_list;*/
 
-	struct collada_extra_s *extra_list;
+	struct coco_extra_s *extra_list;
 
-} collada_mesh_t;
+} coco_mesh_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -44,11 +44,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_mesh_s *collada_mesh_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_mesh_s *coco_mesh_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_mesh_check(struct collada_ctx_s *, struct collada_mesh_s *);
+DLL_PUBLIC bool coco_mesh_check(struct coco_ctx_s *, struct coco_mesh_s *);
 
-DLL_PUBLIC void collada_mesh_dump(struct collada_ctx_s *, struct collada_mesh_s *, int);
+DLL_PUBLIC void coco_mesh_dump(struct coco_ctx_s *, struct coco_mesh_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -56,7 +56,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_MESH_H */
+#endif /* __COCO_MESH_H */
 
 /*-------------------------------------------------------------------------*/
 

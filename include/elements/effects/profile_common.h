@@ -4,59 +4,59 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_PROFILE_COMMON_H
-#define __COLLADA_PROFILE_COMMON_H
+#ifndef __COCO_PROFILE_COMMON_H
+#define __COCO_PROFILE_COMMON_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_profile_common_technique_s
+typedef struct coco_profile_common_technique_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_profile_common_technique_s *prev, *next;
+	struct coco_profile_common_technique_s *prev, *next;
 
 	/**/
 
 	const char *id;
 	const char *sid;
 
-	struct collada_asset_s *asset;
+	struct coco_asset_s *asset;
 
-	struct collada_image_s *image_list;
-	struct collada_newparam_s *newparam_list;
+	struct coco_image_s *image_list;
+	struct coco_newparam_s *newparam_list;
 
-	/* TODO struct collada_constant_s *constant;*/
-	struct collada_lambert_s *lambert;
-	struct collada_phong_s *phong;
-	/* TODO struct collada_blinn_s *blinn;*/
+	/* TODO struct coco_constant_s *constant;*/
+	struct coco_lambert_s *lambert;
+	struct coco_phong_s *phong;
+	/* TODO struct coco_blinn_s *blinn;*/
 
-	struct collada_extra_s *extra_list;
+	struct coco_extra_s *extra_list;
 
-} collada_profile_common_technique_t;
+} coco_profile_common_technique_t;
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_profile_common_s
+typedef struct coco_profile_common_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_profile_common_s *prev, *next;
+	struct coco_profile_common_s *prev, *next;
 
 	/**/
 
-	struct collada_image_s *image_list;
-	struct collada_newparam_s *newparam_list;
-	struct collada_profile_common_technique_s *technique;
+	struct coco_image_s *image_list;
+	struct coco_newparam_s *newparam_list;
+	struct coco_profile_common_technique_s *technique;
 
-	struct collada_extra_s *extra_list;
+	struct coco_extra_s *extra_list;
 
-} collada_profile_common_t;
+} coco_profile_common_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -64,19 +64,19 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_profile_common_technique_s *collada_profile_common_technique_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_profile_common_technique_s *coco_profile_common_technique_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_profile_common_technique_check(struct collada_ctx_s *, struct collada_profile_common_technique_s *);
+DLL_PUBLIC bool coco_profile_common_technique_check(struct coco_ctx_s *, struct coco_profile_common_technique_s *);
 
-DLL_PUBLIC void collada_profile_common_technique_dump(struct collada_ctx_s *, struct collada_profile_common_technique_s *, int);
+DLL_PUBLIC void coco_profile_common_technique_dump(struct coco_ctx_s *, struct coco_profile_common_technique_s *, int);
 
 /**/
 
-DLL_PUBLIC struct collada_profile_common_s *collada_profile_common_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_profile_common_s *coco_profile_common_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_profile_common_check(struct collada_ctx_s *, struct collada_profile_common_s *);
+DLL_PUBLIC bool coco_profile_common_check(struct coco_ctx_s *, struct coco_profile_common_s *);
 
-DLL_PUBLIC void collada_profile_common_dump(struct collada_ctx_s *, struct collada_profile_common_s *, int);
+DLL_PUBLIC void coco_profile_common_dump(struct coco_ctx_s *, struct coco_profile_common_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -84,7 +84,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_EFFECT_H */
+#endif /* __COCO_EFFECT_H */
 
 /*-------------------------------------------------------------------------*/
 

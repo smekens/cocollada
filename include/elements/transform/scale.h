@@ -4,22 +4,22 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_SCALE_H
-#define __COLLADA_SCALE_H
+#ifndef __COCO_SCALE_H
+#define __COCO_SCALE_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_scale_s
+typedef struct coco_scale_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_scale_s *prev, *next;
+	struct coco_scale_s *prev, *next;
 
 	/**/
 
@@ -27,7 +27,7 @@ typedef struct collada_scale_s
 
 	float array[3];
 
-} collada_scale_t;
+} coco_scale_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -35,11 +35,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_scale_s *collada_scale_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_scale_s *coco_scale_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_scale_check(struct collada_ctx_s *, struct collada_scale_s *);
+DLL_PUBLIC bool coco_scale_check(struct coco_ctx_s *, struct coco_scale_s *);
 
-DLL_PUBLIC void collada_scale_dump(struct collada_ctx_s *, struct collada_scale_s *, int);
+DLL_PUBLIC void coco_scale_dump(struct coco_ctx_s *, struct coco_scale_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -47,7 +47,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_SCALE_H */
+#endif /* __COCO_SCALE_H */
 
 /*-------------------------------------------------------------------------*/
 

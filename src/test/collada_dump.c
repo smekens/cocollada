@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 
-#include "../../include/collada.h"
+#include "../../include/coco.h"
 
 /*-------------------------------------------------------------------------*/
 
@@ -34,9 +34,9 @@ int main(int argc, char **argv)
 		/* INITIALIZE COLLADA						   */
 		/*-----------------------------------------------------------------*/
 
-		collada_ctx_t ctx;
+		coco_ctx_t ctx;
 
-		collada_ctx_initialize(&ctx);
+		coco_ctx_initialize(&ctx);
 
 		/*-----------------------------------------------------------------*/
 		/* LOAD								   */
@@ -58,19 +58,19 @@ int main(int argc, char **argv)
 		/* COLLADA PARSE						   */
 		/*-----------------------------------------------------------------*/
 
-		result = collada_ctx_loader(&ctx, buff, size);
+		result = coco_ctx_loader(&ctx, buff, size);
 
 		/*-----------------------------------------------------------------*/
 		/* COLLADA DUMP							   */
 		/*-----------------------------------------------------------------*/
 
-		collada_ctx_dump_all(&ctx);
+		coco_ctx_dump_all(&ctx);
 
 		/*-----------------------------------------------------------------*/
 		/* FINALIZE COLLADA						   */
 		/*-----------------------------------------------------------------*/
 
-		collada_ctx_finalize(&ctx);
+		coco_ctx_finalize(&ctx);
 
 		/*-----------------------------------------------------------------*/
 		/* FINALIZE							   */

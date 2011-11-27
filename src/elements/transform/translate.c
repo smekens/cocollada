@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,13 +14,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_translate_t *collada_translate_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_translate_t *coco_translate_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_translate_t *result = collada_ctx_factory(ctx, collada_translate_t);
+	coco_translate_t *result = coco_ctx_factory(ctx, coco_translate_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -31,13 +31,13 @@ collada_translate_t *collada_translate_parser(collada_ctx_t *ctx, yaxp_node_t *n
 
 	str = YAXP_GET_STR_ATTR(node0, "sid", NULL);
 	if(str != NULL) {
-		result->sid = collada_ctx_strdup(ctx, str);
+		result->sid = coco_ctx_strdup(ctx, str);
 	}
 
 	/**/
 
-	collada_vector_flt_t vector;
-	collada_string_to_vector_flt(ctx, &vector, YAXP_GET_STR_TEXT(node0, ""));
+	coco_vector_flt_t vector;
+	coco_string_to_vector_flt(ctx, &vector, YAXP_GET_STR_TEXT(node0, ""));
 
 	if(vector.nr == 3)
 	{
@@ -45,10 +45,10 @@ collada_translate_t *collada_translate_parser(collada_ctx_t *ctx, yaxp_node_t *n
 	}
 	else
 	{
-		collada_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "number of values should be 16 !\n");
+		coco_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "number of values should be 16 !\n");
 	}
 
-	collada_vector_flt_free(ctx, &vector);
+	coco_vector_flt_free(ctx, &vector);
 
 	/**/
 
@@ -57,7 +57,7 @@ collada_translate_t *collada_translate_parser(collada_ctx_t *ctx, yaxp_node_t *n
 
 /*-------------------------------------------------------------------------*/
 
-void collada_translate_dump(collada_ctx_t *ctx, collada_translate_t *translate, int indent)
+void coco_translate_dump(coco_ctx_t *ctx, coco_translate_t *translate, int indent)
 {
 	if(translate == NULL) {
 		return;
@@ -69,13 +69,11 @@ void collada_translate_dump(collada_ctx_t *ctx, collada_translate_t *translate, 
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Translate:\n");
+	COCO_DUMP_INDENT(indent, "Translate:\n");
 
 	indent++;
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Array:");
+	COCO_DUMP_INDENT(indent, "Array:");
 
 	for(i = 0; i < 3; i++){
 		printf(" %f", translate->array[i]);

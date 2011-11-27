@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,13 +14,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_perspective_t *collada_perspective_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_perspective_t *coco_perspective_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_perspective_t *result = collada_ctx_factory(ctx, collada_perspective_t);
+	coco_perspective_t *result = coco_ctx_factory(ctx, coco_perspective_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -63,7 +63,7 @@ collada_perspective_t *collada_perspective_parser(collada_ctx_t *ctx, yaxp_node_
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -74,7 +74,7 @@ collada_perspective_t *collada_perspective_parser(collada_ctx_t *ctx, yaxp_node_
 
 /*-------------------------------------------------------------------------*/
 
-void collada_perspective_dump(collada_ctx_t *ctx, collada_perspective_t *perspective, int indent)
+void coco_perspective_dump(coco_ctx_t *ctx, coco_perspective_t *perspective, int indent)
 {
 	if(perspective == NULL) {
 		return;
@@ -82,39 +82,33 @@ void collada_perspective_dump(collada_ctx_t *ctx, collada_perspective_t *perspec
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("perspective:\n");
+	COCO_DUMP_INDENT(indent, "perspective:\n");
 
 	indent++;
 
 	if(perspective->xfov != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Xfov: %f\n", perspective->xfov);
+		COCO_DUMP_INDENT(indent, "Xfov: %f\n", perspective->xfov);
 	}
 
 	if(perspective->yfov != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Yfov: %f\n", perspective->yfov);
+		COCO_DUMP_INDENT(indent, "Yfov: %f\n", perspective->yfov);
 	}
 
 	if(perspective->aspect_ratio != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Aspect ratio: %f\n", perspective->aspect_ratio);
+		COCO_DUMP_INDENT(indent, "Aspect ratio: %f\n", perspective->aspect_ratio);
 	}
 
 	if(perspective->znear != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Znear: %f\n", perspective->znear);
+		COCO_DUMP_INDENT(indent, "Znear: %f\n", perspective->znear);
 	}
 
 	if(perspective->zfar != -9999.0f)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Zfar: %f\n", perspective->zfar);
+		COCO_DUMP_INDENT(indent, "Zfar: %f\n", perspective->zfar);
 	}
 }
 

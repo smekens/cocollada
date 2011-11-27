@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -13,13 +13,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_bind_vertex_input_t *collada_bind_vertex_input_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_bind_vertex_input_t *coco_bind_vertex_input_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_bind_vertex_input_t *result = collada_ctx_factory(ctx, collada_bind_vertex_input_t);
+	coco_bind_vertex_input_t *result = coco_ctx_factory(ctx, coco_bind_vertex_input_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -30,17 +30,17 @@ collada_bind_vertex_input_t *collada_bind_vertex_input_parser(collada_ctx_t *ctx
 
 	str = YAXP_GET_STR_ATTR(node0, "semantic", NULL);
 	if(str != NULL) {
-		result->semantic = collada_ctx_strdup(ctx, str);
+		result->semantic = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "input_semantic", NULL);
 	if(str != NULL) {
-		result->input_semantic = collada_ctx_strdup(ctx, str);
+		result->input_semantic = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "input_set", NULL);
 	if(str != NULL) {
-		result->input_set = collada_ctx_strdup(ctx, str);
+		result->input_set = coco_ctx_strdup(ctx, str);
 	}
 
 	/**/
@@ -50,7 +50,7 @@ collada_bind_vertex_input_t *collada_bind_vertex_input_parser(collada_ctx_t *ctx
 
 /*-------------------------------------------------------------------------*/
 
-void collada_bind_vertex_input_dump(collada_ctx_t *ctx, collada_bind_vertex_input_t *bind_vertex_input, int indent)
+void coco_bind_vertex_input_dump(coco_ctx_t *ctx, coco_bind_vertex_input_t *bind_vertex_input, int indent)
 {
 	if(bind_vertex_input == NULL) {
 		return;
@@ -58,27 +58,23 @@ void collada_bind_vertex_input_dump(collada_ctx_t *ctx, collada_bind_vertex_inpu
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Bind vertex input:\n");
+	COCO_DUMP_INDENT(indent, "Bind vertex input:\n");
 
 	indent++;
 
 	if(bind_vertex_input->semantic != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Semantic: %s\n", bind_vertex_input->semantic);
+		COCO_DUMP_INDENT(indent, "Semantic: %s\n", bind_vertex_input->semantic);
 	}
 
 	if(bind_vertex_input->input_semantic != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Input semantic: %s\n", bind_vertex_input->input_semantic);
+		COCO_DUMP_INDENT(indent, "Input semantic: %s\n", bind_vertex_input->input_semantic);
 	}
 
 	if(bind_vertex_input->input_set != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Input set: %s\n", bind_vertex_input->input_set);
+		COCO_DUMP_INDENT(indent, "Input set: %s\n", bind_vertex_input->input_set);
 	}
 }
 

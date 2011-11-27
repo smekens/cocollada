@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,13 +14,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_unit_t *collada_unit_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_unit_t *coco_unit_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_unit_t *result = collada_ctx_factory(ctx, collada_unit_t);
+	coco_unit_t *result = coco_ctx_factory(ctx, coco_unit_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -37,7 +37,7 @@ collada_unit_t *collada_unit_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_unit_dump(collada_ctx_t *ctx, collada_unit_t *unit, int indent)
+void coco_unit_dump(coco_ctx_t *ctx, coco_unit_t *unit, int indent)
 {
 	if(unit == NULL) {
 		return;
@@ -45,18 +45,15 @@ void collada_unit_dump(collada_ctx_t *ctx, collada_unit_t *unit, int indent)
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Unit:\n");
+	COCO_DUMP_INDENT(indent, "Unit:\n");
 
 	indent++;
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Meter: %f\n", unit->meter);
+	COCO_DUMP_INDENT(indent, "Meter: %f\n", unit->meter);
 
 	if(unit->name != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Name: %s\n", unit->name);
+		COCO_DUMP_INDENT(indent, "Name: %s\n", unit->name);
 	}
 }
 

@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,13 +14,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_camera_t *collada_camera_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_camera_t *coco_camera_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_camera_t *result = collada_ctx_factory(ctx, collada_camera_t);
+	coco_camera_t *result = coco_ctx_factory(ctx, coco_camera_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -37,7 +37,7 @@ collada_camera_t *collada_camera_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 	if(str != NULL)
 	{
-		result->id = collada_ctx_strdup(ctx, str);
+		result->id = coco_ctx_strdup(ctx, str);
 	}
 
 	/*-----------------------------------------------------------------*/
@@ -48,7 +48,7 @@ collada_camera_t *collada_camera_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 	if(str != NULL)
 	{
-		result->name = collada_ctx_strdup(ctx, str);
+		result->name = coco_ctx_strdup(ctx, str);
 	}
 
 	/*-----------------------------------------------------------------*/
@@ -56,9 +56,9 @@ collada_camera_t *collada_camera_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 	int nr1;
 	yaxp_node_t * node1;
 
-	collada_asset_t *asset;
-	collada_optics_t *optics;
-	collada_extra_t *extra;
+	coco_asset_t *asset;
+	coco_optics_t *optics;
+	coco_extra_t *extra;
 
 	yaxp_foreach_node(node0, node1, nr1)
 	{
@@ -69,7 +69,7 @@ collada_camera_t *collada_camera_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 			/*-------------------------------------------------*/
 
 			case 0x3BCDA5FD: /* asset */
-				asset = collada_ctx_parser(ctx, collada_asset_t, node1);
+				asset = coco_ctx_parse(ctx, coco_asset_t, node1);
 
 				ctnr_list_add(result->asset, asset);
 				break;
@@ -79,7 +79,7 @@ collada_camera_t *collada_camera_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 			/*-------------------------------------------------*/
 
 			case 0x752C065A: /* optics */
-				optics = collada_ctx_parser(ctx, collada_optics_t, node1);
+				optics = coco_ctx_parse(ctx, coco_optics_t, node1);
 
 				ctnr_list_add(result->optics, optics);
 				break;
@@ -89,7 +89,7 @@ collada_camera_t *collada_camera_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 			/*-------------------------------------------------*/
 
 			case 0x2FAFA2F4: /* extra */
-				extra = collada_ctx_parser(ctx, collada_extra_t, node1);
+				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
 				ctnr_list_add(result->extra_list, extra);
 				break;
@@ -97,7 +97,7 @@ collada_camera_t *collada_camera_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 			/*-------------------------------------------------*/
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 				break;
 
 			/*-------------------------------------------------*/
@@ -106,14 +106,14 @@ collada_camera_t *collada_camera_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 	/*-----------------------------------------------------------------*/
 
-	collada_ctx_register(ctx, result, result->id);
+	coco_ctx_register(ctx, result, result->id);
 
 	return result;
 }
 
 /*-------------------------------------------------------------------------*/
 
-bool collada_camera_check(collada_ctx_t *ctx, collada_camera_t *camera)
+bool coco_camera_check(coco_ctx_t *ctx, coco_camera_t *camera)
 {
 	if(camera == NULL)
 	{
@@ -124,9 +124,9 @@ bool collada_camera_check(collada_ctx_t *ctx, collada_camera_t *camera)
 
 	int nr;
 
-	collada_asset_t *asset;
-	collada_optics_t *optics;
-	collada_extra_t *extra;
+	coco_asset_t *asset;
+	coco_optics_t *optics;
+	coco_extra_t *extra;
 
 	bool result = true;
 
@@ -136,11 +136,11 @@ bool collada_camera_check(collada_ctx_t *ctx, collada_camera_t *camera)
 
 	ctnr_list_foreach(camera->asset, asset, nr)
 	{
-		result = result && collada_ctx_check(ctx, collada_asset_t, camera->asset);
+		result = result && coco_ctx_check(ctx, coco_asset_t, camera->asset);
 	}
 	if(nr > 1)
 	{
-		collada_log(ctx, TYPE_ERROR, camera->base.line, camera->base.column, "too many asset node\n");
+		coco_log(ctx, TYPE_ERROR, camera->base.line, camera->base.column, "too many asset node\n");
 	}
 
 	/*-----------------------------------------------------------------*/
@@ -149,11 +149,11 @@ bool collada_camera_check(collada_ctx_t *ctx, collada_camera_t *camera)
 
 	ctnr_list_foreach(camera->optics, optics, nr)
 	{
-		result = result && collada_ctx_check(ctx, collada_optics_t, camera->optics);
+		result = result && coco_ctx_check(ctx, coco_optics_t, camera->optics);
 	}
 	if(nr > 1)
 	{
-		collada_log(ctx, TYPE_ERROR, camera->base.line, camera->base.column, "too many asset node\n");
+		coco_log(ctx, TYPE_ERROR, camera->base.line, camera->base.column, "too many asset node\n");
 	}
 
 	/*-----------------------------------------------------------------*/
@@ -162,11 +162,11 @@ bool collada_camera_check(collada_ctx_t *ctx, collada_camera_t *camera)
 
 	ctnr_list_foreach(camera->extra_list, extra, nr)
 	{
-		result = result && collada_ctx_check(ctx, collada_extra_t, extra);
+		result = result && coco_ctx_check(ctx, coco_extra_t, extra);
 	}
 	if(nr > 1)
 	{
-		collada_log(ctx, TYPE_ERROR, camera->base.line, camera->base.column, "too many asset node\n");
+		coco_log(ctx, TYPE_ERROR, camera->base.line, camera->base.column, "too many asset node\n");
 	}
 
 	/*-----------------------------------------------------------------*/
@@ -176,7 +176,7 @@ bool collada_camera_check(collada_ctx_t *ctx, collada_camera_t *camera)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_camera_dump(collada_ctx_t *ctx, collada_camera_t *camera, int indent)
+void coco_camera_dump(coco_ctx_t *ctx, coco_camera_t *camera, int indent)
 {
 	if(camera == NULL)
 	{
@@ -187,13 +187,13 @@ void collada_camera_dump(collada_ctx_t *ctx, collada_camera_t *camera, int inden
 
 	int nr;
 
-	collada_asset_t *asset;
-	collada_optics_t *optics;
-	collada_extra_t *extra;
+	coco_asset_t *asset;
+	coco_optics_t *optics;
+	coco_extra_t *extra;
 
 	/*-----------------------------------------------------------------*/
 
-	COLLADA_DUMP_INDENT(indent, "Camera:\n");
+	COCO_DUMP_INDENT(indent, "Camera:\n");
 
 	indent++;
 
@@ -203,8 +203,7 @@ void collada_camera_dump(collada_ctx_t *ctx, collada_camera_t *camera, int inden
 
 	if(camera->id != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Id: %s\n", camera->id);
+		COCO_DUMP_INDENT(indent, "Id: %s\n", camera->id);
 	}
 
 	/*-----------------------------------------------------------------*/
@@ -213,8 +212,7 @@ void collada_camera_dump(collada_ctx_t *ctx, collada_camera_t *camera, int inden
 
 	if(camera->name != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Name: %s\n", camera->name);
+		COCO_DUMP_INDENT(indent, "Name: %s\n", camera->name);
 	}
 
 	/*-----------------------------------------------------------------*/
@@ -223,7 +221,7 @@ void collada_camera_dump(collada_ctx_t *ctx, collada_camera_t *camera, int inden
 
 	ctnr_list_foreach(camera->asset, asset, nr)
 	{
-		collada_ctx_dump(ctx, collada_asset_t, camera->asset, indent);
+		coco_ctx_dump(ctx, coco_asset_t, camera->asset, indent);
 	}
 
 	/*-----------------------------------------------------------------*/
@@ -232,7 +230,7 @@ void collada_camera_dump(collada_ctx_t *ctx, collada_camera_t *camera, int inden
 
 	ctnr_list_foreach(camera->optics, optics, nr)
 	{
-		collada_ctx_dump(ctx, collada_optics_t, camera->optics, indent);
+		coco_ctx_dump(ctx, coco_optics_t, camera->optics, indent);
 	}
 
 	/*-----------------------------------------------------------------*/
@@ -241,7 +239,7 @@ void collada_camera_dump(collada_ctx_t *ctx, collada_camera_t *camera, int inden
 
 	ctnr_list_foreach(camera->extra_list, extra, nr)
 	{
-		collada_ctx_dump(ctx, collada_extra_t, extra, indent);
+		coco_ctx_dump(ctx, coco_extra_t, extra, indent);
 	}
 
 	/*-----------------------------------------------------------------*/

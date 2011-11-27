@@ -4,32 +4,32 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_TRANSPARENT_H
-#define __COLLADA_TRANSPARENT_H
+#ifndef __COCO_TRANSPARENT_H
+#define __COCO_TRANSPARENT_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_transparent_s
+typedef struct coco_transparent_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_transparent_s *prev, *next;
+	struct coco_transparent_s *prev, *next;
 
 	/**/
 
 	const char *opaque;
 
-	struct collada_color_s *color;
-	struct collada_fx_common_param_s *param_list;
-	struct collada_fx_common_texture_s *texture_list;
+	struct coco_color_s *color;
+	struct coco_fx_common_param_s *param_list;
+	struct coco_fx_common_texture_s *texture_list;
 
-} collada_transparent_t;
+} coco_transparent_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -37,11 +37,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_transparent_s *collada_transparent_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_transparent_s *coco_transparent_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_transparent_check(struct collada_ctx_s *, struct collada_transparent_s *);
+DLL_PUBLIC bool coco_transparent_check(struct coco_ctx_s *, struct coco_transparent_s *);
 
-DLL_PUBLIC void collada_transparent_dump(struct collada_ctx_s *, struct collada_transparent_s *, int);
+DLL_PUBLIC void coco_transparent_dump(struct coco_ctx_s *, struct coco_transparent_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -49,7 +49,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_TRANSPARENT_H */
+#endif /* __COCO_TRANSPARENT_H */
 
 /*-------------------------------------------------------------------------*/
 

@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -13,26 +13,26 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_effect_t *collada_effect_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_effect_t *coco_effect_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_effect_t *result = collada_ctx_factory(ctx, collada_effect_t);
+	coco_effect_t *result = coco_ctx_factory(ctx, coco_effect_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_asset_t *asset;
+	coco_asset_t *asset;
 
-	collada_image_t *image;
-	collada_newparam_t *newparam;
-	collada_profile_common_t *profile_common;
+	coco_image_t *image;
+	coco_newparam_t *newparam;
+	coco_profile_common_t *profile_common;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
@@ -40,12 +40,12 @@ collada_effect_t *collada_effect_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 	str = YAXP_GET_STR_ATTR(node0, "id", NULL);
 	if(str != NULL) {
-		result->id = collada_ctx_strdup(ctx, str);
+		result->id = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "name", NULL);
 	if(str != NULL) {
-		result->name = collada_ctx_strdup(ctx, str);
+		result->name = coco_ctx_strdup(ctx, str);
 	}
 	
 	/**/
@@ -58,43 +58,43 @@ collada_effect_t *collada_effect_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x3BCDA5FD: /* asset */
-				asset = collada_ctx_parser(ctx, collada_asset_t, node1);
+				asset = coco_ctx_parse(ctx, coco_asset_t, node1);
 
 				result->asset = asset;
 				break;
 
 			case 0x585AC335: /* image */
-				image = collada_ctx_parser(ctx, collada_image_t, node1);
+				image = coco_ctx_parse(ctx, coco_image_t, node1);
 
 				ctnr_list_add(result->image_list, image);
 				break;
 
 			case 0x39385D1A: /* newparam */
-				newparam = collada_ctx_parser(ctx, collada_newparam_t, node1);
+				newparam = coco_ctx_parse(ctx, coco_newparam_t, node1);
 
 				ctnr_list_add(result->newparam_list, newparam);
 				break;
 
 			case 0xC723EC8D: /* profile_COMMON */
-				profile_common = collada_ctx_parser(ctx, collada_profile_common_t, node1);
+				profile_common = coco_ctx_parse(ctx, coco_profile_common_t, node1);
 
 				ctnr_list_add(result->profile_common_list, profile_common);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
-				extra = collada_ctx_parser(ctx, collada_extra_t, node1);
+				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
 				ctnr_list_add(result->extra_list, extra);
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
 	/**/
 
-	collada_ctx_register(ctx, result, result->id);
+	coco_ctx_register(ctx, result, result->id);
 
 	/**/
 
@@ -103,7 +103,7 @@ collada_effect_t *collada_effect_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_effect_dump(collada_ctx_t *ctx, collada_effect_t *effect, int indent)
+void coco_effect_dump(coco_ctx_t *ctx, coco_effect_t *effect, int indent)
 {
 	if(effect == NULL) {
 		return;
@@ -113,47 +113,44 @@ void collada_effect_dump(collada_ctx_t *ctx, collada_effect_t *effect, int inden
 
 	int nr;
 
-	collada_image_t *image;
-	collada_newparam_t *newparam;
-	collada_profile_common_t *profile_common;
+	coco_image_t *image;
+	coco_newparam_t *newparam;
+	coco_profile_common_t *profile_common;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Effect:\n");
+	COCO_DUMP_INDENT(indent, "Effect:\n");
 
 	indent++;
 
 	if(effect->id != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Id: %s\n", effect->id);
+		COCO_DUMP_INDENT(indent, "Id: %s\n", effect->id);
 	}
 
 	if(effect->name != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Name: %s\n", effect->name);
+		COCO_DUMP_INDENT(indent, "Name: %s\n", effect->name);
 	}
 
-	collada_ctx_dump(ctx, collada_asset_t, effect->asset, indent);
+	coco_ctx_dump(ctx, coco_asset_t, effect->asset, indent);
 
 	ctnr_list_foreach(effect->image_list, image, nr) {
-		collada_ctx_dump(ctx, collada_image_t, image, indent);
+		coco_ctx_dump(ctx, coco_image_t, image, indent);
 	}
 
 	ctnr_list_foreach(effect->newparam_list, newparam, nr) {
-		collada_ctx_dump(ctx, collada_newparam_t, newparam, indent);
+		coco_ctx_dump(ctx, coco_newparam_t, newparam, indent);
 	}
 
 	ctnr_list_foreach(effect->profile_common_list, profile_common, nr) {
-		collada_ctx_dump(ctx, collada_profile_common_t, profile_common, indent);
+		coco_ctx_dump(ctx, coco_profile_common_t, profile_common, indent);
 	}
 
 	ctnr_list_foreach(effect->extra_list, extra, nr) {
-		collada_ctx_dump(ctx, collada_extra_t, extra, indent);
+		coco_ctx_dump(ctx, coco_extra_t, extra, indent);
 	}
 }
 

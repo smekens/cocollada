@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,22 +14,22 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_scene_t *collada_scene_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_scene_t *coco_scene_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_scene_t *result = collada_ctx_factory(ctx, collada_scene_t);
+	coco_scene_t *result = coco_ctx_factory(ctx, coco_scene_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_instance_visual_scene_t *instance_visual_scene;
+	coco_instance_visual_scene_t *instance_visual_scene;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
@@ -41,19 +41,19 @@ collada_scene_t *collada_scene_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x4149755F: /* instance_visual_scene */
-				instance_visual_scene = collada_ctx_parser(ctx, collada_instance_visual_scene_t, node1);
+				instance_visual_scene = coco_ctx_parse(ctx, coco_instance_visual_scene_t, node1);
 
 				result->instance_visual_scene = instance_visual_scene;
 				break;
 
 			case 0x2FAFA2F4: /* extra */
-				extra = collada_ctx_parser(ctx, collada_extra_t, node1);
+				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
 				ctnr_list_add(result->extra_list, extra);
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -64,7 +64,7 @@ collada_scene_t *collada_scene_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_scene_dump(collada_ctx_t *ctx, collada_scene_t *scene, int indent)
+void coco_scene_dump(coco_ctx_t *ctx, coco_scene_t *scene, int indent)
 {
 	if(scene == NULL) {
 		return;
@@ -74,19 +74,18 @@ void collada_scene_dump(collada_ctx_t *ctx, collada_scene_t *scene, int indent)
 
 	int nr;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Scene:\n");
+	COCO_DUMP_INDENT(indent, "Scene:\n");
 
 	indent++;
 
-	collada_ctx_dump(ctx, collada_instance_visual_scene_t, scene->instance_visual_scene, indent);
+	coco_ctx_dump(ctx, coco_instance_visual_scene_t, scene->instance_visual_scene, indent);
 
 	ctnr_list_foreach(scene->extra_list, extra, nr) {
-		collada_ctx_dump(ctx, collada_extra_t, extra, indent);
+		coco_ctx_dump(ctx, coco_extra_t, extra, indent);
 	}
 }
 

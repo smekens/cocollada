@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,22 +14,22 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_image_t *collada_image_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_image_t *coco_image_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_image_t *result = collada_ctx_factory(ctx, collada_image_t);
+	coco_image_t *result = coco_ctx_factory(ctx, coco_image_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_asset_t *asset;
+	coco_asset_t *asset;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
@@ -37,17 +37,17 @@ collada_image_t *collada_image_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 	str = YAXP_GET_STR_ATTR(node0, "id", NULL);
 	if(str != NULL) {
-		result->id = collada_ctx_strdup(ctx, str);
+		result->id = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "name", NULL);
 	if(str != NULL) {
-		result->name = collada_ctx_strdup(ctx, str);
+		result->name = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "format", NULL);
 	if(str != NULL) {
-		result->format = collada_ctx_strdup(ctx, str);
+		result->format = coco_ctx_strdup(ctx, str);
 	}
 
 	result->height = YAXP_GET_INT_ATTR(node0, "height", "-9999");
@@ -66,7 +66,7 @@ collada_image_t *collada_image_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x3BCDA5FD: /* asset */
-				asset = collada_ctx_parser(ctx, collada_asset_t, node1);
+				asset = coco_ctx_parse(ctx, coco_asset_t, node1);
 
 				result->asset = asset;
 				break;
@@ -74,37 +74,37 @@ collada_image_t *collada_image_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x459C759A: /* data */
 				str = YAXP_GET_STR_TEXT(node1, NULL);
 				if(str != NULL) {
-					result->data = collada_ctx_strdup(ctx, str);
+					result->data = coco_ctx_strdup(ctx, str);
 				}
 				else {
-					collada_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "no data !\n");
+					coco_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "no data !\n");
 				}
 				break;
 
 			case 0x08084E80: /* init_from */
 				str = YAXP_GET_STR_TEXT(node1, NULL);
 				if(str != NULL) {
-					result->init_from = collada_ctx_strdup(ctx, str);
+					result->init_from = coco_ctx_strdup(ctx, str);
 				}
 				else {
-					collada_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "no init_from !\n");
+					coco_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "no init_from !\n");
 				}
 				break;
 
 			case 0x2FAFA2F4: /* extra */
-				extra = collada_ctx_parser(ctx, collada_extra_t, node1);
+				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
 				ctnr_list_add(result->extra_list, extra);
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
 	/**/
 
-	collada_ctx_register(ctx, result, result->id);
+	coco_ctx_register(ctx, result, result->id);
 
 	/**/
 
@@ -113,7 +113,7 @@ collada_image_t *collada_image_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_image_dump(collada_ctx_t *ctx, collada_image_t *image, int indent)
+void coco_image_dump(coco_ctx_t *ctx, coco_image_t *image, int indent)
 {
 	if(image == NULL) {
 		return;
@@ -123,67 +123,58 @@ void collada_image_dump(collada_ctx_t *ctx, collada_image_t *image, int indent)
 
 	int nr;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Image:\n");
+	COCO_DUMP_INDENT(indent, "Image:\n");
 
 	indent++;
 
 	if(image->id != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Id: %s\n", image->id);
+		COCO_DUMP_INDENT(indent, "Id: %s\n", image->id);
 	}
 
 	if(image->name != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Name: %s\n", image->name);
+		COCO_DUMP_INDENT(indent, "Name: %s\n", image->name);
 	}
 
 	if(image->format != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Format: %s\n", image->format);
+		COCO_DUMP_INDENT(indent, "Format: %s\n", image->format);
 	}
 
 	if(image->height >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Height: %d\n", image->height);
+		COCO_DUMP_INDENT(indent, "Height: %d\n", image->height);
 	}
 
 	if(image->width >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Width: %d\n", image->width);
+		COCO_DUMP_INDENT(indent, "Width: %d\n", image->width);
 	}
 
 	if(image->depth >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Depth: %d\n", image->depth);
+		COCO_DUMP_INDENT(indent, "Depth: %d\n", image->depth);
 	}
 
-	collada_ctx_dump(ctx, collada_asset_t, image->asset, indent);
+	coco_ctx_dump(ctx, coco_asset_t, image->asset, indent);
 
 	if(image->data != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Data: %s\n", image->data);
+		COCO_DUMP_INDENT(indent, "Data: %s\n", image->data);
 	}
 
 	if(image->init_from != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Init from: %s\n", image->init_from);
+		COCO_DUMP_INDENT(indent, "Init from: %s\n", image->init_from);
 	}
 
 	ctnr_list_foreach(image->extra_list, extra, nr) {
-		collada_ctx_dump(ctx, collada_extra_t, extra, indent);
+		coco_ctx_dump(ctx, coco_extra_t, extra, indent);
 	}
 }
 

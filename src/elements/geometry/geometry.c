@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -13,26 +13,26 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_geometry_t *collada_geometry_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_geometry_t *coco_geometry_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_geometry_t *result = collada_ctx_factory(ctx, collada_geometry_t);
+	coco_geometry_t *result = coco_ctx_factory(ctx, coco_geometry_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_asset_t *asset;
+	coco_asset_t *asset;
 
-	/* TODO collada_convex_mesh_t *convex_mesh;*/
-	collada_mesh_t *mesh;
-	/* TODO collada_spline_t *spline;*/
+	/* TODO coco_convex_mesh_t *convex_mesh;*/
+	coco_mesh_t *mesh;
+	/* TODO coco_spline_t *spline;*/
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
@@ -40,12 +40,12 @@ collada_geometry_t *collada_geometry_parser(collada_ctx_t *ctx, yaxp_node_t *nod
 
 	str = YAXP_GET_STR_ATTR(node0, "id", NULL);
 	if(str != NULL) {
-		result->id = collada_ctx_strdup(ctx, str);
+		result->id = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "name", NULL);
 	if(str != NULL) {
-		result->name = collada_ctx_strdup(ctx, str);
+		result->name = coco_ctx_strdup(ctx, str);
 	}
 
 	/**/
@@ -58,43 +58,43 @@ collada_geometry_t *collada_geometry_parser(collada_ctx_t *ctx, yaxp_node_t *nod
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x3BCDA5FD: /* asset */
-				asset = collada_ctx_parser(ctx, collada_asset_t, node1);
+				asset = coco_ctx_parse(ctx, coco_asset_t, node1);
 
 				result->asset = asset;
 				break;
 
 			case 0x44F65A3B: /* convex_mesh */
-				/* TODO convex_mesh = collada_convex_mesh_parser(ctx, node1);	*/
+				/* TODO convex_mesh = coco_convex_mesh_parse(ctx, node1);	*/
 				/* TODO								*/
 				/* TODO result->convex_mesh = convex_mesh;			*/
 				goto __warning;
 
 			case 0x025B744F: /* mesh */
-				mesh = collada_ctx_parser(ctx, collada_mesh_t, node1);
+				mesh = coco_ctx_parse(ctx, coco_mesh_t, node1);
 
 				result->mesh = mesh;
 				break;
 
 			case 0xDC726BD8: /* spline */
-				/* TODO spline = collada_spline_parser(ctx, node1);		*/
+				/* TODO spline = coco_spline_parse(ctx, node1);		*/
 				/* TODO								*/
 				/* TODO result->spline = spline;				*/
 				goto __warning;
 
 			case 0x2FAFA2F4: /* extra */
-				extra = collada_ctx_parser(ctx, collada_extra_t, node1);
+				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
 				ctnr_list_add(result->extra_list, extra);
 				break;
 
 __warning:		default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
 	/**/
 
-	collada_ctx_register(ctx, result, result->id);
+	coco_ctx_register(ctx, result, result->id);
 
 	/**/
 
@@ -103,7 +103,7 @@ __warning:		default:
 
 /*-------------------------------------------------------------------------*/
 
-void collada_geometry_dump(collada_ctx_t *ctx, collada_geometry_t *geometry, int indent)
+void coco_geometry_dump(coco_ctx_t *ctx, coco_geometry_t *geometry, int indent)
 {
 	if(geometry == NULL) {
 		return;
@@ -113,35 +113,32 @@ void collada_geometry_dump(collada_ctx_t *ctx, collada_geometry_t *geometry, int
 
 	int nr;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Geometry:\n");
+	COCO_DUMP_INDENT(indent, "Geometry:\n");
 
 	indent++;
 
 	if(geometry->id != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Id: %s\n", geometry->id);
+		COCO_DUMP_INDENT(indent, "Id: %s\n", geometry->id);
 	}
 
 	if(geometry->name != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Name: %s\n", geometry->name);
+		COCO_DUMP_INDENT(indent, "Name: %s\n", geometry->name);
 	}
 
-	collada_ctx_dump(ctx, collada_asset_t, geometry->asset, indent);
+	coco_ctx_dump(ctx, coco_asset_t, geometry->asset, indent);
 
-	/* TODO collada_convex_mesh_dump(geometry->convex_mesh, indent);*/
-	collada_ctx_dump(ctx, collada_mesh_t, geometry->mesh, indent);
-	/* TODO collada_spline_dump(geometry->spline, indent);*/
+	/* TODO coco_convex_mesh_dump(geometry->convex_mesh, indent);*/
+	coco_ctx_dump(ctx, coco_mesh_t, geometry->mesh, indent);
+	/* TODO coco_spline_dump(geometry->spline, indent);*/
 
 	ctnr_list_foreach(geometry->extra_list, extra, nr) {
-		collada_ctx_dump(ctx, collada_extra_t, extra, indent);
+		coco_ctx_dump(ctx, coco_extra_t, extra, indent);
 	}
 }
 

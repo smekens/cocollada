@@ -4,30 +4,30 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_REFLECTIVE_H
-#define __COLLADA_REFLECTIVE_H
+#ifndef __COCO_REFLECTIVE_H
+#define __COCO_REFLECTIVE_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_reflective_s
+typedef struct coco_reflective_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_reflective_s *prev, *next;
+	struct coco_reflective_s *prev, *next;
 
 	/**/
 
-	struct collada_color_s *color;
-	struct collada_fx_common_param_s *param_list;
-	struct collada_fx_common_texture_s *texture_list;
+	struct coco_color_s *color;
+	struct coco_fx_common_param_s *param_list;
+	struct coco_fx_common_texture_s *texture_list;
 
-} collada_reflective_t;
+} coco_reflective_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -35,11 +35,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_reflective_s *collada_reflective_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_reflective_s *coco_reflective_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_reflective_check(struct collada_ctx_s *, struct collada_reflective_s *);
+DLL_PUBLIC bool coco_reflective_check(struct coco_ctx_s *, struct coco_reflective_s *);
 
-DLL_PUBLIC void collada_reflective_dump(struct collada_ctx_s *, struct collada_reflective_s *, int);
+DLL_PUBLIC void coco_reflective_dump(struct coco_ctx_s *, struct coco_reflective_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -47,7 +47,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_REFLECTIVE_H */
+#endif /* __COCO_REFLECTIVE_H */
 
 /*-------------------------------------------------------------------------*/
 

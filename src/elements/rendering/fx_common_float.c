@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -13,13 +13,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_fx_common_float_t *collada_fx_common_float_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_fx_common_float_t *coco_fx_common_float_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_fx_common_float_t *result = collada_ctx_factory(ctx, collada_fx_common_float_t);
+	coco_fx_common_float_t *result = coco_ctx_factory(ctx, coco_fx_common_float_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
@@ -30,11 +30,11 @@ collada_fx_common_float_t *collada_fx_common_float_parser(collada_ctx_t *ctx, ya
 
 	str = YAXP_GET_STR_ATTR(node0, "sid", NULL);
 	if(str != NULL) {
-		result->sid = collada_ctx_strdup(ctx, str);
+		result->sid = coco_ctx_strdup(ctx, str);
 	}
 
-	collada_vector_flt_t vector;
-	collada_string_to_vector_flt(ctx, &vector, YAXP_GET_STR_TEXT(node0, ""));
+	coco_vector_flt_t vector;
+	coco_string_to_vector_flt(ctx, &vector, YAXP_GET_STR_TEXT(node0, ""));
 
 	if(vector.nr == 1)
 	{
@@ -44,7 +44,7 @@ collada_fx_common_float_t *collada_fx_common_float_parser(collada_ctx_t *ctx, ya
 	{
 		result->value = -9999.0f;
 
-		collada_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "number of values should be 1 !\n");
+		coco_log(ctx, TYPE_ERROR, result->base.line, result->base.column, "number of values should be 1 !\n");
 	}
 
 	/**/
@@ -54,7 +54,7 @@ collada_fx_common_float_t *collada_fx_common_float_parser(collada_ctx_t *ctx, ya
 
 /*-------------------------------------------------------------------------*/
 
-void collada_fx_common_float_dump(collada_ctx_t *ctx, collada_fx_common_float_t *fx_common_float, int indent)
+void coco_fx_common_float_dump(coco_ctx_t *ctx, coco_fx_common_float_t *fx_common_float, int indent)
 {
 	if(fx_common_float == NULL) {
 		return;
@@ -62,21 +62,18 @@ void collada_fx_common_float_dump(collada_ctx_t *ctx, collada_fx_common_float_t 
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Float:\n");
+	COCO_DUMP_INDENT(indent, "Float:\n");
 
 	indent++;
 
 	if(fx_common_float->sid != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Sid: %s\n", fx_common_float->sid);
+		COCO_DUMP_INDENT(indent, "Sid: %s\n", fx_common_float->sid);
 	}
 
 	if(fx_common_float->value >= 0)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Value: %f\n", fx_common_float->value);
+		COCO_DUMP_INDENT(indent, "Value: %f\n", fx_common_float->value);
 	}
 }
 

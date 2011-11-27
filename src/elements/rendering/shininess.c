@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -13,21 +13,21 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_shininess_t *collada_shininess_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_shininess_t *coco_shininess_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_shininess_t *result = collada_ctx_factory(ctx, collada_shininess_t);
+	coco_shininess_t *result = coco_ctx_factory(ctx, coco_shininess_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_fx_common_float_t *flt;
-	collada_fx_common_param_t *param;
+	coco_fx_common_float_t *flt;
+	coco_fx_common_param_t *param;
 
 	/**/
 
@@ -39,19 +39,19 @@ collada_shininess_t *collada_shininess_parser(collada_ctx_t *ctx, yaxp_node_t *n
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x767C3C00: /* float */
-				flt = collada_ctx_parser(ctx, collada_fx_common_float_t, node1);
+				flt = coco_ctx_parse(ctx, coco_fx_common_float_t, node1);
 
 				result->flt = flt;
 				break;
 
 			case 0x657C2B30: /* param */
-				param = collada_ctx_parser(ctx, collada_fx_common_param_t, node1);
+				param = coco_ctx_parse(ctx, coco_fx_common_param_t, node1);
 
 				ctnr_list_add(result->param_list, param);
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -62,7 +62,7 @@ collada_shininess_t *collada_shininess_parser(collada_ctx_t *ctx, yaxp_node_t *n
 
 /*-------------------------------------------------------------------------*/
 
-void collada_shininess_dump(collada_ctx_t *ctx, collada_shininess_t *shininess, int indent)
+void coco_shininess_dump(coco_ctx_t *ctx, coco_shininess_t *shininess, int indent)
 {
 	if(shininess == NULL) {
 		return;
@@ -72,19 +72,18 @@ void collada_shininess_dump(collada_ctx_t *ctx, collada_shininess_t *shininess, 
 
 	int nr;
 
-	collada_fx_common_param_t *param;
+	coco_fx_common_param_t *param;
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Shininess:\n");
+	COCO_DUMP_INDENT(indent, "Shininess:\n");
 
 	indent++;
 
-	collada_ctx_dump(ctx, collada_fx_common_float_t, shininess->flt, indent);
+	coco_ctx_dump(ctx, coco_fx_common_float_t, shininess->flt, indent);
 
 	ctnr_list_foreach(shininess->param_list, param, nr) {
-		collada_ctx_dump(ctx, collada_fx_common_param_t, param, indent);
+		coco_ctx_dump(ctx, coco_fx_common_param_t, param, indent);
 	}
 }
 

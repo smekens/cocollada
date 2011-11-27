@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -14,23 +14,23 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_light_technique_common_t *collada_light_technique_common_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_light_technique_common_t *coco_light_technique_common_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_light_technique_common_t *result = collada_ctx_factory(ctx, collada_light_technique_common_t);
+	coco_light_technique_common_t *result = coco_ctx_factory(ctx, coco_light_technique_common_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_ambient_core_t *ambient;
-	collada_directional_t *directional;
-	collada_spot_t *spot;
-	collada_point_t *point;
+	coco_ambient_core_t *ambient;
+	coco_directional_t *directional;
+	coco_spot_t *spot;
+	coco_point_t *point;
 
 	/**/
 
@@ -42,31 +42,31 @@ collada_light_technique_common_t *collada_light_technique_common_parser(collada_
 		switch(ctnr_hash(node1->name))
 		{
 			case 0xC0799E13: /* ambient */
-				ambient = collada_ctx_parser(ctx, collada_ambient_core_t, node1);
+				ambient = coco_ctx_parse(ctx, coco_ambient_core_t, node1);
 
 				result->ambient = ambient;
 				break;
 
 			case 0xCCEF7FC9: /* directional */
-				directional = collada_ctx_parser(ctx, collada_directional_t, node1);
+				directional = coco_ctx_parse(ctx, coco_directional_t, node1);
 
 				result->directional = directional;
 				break;
 
 			case 0x89C926D7: /* spot */
-				spot = collada_ctx_parser(ctx, collada_spot_t, node1);
+				spot = coco_ctx_parse(ctx, coco_spot_t, node1);
 
 				result->spot = spot;
 				break;
 
 			case 0xF42D9D0C: /* point */
-				point = collada_ctx_parser(ctx, collada_point_t, node1);
+				point = coco_ctx_parse(ctx, coco_point_t, node1);
 
 				result->point = point;
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -77,7 +77,7 @@ collada_light_technique_common_t *collada_light_technique_common_parser(collada_
 
 /*-------------------------------------------------------------------------*/
 
-void collada_light_technique_common_dump(collada_ctx_t *ctx, collada_light_technique_common_t *technique_common, int indent)
+void coco_light_technique_common_dump(coco_ctx_t *ctx, coco_light_technique_common_t *technique_common, int indent)
 {
 	if(technique_common == NULL) {
 		return;
@@ -85,37 +85,36 @@ void collada_light_technique_common_dump(collada_ctx_t *ctx, collada_light_techn
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Technique common:\n");
+	COCO_DUMP_INDENT(indent, "Technique common:\n");
 
 	indent++;
 
-	collada_ctx_dump(ctx, collada_ambient_core_t, technique_common->ambient, indent);
+	coco_ctx_dump(ctx, coco_ambient_core_t, technique_common->ambient, indent);
 
-	collada_ctx_dump(ctx, collada_directional_t, technique_common->directional, indent);
+	coco_ctx_dump(ctx, coco_directional_t, technique_common->directional, indent);
 
-	collada_ctx_dump(ctx, collada_spot_t, technique_common->spot, indent);
+	coco_ctx_dump(ctx, coco_spot_t, technique_common->spot, indent);
 
-	collada_ctx_dump(ctx, collada_point_t, technique_common->point, indent);
+	coco_ctx_dump(ctx, coco_point_t, technique_common->point, indent);
 }
 
 /*-------------------------------------------------------------------------*/
 
-collada_light_t *collada_light_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_light_t *coco_light_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_light_t *result = collada_ctx_factory(ctx, collada_light_t);
+	coco_light_t *result = coco_ctx_factory(ctx, coco_light_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_asset_t *asset;
+	coco_asset_t *asset;
 
-	collada_light_technique_common_t *technique_common;
-	collada_technique_core_t *technique;
+	coco_light_technique_common_t *technique_common;
+	coco_technique_core_t *technique;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
@@ -123,12 +122,12 @@ collada_light_t *collada_light_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 	str = YAXP_GET_STR_ATTR(node0, "id", NULL);
 	if(str != NULL) {
-		result->id = collada_ctx_strdup(ctx, str);
+		result->id = coco_ctx_strdup(ctx, str);
 	}
 
 	str = YAXP_GET_STR_ATTR(node0, "name", NULL);
 	if(str != NULL) {
-		result->name = collada_ctx_strdup(ctx, str);
+		result->name = coco_ctx_strdup(ctx, str);
 	}
 
 	/**/
@@ -141,37 +140,37 @@ collada_light_t *collada_light_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x3BCDA5FD: /* asset */
-				asset = collada_ctx_parser(ctx, collada_asset_t, node1);
+				asset = coco_ctx_parse(ctx, coco_asset_t, node1);
 
 				result->asset = asset;
 				break;
 
 			case 0x8BA567DA: /* technique_common */
-				technique_common = collada_ctx_parser(ctx, collada_light_technique_common_t, node1);
+				technique_common = coco_ctx_parse(ctx, coco_light_technique_common_t, node1);
 
 				result->technique_common = technique_common;
 				break;
 
 			case 0x2477201A: /* technique */
-				technique = collada_ctx_parser(ctx, collada_technique_core_t, node1);
+				technique = coco_ctx_parse(ctx, coco_technique_core_t, node1);
 
 				ctnr_list_add(result->technique_list, technique);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
-				extra = collada_ctx_parser(ctx, collada_extra_t, node1);
+				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
 				ctnr_list_add(result->extra_list, extra);
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
 	/**/
 
-	collada_ctx_register(ctx, result, result->id);
+	coco_ctx_register(ctx, result, result->id);
 
 	/**/
 
@@ -180,7 +179,7 @@ collada_light_t *collada_light_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_light_dump(collada_ctx_t *ctx, collada_light_t *light, int indent)
+void coco_light_dump(coco_ctx_t *ctx, coco_light_t *light, int indent)
 {
 	if(light == NULL) {
 		return;
@@ -190,39 +189,36 @@ void collada_light_dump(collada_ctx_t *ctx, collada_light_t *light, int indent)
 
 	int nr;
 
-	collada_technique_core_t *technique;
+	coco_technique_core_t *technique;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Light:\n");
+	COCO_DUMP_INDENT(indent, "Light:\n");
 
 	indent++;
 
 	if(light->id != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Id: %s\n", light->id);
+		COCO_DUMP_INDENT(indent, "Id: %s\n", light->id);
 	}
 
 	if(light->name != NULL)
 	{
-		COLLADA_DUMP_INDENT(indent);
-		printf("Name: %s\n", light->name);
+		COCO_DUMP_INDENT(indent, "Name: %s\n", light->name);
 	}
 
-	collada_ctx_dump(ctx, collada_asset_t, light->asset, indent);
+	coco_ctx_dump(ctx, coco_asset_t, light->asset, indent);
 
-	collada_ctx_dump(ctx, collada_light_technique_common_t, light->technique_common, indent);
+	coco_ctx_dump(ctx, coco_light_technique_common_t, light->technique_common, indent);
 
 	ctnr_list_foreach(light->technique_list, technique, nr) {
-		collada_ctx_dump(ctx, collada_technique_core_t, technique, indent);
+		coco_ctx_dump(ctx, coco_technique_core_t, technique, indent);
 	}
 
 	ctnr_list_foreach(light->extra_list, extra, nr) {
-		collada_ctx_dump(ctx, collada_extra_t, extra, indent);
+		coco_ctx_dump(ctx, coco_extra_t, extra, indent);
 	}
 }
 

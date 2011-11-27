@@ -15,29 +15,29 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "collada_internal.h"
+#include "coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
-
-const char *__collada_skip_char_eq(const char *s, int c)
+/*
+static const char *__coco_skip_char_eq(const char *s, int c)
 {
 	for(; *s != '\0' && *s == c; s++);
 
 	return s;
 }
-
+*/
 /*-------------------------------------------------------------------------*/
-
-const char *__collada_skip_char_ne(const char *s, int c)
+/*
+static const char *__coco_skip_char_ne(const char *s, int c)
 {
 	for(; *s != '\0' && *s != c; s++);
 
 	return s;
 }
-
+*/
 /*-------------------------------------------------------------------------*/
 
-static int __collada_isreal(int c)
+static int __coco_isreal(int c)
 {
 	static const int __ascii_table[256] = {
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -63,7 +63,7 @@ static int __collada_isreal(int c)
 
 /*-------------------------------------------------------------------------*/
 
-const char *__collada_skip_int_eq(const char *s)
+static const char *__coco_skip_int_eq(const char *s)
 {
 	for(; *s != '\0' && isalnum(*s) != 0; s++);
 
@@ -72,7 +72,7 @@ const char *__collada_skip_int_eq(const char *s)
 
 /*-------------------------------------------------------------------------*/
 
-const char *__collada_skip_int_ne(const char *s)
+static const char *__coco_skip_int_ne(const char *s)
 {
 	for(; *s != '\0' && isalnum(*s) == 0; s++);
 
@@ -81,25 +81,25 @@ const char *__collada_skip_int_ne(const char *s)
 
 /*-------------------------------------------------------------------------*/
 
-const char *__collada_skip_flt_eq(const char *s)
+static const char *__coco_skip_flt_eq(const char *s)
 {
-	for(; *s != '\0' && __collada_isreal(*s) != 0; s++);
+	for(; *s != '\0' && __coco_isreal(*s) != 0; s++);
 
 	return s;
 }
 
 /*-------------------------------------------------------------------------*/
 
-const char *__collada_skip_flt_ne(const char *s)
+static const char *__coco_skip_flt_ne(const char *s)
 {
-	for(; *s != '\0' && __collada_isreal(*s) == 0; s++);
+	for(; *s != '\0' && __coco_isreal(*s) == 0; s++);
 
 	return s;
 }
 
 /*-------------------------------------------------------------------------*/
 
-float collada_simplify(float f)
+static float coco_simplify(float f)
 {
 	float r = floor(f + 0.5f);
 
@@ -108,7 +108,7 @@ float collada_simplify(float f)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_vector_shr_alloc(collada_ctx_t *ctx, collada_vector_shr_t *vector, int nr)
+void coco_vector_shr_alloc(coco_ctx_t *ctx, coco_vector_shr_t *vector, int nr)
 {
 	vector->nr = nr;
 	vector->array = ctnr_pool_new_array(&ctx->pool, int16_t, nr);
@@ -116,7 +116,7 @@ void collada_vector_shr_alloc(collada_ctx_t *ctx, collada_vector_shr_t *vector, 
 
 /*-------------------------------------------------------------------------*/
 
-void collada_vector_int_alloc(collada_ctx_t *ctx, collada_vector_int_t *vector, int nr)
+void coco_vector_int_alloc(coco_ctx_t *ctx, coco_vector_int_t *vector, int nr)
 {
 	vector->nr = nr;
 	vector->array = ctnr_pool_new_array(&ctx->pool, int32_t, nr);
@@ -124,7 +124,7 @@ void collada_vector_int_alloc(collada_ctx_t *ctx, collada_vector_int_t *vector, 
 
 /*-------------------------------------------------------------------------*/
 
-void collada_vector_flt_alloc(collada_ctx_t *ctx, collada_vector_flt_t *vector, int nr)
+void coco_vector_flt_alloc(coco_ctx_t *ctx, coco_vector_flt_t *vector, int nr)
 {
 	vector->nr = nr;
 	vector->array = ctnr_pool_new_array(&ctx->pool, float, nr);
@@ -132,7 +132,7 @@ void collada_vector_flt_alloc(collada_ctx_t *ctx, collada_vector_flt_t *vector, 
 
 /*-------------------------------------------------------------------------*/
 
-void collada_vector_shr_free(collada_ctx_t *ctx, collada_vector_shr_t *vector)
+void coco_vector_shr_free(coco_ctx_t *ctx, coco_vector_shr_t *vector)
 {
 	if(vector->array != NULL) {
 		ctnr_pool_free(&ctx->pool, vector->array);
@@ -141,7 +141,7 @@ void collada_vector_shr_free(collada_ctx_t *ctx, collada_vector_shr_t *vector)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_vector_int_free(collada_ctx_t *ctx, collada_vector_int_t *vector)
+void coco_vector_int_free(coco_ctx_t *ctx, coco_vector_int_t *vector)
 {
 	if(vector->array != NULL) {
 		ctnr_pool_free(&ctx->pool, vector->array);
@@ -150,7 +150,7 @@ void collada_vector_int_free(collada_ctx_t *ctx, collada_vector_int_t *vector)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_vector_flt_free(collada_ctx_t *ctx, collada_vector_flt_t *vector)
+void coco_vector_flt_free(coco_ctx_t *ctx, coco_vector_flt_t *vector)
 {
 	if(vector->array != NULL) {
 		ctnr_pool_free(&ctx->pool, vector->array);
@@ -159,7 +159,7 @@ void collada_vector_flt_free(collada_ctx_t *ctx, collada_vector_flt_t *vector)
 
 /*-------------------------------------------------------------------------*/
 
-void collada_string_to_vector_shr(collada_ctx_t *ctx, collada_vector_shr_t *vector, const char *str)
+void coco_string_to_vector_shr(coco_ctx_t *ctx, coco_vector_shr_t *vector, const char *str)
 {
 	/*--------------------------------------*/
 
@@ -168,22 +168,22 @@ void collada_string_to_vector_shr(collada_ctx_t *ctx, collada_vector_shr_t *vect
 	const char *p = str;
 	const char *q = 0x0;
 
-	p = __collada_skip_int_ne(p);
+	p = __coco_skip_int_ne(p);
 
 	for(;;)
 	{
 		if(p[0] == '\0') break;
-		q = __collada_skip_int_eq(p);
+		q = __coco_skip_int_eq(p);
 
 		nr++;
 
 		if(q[0] == '\0') break;
-		p = __collada_skip_int_ne(q);
+		p = __coco_skip_int_ne(q);
 	}
 
 	/*--------------------------------------*/
 
-	collada_vector_shr_alloc(ctx, vector, nr);
+	coco_vector_shr_alloc(ctx, vector, nr);
 
 	int16_t *array = vector->array;
 
@@ -194,20 +194,20 @@ void collada_string_to_vector_shr(collada_ctx_t *ctx, collada_vector_shr_t *vect
 	p = str;
 	q = 0x0;
 
-	p = __collada_skip_int_ne(p);
+	p = __coco_skip_int_ne(p);
 
 	for(i = 0; i < nr; i++)
 	{
-		q = __collada_skip_int_eq(p);
+		q = __coco_skip_int_eq(p);
 		array[i] = atoi(p);
-		p = __collada_skip_int_ne(q);
+		p = __coco_skip_int_ne(q);
 	}
 	/*--------------------------------------*/
 }
 
 /*-------------------------------------------------------------------------*/
 
-void collada_string_to_vector_int(collada_ctx_t *ctx, collada_vector_int_t *vector, const char *str)
+void coco_string_to_vector_int(coco_ctx_t *ctx, coco_vector_int_t *vector, const char *str)
 {
 	/*--------------------------------------*/
 
@@ -216,22 +216,22 @@ void collada_string_to_vector_int(collada_ctx_t *ctx, collada_vector_int_t *vect
 	const char *p = str;
 	const char *q = 0x0;
 
-	p = __collada_skip_int_ne(p);
+	p = __coco_skip_int_ne(p);
 
 	for(;;)
 	{
 		if(p[0] == '\0') break;
-		q = __collada_skip_int_eq(p);
+		q = __coco_skip_int_eq(p);
 
 		nr++;
 
 		if(q[0] == '\0') break;
-		p = __collada_skip_int_ne(q);
+		p = __coco_skip_int_ne(q);
 	}
 
 	/*--------------------------------------*/
 
-	collada_vector_int_alloc(ctx, vector, nr);
+	coco_vector_int_alloc(ctx, vector, nr);
 
 	int32_t *array = vector->array;
 
@@ -242,13 +242,13 @@ void collada_string_to_vector_int(collada_ctx_t *ctx, collada_vector_int_t *vect
 	p = str;
 	q = 0x0;
 
-	p = __collada_skip_int_ne(p);
+	p = __coco_skip_int_ne(p);
 
 	for(i = 0; i < nr; i++)
 	{
-		q = __collada_skip_int_eq(p);
+		q = __coco_skip_int_eq(p);
 		array[i] = atoi(p);
-		p = __collada_skip_int_ne(q);
+		p = __coco_skip_int_ne(q);
 	}
 
 	/*--------------------------------------*/
@@ -256,7 +256,7 @@ void collada_string_to_vector_int(collada_ctx_t *ctx, collada_vector_int_t *vect
 
 /*-------------------------------------------------------------------------*/
 
-void collada_string_to_vector_flt(collada_ctx_t *ctx, collada_vector_flt_t *vector, const char *str)
+void coco_string_to_vector_flt(coco_ctx_t *ctx, coco_vector_flt_t *vector, const char *str)
 {
 	/*--------------------------------------*/
 
@@ -265,22 +265,22 @@ void collada_string_to_vector_flt(collada_ctx_t *ctx, collada_vector_flt_t *vect
 	const char *p = str;
 	const char *q = 0x0;
 
-	p = __collada_skip_flt_ne(p);
+	p = __coco_skip_flt_ne(p);
 
 	for(;;)
 	{
 		if(p[0] == '\0') break;
-		q = __collada_skip_flt_eq(p);
+		q = __coco_skip_flt_eq(p);
 
 		nr++;
 
 		if(q[0] == '\0') break;
-		p = __collada_skip_flt_ne(q);
+		p = __coco_skip_flt_ne(q);
 	}
 
 	/*--------------------------------------*/
 
-	collada_vector_flt_alloc(ctx, vector, nr);
+	coco_vector_flt_alloc(ctx, vector, nr);
 
 	float *array = vector->array;
 
@@ -291,13 +291,13 @@ void collada_string_to_vector_flt(collada_ctx_t *ctx, collada_vector_flt_t *vect
 	p = str;
 	q = 0x0;
 
-	p = __collada_skip_flt_ne(p);
+	p = __coco_skip_flt_ne(p);
 
 	for(i = 0; i < nr; i++)
 	{
-		q = __collada_skip_flt_eq(p);
-		array[i] = collada_simplify(atof(p));
-		p = __collada_skip_flt_ne(q);
+		q = __coco_skip_flt_eq(p);
+		array[i] = coco_simplify(atof(p));
+		p = __coco_skip_flt_ne(q);
 	}
 
 	/*--------------------------------------*/

@@ -4,22 +4,22 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_POLYLIST_H
-#define __COLLADA_POLYLIST_H
+#ifndef __COCO_POLYLIST_H
+#define __COCO_POLYLIST_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_polylist_s
+typedef struct coco_polylist_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_polylist_s *prev, *next;
+	struct coco_polylist_s *prev, *next;
 
 	/**/
 
@@ -27,14 +27,14 @@ typedef struct collada_polylist_s
 	int count;
 	const char *material;
 
-	struct collada_input_s *input_list;
+	struct coco_input_s *input_list;
 
-	struct collada_vcount_s *vcount;
-	struct collada_p_s *p;
+	struct coco_vcount_s *vcount;
+	struct coco_p_s *p;
 
-	struct collada_extra_s *extra_list;
+	struct coco_extra_s *extra_list;
 
-} collada_polylist_t;
+} coco_polylist_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -42,11 +42,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_polylist_s *collada_polylist_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_polylist_s *coco_polylist_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_polylist_check(struct collada_ctx_s *, struct collada_polylist_s *);
+DLL_PUBLIC bool coco_polylist_check(struct coco_ctx_s *, struct coco_polylist_s *);
 
-DLL_PUBLIC void collada_polylist_dump(struct collada_ctx_s *, struct collada_polylist_s *, int);
+DLL_PUBLIC void coco_polylist_dump(struct coco_ctx_s *, struct coco_polylist_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -54,7 +54,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_POLYLIST_H */
+#endif /* __COCO_POLYLIST_H */
 
 /*-------------------------------------------------------------------------*/
 

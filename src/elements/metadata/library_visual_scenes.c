@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -13,24 +13,24 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../collada_internal.h"
+#include "../../coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-collada_library_visual_scenes_t *collada_library_visual_scenes_parser(collada_ctx_t *ctx, yaxp_node_t *node0)
+coco_library_visual_scenes_t *coco_library_visual_scenes_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 {
-	collada_library_visual_scenes_t *result = collada_ctx_factory(ctx, collada_library_visual_scenes_t);
+	coco_library_visual_scenes_t *result = coco_ctx_factory(ctx, coco_library_visual_scenes_t);
 
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
 	/**/
 
-	collada_asset_t *asset;
+	coco_asset_t *asset;
 
-	collada_visual_scene_t *visual_scene;
+	coco_visual_scene_t *visual_scene;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
@@ -42,25 +42,25 @@ collada_library_visual_scenes_t *collada_library_visual_scenes_parser(collada_ct
 		switch(ctnr_hash(node1->name))
 		{
 			case 0x3BCDA5FD: /* asset */
-				asset = collada_ctx_parser(ctx, collada_asset_t, node1);
+				asset = coco_ctx_parse(ctx, coco_asset_t, node1);
 
 				result->asset = asset;
 				break;
 
 			case 0x6C4754D5: /* visual_scene */
-				visual_scene = collada_ctx_parser(ctx, collada_visual_scene_t, node1);
+				visual_scene = coco_ctx_parse(ctx, coco_visual_scene_t, node1);
 
 				ctnr_list_add(result->visual_scene_list, visual_scene);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
-				extra = collada_ctx_parser(ctx, collada_extra_t, node1);
+				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
 				ctnr_list_add(result->extra_list, extra);
 				break;
 
 			default:
-				collada_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
 		}
 	}
 
@@ -71,7 +71,7 @@ collada_library_visual_scenes_t *collada_library_visual_scenes_parser(collada_ct
 
 /*-------------------------------------------------------------------------*/
 
-void collada_library_visual_scenes_dump(collada_ctx_t *ctx, collada_library_visual_scenes_t *library_visual_scenes, int indent)
+void coco_library_visual_scenes_dump(coco_ctx_t *ctx, coco_library_visual_scenes_t *library_visual_scenes, int indent)
 {
 	if(library_visual_scenes == NULL) {
 		return;
@@ -81,25 +81,24 @@ void collada_library_visual_scenes_dump(collada_ctx_t *ctx, collada_library_visu
 
 	int nr1;
 
-	collada_visual_scene_t *visual_scene;
+	coco_visual_scene_t *visual_scene;
 
-	collada_extra_t *extra;
+	coco_extra_t *extra;
 
 	/**/
 
-	COLLADA_DUMP_INDENT(indent);
-	printf("Library visual scenes:\n");
+	COCO_DUMP_INDENT(indent, "Library visual scenes:\n");
 
 	indent++;
 
-	collada_ctx_dump(ctx, collada_asset_t, library_visual_scenes->asset, indent);
+	coco_ctx_dump(ctx, coco_asset_t, library_visual_scenes->asset, indent);
 
 	ctnr_list_foreach(library_visual_scenes->visual_scene_list, visual_scene, nr1) {
-		collada_ctx_dump(ctx, collada_visual_scene_t, visual_scene, indent);
+		coco_ctx_dump(ctx, coco_visual_scene_t, visual_scene, indent);
 	}
 
 	ctnr_list_foreach(library_visual_scenes->extra_list, extra, nr1) {
-		collada_ctx_dump(ctx, collada_extra_t, extra, indent);
+		coco_ctx_dump(ctx, coco_extra_t, extra, indent);
 	}
 }
 

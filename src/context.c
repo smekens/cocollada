@@ -4,7 +4,7 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
@@ -12,172 +12,172 @@
 
 #include <string.h>
 
-#include "collada_internal.h"
+#include "coco_internal.h"
 
 /*-------------------------------------------------------------------------*/
 
-void collada_ctx_initialize(collada_ctx_t *ctx)
+void coco_ctx_initialize(coco_ctx_t *ctx)
 {
-	memset(ctx, 0x00, sizeof(collada_ctx_t));
+	memset(ctx, 0x00, sizeof(coco_ctx_t));
 
 	/**/
 
-	ctnr_hash_init(&ctx->hash_list, collada_base_t, id);
-	ctnr_hash_init(&ctx->element_list, collada_ctx_element_t, name);
+	ctnr_hash_init(&ctx->hash_list, coco_base_t, id);
+	ctnr_hash_init(&ctx->elem_list, coco_ctx_elem_t, name);
 
 	ctnr_pool_init(&ctx->pool);
 
 	/* Animation */
 
 	/* Camera */
-	collada_ctx_register_element(ctx, collada_camera_t,				collada_camera_parse,				collada_camera_check,				collada_camera_dump				);
-	collada_ctx_register_element(ctx, collada_optics_t,				collada_optics_parse,				collada_optics_check,				collada_optics_dump				);
-	collada_ctx_register_element(ctx, collada_optics_technique_common_t,		collada_optics_technique_common_parse,		collada_optics_technique_common_check,		collada_optics_technique_common_dump		);
-	collada_ctx_register_element(ctx, collada_orthographic_t,			collada_orthographic_parse,			collada_orthographic_check,			collada_orthographic_dump			);
-	collada_ctx_register_element(ctx, collada_perspective_t,			collada_perspective_parse,			collada_perspective_check,			collada_perspective_dump			);
+	coco_ctx_register_element(ctx, coco_camera_t,				coco_camera_parse,				coco_camera_check,				coco_camera_dump			);
+	coco_ctx_register_element(ctx, coco_optics_t,				coco_optics_parse,				coco_optics_check,				coco_optics_dump			);
+	coco_ctx_register_element(ctx, coco_optics_technique_common_t,		coco_optics_technique_common_parse,		coco_optics_technique_common_check,		coco_optics_technique_common_dump	);
+	coco_ctx_register_element(ctx, coco_orthographic_t,			coco_orthographic_parse,			coco_orthographic_check,			coco_orthographic_dump			);
+	coco_ctx_register_element(ctx, coco_perspective_t,			coco_perspective_parse,				coco_perspective_check,				coco_perspective_dump			);
 
 	/* Controller */
 
 	/* Dataflow */
-	collada_ctx_register_element(ctx, collada_accessor_t,				collada_accessor_parse,				collada_accessor_check,				collada_accessor_dump				);
-	collada_ctx_register_element(ctx, collada_accessor_param_t,			collada_accessor_param_parse,			collada_accessor_param_check,			collada_accessor_param_dump			);
-	collada_ctx_register_element(ctx, collada_float_array_t,			collada_float_array_parse,			collada_float_array_check,			collada_float_array_dump			);
-	collada_ctx_register_element(ctx, collada_input_t,				collada_input_parse,				collada_input_check,				collada_input_dump				);
-	collada_ctx_register_element(ctx, collada_source_t,				collada_source_parse,				collada_source_check,				collada_source_dump				);
-	collada_ctx_register_element(ctx, collada_source_technique_common_t,		collada_source_technique_common_parse,		collada_source_technique_common_check,		collada_source_technique_common_dump		);
+	coco_ctx_register_element(ctx, coco_accessor_t,				coco_accessor_parse,				coco_accessor_check,				coco_accessor_dump			);
+	coco_ctx_register_element(ctx, coco_accessor_param_t,			coco_accessor_param_parse,			coco_accessor_param_check,			coco_accessor_param_dump		);
+	coco_ctx_register_element(ctx, coco_float_array_t,			coco_float_array_parse,				coco_float_array_check,				coco_float_array_dump			);
+	coco_ctx_register_element(ctx, coco_input_t,				coco_input_parse,				coco_input_check,				coco_input_dump				);
+	coco_ctx_register_element(ctx, coco_source_t,				coco_source_parse,				coco_source_check,				coco_source_dump			);
+	coco_ctx_register_element(ctx, coco_source_technique_common_t,		coco_source_technique_common_parse,		coco_source_technique_common_check,		coco_source_technique_common_dump	);
 
 	/* Effects */
-	collada_ctx_register_element(ctx, collada_effect_t,				collada_effect_parse,				collada_effect_check,				collada_effect_dump				);
-	collada_ctx_register_element(ctx, collada_profile_common_t,			collada_profile_common_parse,			collada_profile_common_check,			collada_profile_common_dump			);
-	collada_ctx_register_element(ctx, collada_profile_common_technique_t,		collada_profile_common_technique_parse,		collada_profile_common_technique_check,		collada_profile_common_technique_dump		);
+	coco_ctx_register_element(ctx, coco_effect_t,				coco_effect_parse,				coco_effect_check,				coco_effect_dump			);
+	coco_ctx_register_element(ctx, coco_profile_common_t,			coco_profile_common_parse,			coco_profile_common_check,			coco_profile_common_dump		);
+	coco_ctx_register_element(ctx, coco_profile_common_technique_t,		coco_profile_common_technique_parse,		coco_profile_common_technique_check,		coco_profile_common_technique_dump	);
 
 	/* Extensibility */
-	collada_ctx_register_element(ctx, collada_extra_t,				collada_extra_parse,				collada_extra_check,				collada_extra_dump				);
-	collada_ctx_register_element(ctx, collada_technique_core_t,			collada_technique_core_parse,			collada_technique_core_check,			collada_technique_core_dump			);
+	coco_ctx_register_element(ctx, coco_extra_t,				coco_extra_parse,				coco_extra_check,				coco_extra_dump				);
+	coco_ctx_register_element(ctx, coco_technique_core_t,			coco_technique_core_parse,			coco_technique_core_check,			coco_technique_core_dump		);
 
 	/* Geometry */
-	collada_ctx_register_element(ctx, collada_geometry_t,				collada_geometry_parse,				collada_geometry_check,				collada_geometry_dump				);
-	collada_ctx_register_element(ctx, collada_mesh_t,				collada_mesh_parse,				collada_mesh_check,				collada_mesh_dump				);
-	collada_ctx_register_element(ctx, collada_p_t,					collada_p_parse,				collada_p_check,				collada_p_dump					);
-	collada_ctx_register_element(ctx, collada_polylist_t,				collada_polylist_parse,				collada_polylist_check,				collada_polylist_dump				);
-	collada_ctx_register_element(ctx, collada_triangles_t,				collada_triangles_parse,			collada_triangles_check,			collada_triangles_dump				);
-	collada_ctx_register_element(ctx, collada_vcount_t,				collada_vcount_parse,				collada_vcount_check,				collada_vcount_dump				);
-	collada_ctx_register_element(ctx, collada_vertices_t,				collada_vertices_parse,				collada_vertices_check,				collada_vertices_dump				);
-	collada_ctx_register_element(ctx, collada_vertices_input_t,			collada_vertices_input_parse,			collada_vertices_input_check,			collada_vertices_input_dump			);
+	coco_ctx_register_element(ctx, coco_geometry_t,				coco_geometry_parse,				coco_geometry_check,				coco_geometry_dump			);
+	coco_ctx_register_element(ctx, coco_mesh_t,				coco_mesh_parse,				coco_mesh_check,				coco_mesh_dump				);
+	coco_ctx_register_element(ctx, coco_p_t,				coco_p_parse,					coco_p_check,					coco_p_dump				);
+	coco_ctx_register_element(ctx, coco_polylist_t,				coco_polylist_parse,				coco_polylist_check,				coco_polylist_dump			);
+	coco_ctx_register_element(ctx, coco_triangles_t,			coco_triangles_parse,				coco_triangles_check,				coco_triangles_dump			);
+	coco_ctx_register_element(ctx, coco_vcount_t,				coco_vcount_parse,				coco_vcount_check,				coco_vcount_dump			);
+	coco_ctx_register_element(ctx, coco_vertices_t,				coco_vertices_parse,				coco_vertices_check,				coco_vertices_dump			);
+	coco_ctx_register_element(ctx, coco_vertices_input_t,			coco_vertices_input_parse,			coco_vertices_input_check,			coco_vertices_input_dump		);
 
 	/* Lightning */
-	collada_ctx_register_element(ctx, collada_color_t,				collada_color_parse,				collada_color_check,				collada_color_dump				);
-	collada_ctx_register_element(ctx, collada_light_t,				collada_light_parse,				collada_light_check,				collada_light_dump				);
-	collada_ctx_register_element(ctx, collada_light_technique_common_t,		collada_light_technique_common_parse,		collada_light_technique_common_check,		collada_light_technique_common_dump		);
-	collada_ctx_register_element(ctx, collada_ambient_core_t,			collada_ambient_core_parse,			collada_ambient_core_check,			collada_ambient_core_dump			);
-	collada_ctx_register_element(ctx, collada_directional_t,			collada_directional_parse,			collada_directional_check,			collada_directional_dump			);
-	collada_ctx_register_element(ctx, collada_spot_t,				collada_spot_parse,				collada_spot_check,				collada_spot_dump				);
-	collada_ctx_register_element(ctx, collada_point_t,				collada_point_parse,				collada_point_check,				collada_point_dump				);
+	coco_ctx_register_element(ctx, coco_color_t,				coco_color_parse,				coco_color_check,				coco_color_dump				);
+	coco_ctx_register_element(ctx, coco_light_t,				coco_light_parse,				coco_light_check,				coco_light_dump				);
+	coco_ctx_register_element(ctx, coco_light_technique_common_t,		coco_light_technique_common_parse,		coco_light_technique_common_check,		coco_light_technique_common_dump	);
+	coco_ctx_register_element(ctx, coco_ambient_core_t,			coco_ambient_core_parse,			coco_ambient_core_check,			coco_ambient_core_dump			);
+	coco_ctx_register_element(ctx, coco_directional_t,			coco_directional_parse,				coco_directional_check,				coco_directional_dump			);
+	coco_ctx_register_element(ctx, coco_spot_t,				coco_spot_parse,				coco_spot_check,				coco_spot_dump				);
+	coco_ctx_register_element(ctx, coco_point_t,				coco_point_parse,				coco_point_check,				coco_point_dump				);
 
 	/* Materials */	
-	collada_ctx_register_element(ctx, collada_instance_effect_t,			collada_instance_effect_parse,			collada_instance_effect_check,			collada_instance_effect_dump			);
-	collada_ctx_register_element(ctx, collada_instance_effect_technique_hint_t,	collada_instance_effect_technique_hint_parse,	collada_instance_effect_technique_hint_check,	collada_instance_effect_technique_hint_dump	);
-	collada_ctx_register_element(ctx, collada_material_t,				collada_material_parse,				collada_material_check,				collada_material_dump				);
+	coco_ctx_register_element(ctx, coco_instance_effect_t,			coco_instance_effect_parse,			coco_instance_effect_check,			coco_instance_effect_dump		);
+	coco_ctx_register_element(ctx, coco_instance_effect_technique_hint_t,	coco_instance_effect_technique_hint_parse,	coco_instance_effect_technique_hint_check,	coco_instance_effect_technique_hint_dump);
+	coco_ctx_register_element(ctx, coco_material_t,				coco_material_parse,				coco_material_check,				coco_material_dump			);
 
 	/* Metadata */
-	collada_ctx_register_element(ctx, collada_asset_t,				collada_asset_parse,				collada_asset_check,				collada_asset_dump				);
-	collada_ctx_register_element(ctx, collada_asset_contributor_t,			collada_asset_contributor_parse,		collada_asset_contributor_check,		collada_asset_contributor_dump			);
-	collada_ctx_register_element(ctx, collada_t,					collada_parse,					collada_check,					collada_dump					);
-	collada_ctx_register_element(ctx, collada_library_cameras_t,			collada_library_cameras_parse,			collada_library_cameras_check,			collada_library_cameras_dump			);
-	collada_ctx_register_element(ctx, collada_library_effects_t,			collada_library_effects_parse,			collada_library_effects_check,			collada_library_effects_dump			);
-	collada_ctx_register_element(ctx, collada_library_geometries_t,			collada_library_geometries_parse,		collada_library_geometries_check,		collada_library_geometries_dump			);
-	collada_ctx_register_element(ctx, collada_library_images_t,			collada_library_images_parse,			collada_library_images_check,			collada_library_images_dump			);
-	collada_ctx_register_element(ctx, collada_library_lights_t,			collada_library_lights_parse,			collada_library_lights_check,			collada_library_lights_dump			);
-	collada_ctx_register_element(ctx, collada_library_materials_t,			collada_library_materials_parse,		collada_library_materials_check,		collada_library_materials_dump			);
-	collada_ctx_register_element(ctx, collada_library_nodes_t,			collada_library_nodes_parse,			collada_library_nodes_check,			collada_library_nodes_dump			);
-	collada_ctx_register_element(ctx, collada_library_visual_scenes_t,		collada_library_visual_scenes_parse,		collada_library_visual_scenes_check,		collada_library_visual_scenes_dump		);
-	collada_ctx_register_element(ctx, collada_unit_t,				collada_unit_parse,				collada_unit_check,				collada_unit_dump				);
+	coco_ctx_register_element(ctx, coco_asset_t,				coco_asset_parse,				coco_asset_check,				coco_asset_dump				);
+	coco_ctx_register_element(ctx, coco_asset_contributor_t,		coco_asset_contributor_parse,			coco_asset_contributor_check,			coco_asset_contributor_dump		);
+	coco_ctx_register_element(ctx, coco_collada_t,				coco_collada_parse,				coco_collada_check,				coco_collada_dump			);
+	coco_ctx_register_element(ctx, coco_library_cameras_t,			coco_library_cameras_parse,			coco_library_cameras_check,			coco_library_cameras_dump		);
+	coco_ctx_register_element(ctx, coco_library_effects_t,			coco_library_effects_parse,			coco_library_effects_check,			coco_library_effects_dump		);
+	coco_ctx_register_element(ctx, coco_library_geometries_t,		coco_library_geometries_parse,			coco_library_geometries_check,			coco_library_geometries_dump		);
+	coco_ctx_register_element(ctx, coco_library_images_t,			coco_library_images_parse,			coco_library_images_check,			coco_library_images_dump		);
+	coco_ctx_register_element(ctx, coco_library_lights_t,			coco_library_lights_parse,			coco_library_lights_check,			coco_library_lights_dump		);
+	coco_ctx_register_element(ctx, coco_library_materials_t,		coco_library_materials_parse,			coco_library_materials_check,			coco_library_materials_dump		);
+	coco_ctx_register_element(ctx, coco_library_nodes_t,			coco_library_nodes_parse,			coco_library_nodes_check,			coco_library_nodes_dump			);
+	coco_ctx_register_element(ctx, coco_library_visual_scenes_t,		coco_library_visual_scenes_parse,		coco_library_visual_scenes_check,		coco_library_visual_scenes_dump		);
+	coco_ctx_register_element(ctx, coco_unit_t,				coco_unit_parse,				coco_unit_check,				coco_unit_dump				);
 
 	/* Physics_material */
 
 	/* Physics_model */
 
 	/* Rendering */
-	collada_ctx_register_element(ctx, collada_ambient_fx_t,				collada_ambient_fx_parse,			collada_ambient_fx_check,			collada_ambient_fx_dump				);
-	collada_ctx_register_element(ctx, collada_diffuse_t,				collada_diffuse_parse,				collada_diffuse_check,				collada_diffuse_dump				);
-	collada_ctx_register_element(ctx, collada_emission_t,				collada_emission_parse,				collada_emission_check,				collada_emission_dump				);
-	collada_ctx_register_element(ctx, collada_fx_common_float_t,			collada_fx_common_float_parse,			collada_fx_common_float_check,			collada_fx_common_float_dump			);
-	collada_ctx_register_element(ctx, collada_fx_common_param_t,			collada_fx_common_param_parse,			collada_fx_common_param_check,			collada_fx_common_param_dump			);
-	collada_ctx_register_element(ctx, collada_fx_common_texture_t,			collada_fx_common_texture_parse,		collada_fx_common_texture_check,		collada_fx_common_texture_dump			);
-	collada_ctx_register_element(ctx, collada_index_of_refraction_t,		collada_index_of_refraction_parse,		collada_index_of_refraction_check,		collada_index_of_refraction_dump		);
-	collada_ctx_register_element(ctx, collada_lambert_t,				collada_lambert_parse,				collada_lambert_check,				collada_lambert_dump				);
-	collada_ctx_register_element(ctx, collada_phong_t,				collada_phong_parse,				collada_phong_check,				collada_phong_dump				);
-	collada_ctx_register_element(ctx, collada_reflective_t,				collada_reflective_parse,			collada_reflective_check,			collada_reflective_dump				);
-	collada_ctx_register_element(ctx, collada_reflectivity_t,			collada_reflectivity_parse,			collada_reflectivity_check,			collada_reflectivity_dump			);
-	collada_ctx_register_element(ctx, collada_shininess_t,				collada_shininess_parse,			collada_shininess_check,			collada_shininess_dump				);
-	collada_ctx_register_element(ctx, collada_specular_t,				collada_specular_parse,				collada_specular_check,				collada_specular_dump				);
-	collada_ctx_register_element(ctx, collada_transparency_t,			collada_transparency_parse,			collada_transparency_check,			collada_transparency_dump			);
-	collada_ctx_register_element(ctx, collada_transparent_t,			collada_transparent_parse,			collada_transparent_check,			collada_transparent_dump			);
+	coco_ctx_register_element(ctx, coco_ambient_fx_t,			coco_ambient_fx_parse,				coco_ambient_fx_check,				coco_ambient_fx_dump			);
+	coco_ctx_register_element(ctx, coco_diffuse_t,				coco_diffuse_parse,				coco_diffuse_check,				coco_diffuse_dump			);
+	coco_ctx_register_element(ctx, coco_emission_t,				coco_emission_parse,				coco_emission_check,				coco_emission_dump			);
+	coco_ctx_register_element(ctx, coco_fx_common_float_t,			coco_fx_common_float_parse,			coco_fx_common_float_check,			coco_fx_common_float_dump		);
+	coco_ctx_register_element(ctx, coco_fx_common_param_t,			coco_fx_common_param_parse,			coco_fx_common_param_check,			coco_fx_common_param_dump		);
+	coco_ctx_register_element(ctx, coco_fx_common_texture_t,		coco_fx_common_texture_parse,			coco_fx_common_texture_check,			coco_fx_common_texture_dump		);
+	coco_ctx_register_element(ctx, coco_index_of_refraction_t,		coco_index_of_refraction_parse,			coco_index_of_refraction_check,			coco_index_of_refraction_dump		);
+	coco_ctx_register_element(ctx, coco_lambert_t,				coco_lambert_parse,				coco_lambert_check,				coco_lambert_dump			);
+	coco_ctx_register_element(ctx, coco_phong_t,				coco_phong_parse,				coco_phong_check,				coco_phong_dump				);
+	coco_ctx_register_element(ctx, coco_reflective_t,			coco_reflective_parse,				coco_reflective_check,				coco_reflective_dump			);
+	coco_ctx_register_element(ctx, coco_reflectivity_t,			coco_reflectivity_parse,			coco_reflectivity_check,			coco_reflectivity_dump			);
+	coco_ctx_register_element(ctx, coco_shininess_t,			coco_shininess_parse,				coco_shininess_check,				coco_shininess_dump			);
+	coco_ctx_register_element(ctx, coco_specular_t,				coco_specular_parse,				coco_specular_check,				coco_specular_dump			);
+	coco_ctx_register_element(ctx, coco_transparency_t,			coco_transparency_parse,			coco_transparency_check,			coco_transparency_dump			);
+	coco_ctx_register_element(ctx, coco_transparent_t,			coco_transparent_parse,				coco_transparent_check,				coco_transparent_dump			);
 
 	/* Scene */
-	collada_ctx_register_element(ctx, collada_bind_material_param_t,		collada_bind_material_param_parse,		collada_bind_material_param_check,		collada_bind_material_param_dump		);
-	collada_ctx_register_element(ctx, collada_bind_material_technique_common_t,	collada_bind_material_technique_common_parse,	collada_bind_material_technique_common_check,	collada_bind_material_technique_common_dump	);
-	collada_ctx_register_element(ctx, collada_bind_material_t,			collada_bind_material_parse,			collada_bind_material_check,			collada_bind_material_dump			);
-	collada_ctx_register_element(ctx, collada_bind_vertex_input_t,			collada_bind_vertex_input_parse,		collada_bind_vertex_input_check,		collada_bind_vertex_input_dump			);
-	collada_ctx_register_element(ctx, collada_instance_camera_t,			collada_instance_camera_parse,			collada_instance_camera_check,			collada_instance_camera_dump			);
-	collada_ctx_register_element(ctx, collada_instance_geometry_t,			collada_instance_geometry_parse,		collada_instance_geometry_check,		collada_instance_geometry_dump			);
-	collada_ctx_register_element(ctx, collada_instance_light_t,			collada_instance_light_parse,			collada_instance_light_check,			collada_instance_light_dump			);
-	collada_ctx_register_element(ctx, collada_instance_material_t,			collada_instance_material_parse,		collada_instance_material_check,		collada_instance_material_dump			);
-	collada_ctx_register_element(ctx, collada_instance_node_t,			collada_instance_node_parse,			collada_instance_node_check,			collada_instance_node_dump			);
-	collada_ctx_register_element(ctx, collada_instance_visual_scene_t,		collada_instance_visual_scene_parse,		collada_instance_visual_scene_check,		collada_instance_visual_scene_dump		);
-	collada_ctx_register_element(ctx, collada_node_t,				collada_node_parse,				collada_node_check,				collada_node_dump				);
-	collada_ctx_register_element(ctx, collada_scene_t,				collada_scene_parse,				collada_scene_check,				collada_scene_dump				);
-	collada_ctx_register_element(ctx, collada_visual_scene_t,			collada_visual_scene_parse,			collada_visual_scene_check,			collada_visual_scene_dump			);
+	coco_ctx_register_element(ctx, coco_bind_material_param_t,		coco_bind_material_param_parse,			coco_bind_material_param_check,			coco_bind_material_param_dump		);
+	coco_ctx_register_element(ctx, coco_bind_material_technique_common_t,	coco_bind_material_technique_common_parse,	coco_bind_material_technique_common_check,	coco_bind_material_technique_common_dump);
+	coco_ctx_register_element(ctx, coco_bind_material_t,			coco_bind_material_parse,			coco_bind_material_check,			coco_bind_material_dump			);
+	coco_ctx_register_element(ctx, coco_bind_vertex_input_t,		coco_bind_vertex_input_parse,			coco_bind_vertex_input_check,			coco_bind_vertex_input_dump		);
+	coco_ctx_register_element(ctx, coco_instance_camera_t,			coco_instance_camera_parse,			coco_instance_camera_check,			coco_instance_camera_dump		);
+	coco_ctx_register_element(ctx, coco_instance_geometry_t,		coco_instance_geometry_parse,			coco_instance_geometry_check,			coco_instance_geometry_dump		);
+	coco_ctx_register_element(ctx, coco_instance_light_t,			coco_instance_light_parse,			coco_instance_light_check,			coco_instance_light_dump		);
+	coco_ctx_register_element(ctx, coco_instance_material_t,		coco_instance_material_parse,			coco_instance_material_check,			coco_instance_material_dump		);
+	coco_ctx_register_element(ctx, coco_instance_node_t,			coco_instance_node_parse,			coco_instance_node_check,			coco_instance_node_dump			);
+	coco_ctx_register_element(ctx, coco_instance_visual_scene_t,		coco_instance_visual_scene_parse,		coco_instance_visual_scene_check,		coco_instance_visual_scene_dump		);
+	coco_ctx_register_element(ctx, coco_node_t,				coco_node_parse,				coco_node_check,				coco_node_dump				);
+	coco_ctx_register_element(ctx, coco_scene_t,				coco_scene_parse,				coco_scene_check,				coco_scene_dump				);
+	coco_ctx_register_element(ctx, coco_visual_scene_t,			coco_visual_scene_parse,			coco_visual_scene_check,			coco_visual_scene_dump			);
 
 	/* Shader */
-	collada_ctx_register_element(ctx, collada_newparam_t,				collada_newparam_parse,				collada_newparam_check,				collada_newparam_dump				);
+	coco_ctx_register_element(ctx, coco_newparam_t,				coco_newparam_parse,				coco_newparam_check,				coco_newparam_dump			);
 
 	/* Texturing */
-	collada_ctx_register_element(ctx, collada_image_t,				collada_image_parse,				collada_image_check,				collada_image_dump				);
-	collada_ctx_register_element(ctx, collada_sampler2D_t,				collada_sampler2D_parse,			collada_sampler2D_check,			collada_sampler2D_dump				);
-	collada_ctx_register_element(ctx, collada_surface_t,				collada_surface_parse,				collada_surface_check,				collada_surface_dump				);
-	collada_ctx_register_element(ctx, collada_surface_init_from_t,			collada_surface_init_from_parse,		collada_surface_init_from_check,		collada_surface_init_from_dump			);
+	coco_ctx_register_element(ctx, coco_image_t,				coco_image_parse,				coco_image_check,				coco_image_dump				);
+	coco_ctx_register_element(ctx, coco_sampler2D_t,			coco_sampler2D_parse,				coco_sampler2D_check,				coco_sampler2D_dump			);
+	coco_ctx_register_element(ctx, coco_surface_t,				coco_surface_parse,				coco_surface_check,				coco_surface_dump			);
+	coco_ctx_register_element(ctx, coco_surface_init_from_t,		coco_surface_init_from_parse,			coco_surface_init_from_check,			coco_surface_init_from_dump		);
 
 	/* Transform */
-	collada_ctx_register_element(ctx, collada_lookat_t,				collada_lookat_parse,				collada_lookat_check,				collada_lookat_dump				);
-	collada_ctx_register_element(ctx, collada_matrix_t,				collada_matrix_parse,				collada_matrix_check,				collada_matrix_dump				);
-	collada_ctx_register_element(ctx, collada_rotate_t,				collada_rotate_parse,				collada_rotate_check,				collada_rotate_dump				);
-	collada_ctx_register_element(ctx, collada_scale_t,				collada_scale_parse,				collada_scale_check,				collada_scale_dump				);
-	collada_ctx_register_element(ctx, collada_translate_t,				collada_translate_parse,			collada_translate_check,			collada_translate_dump				);
+	coco_ctx_register_element(ctx, coco_lookat_t,				coco_lookat_parse,				coco_lookat_check,				coco_lookat_dump			);
+	coco_ctx_register_element(ctx, coco_matrix_t,				coco_matrix_parse,				coco_matrix_check,				coco_matrix_dump			);
+	coco_ctx_register_element(ctx, coco_rotate_t,				coco_rotate_parse,				coco_rotate_check,				coco_rotate_dump			);
+	coco_ctx_register_element(ctx, coco_scale_t,				coco_scale_parse,				coco_scale_check,				coco_scale_dump				);
+	coco_ctx_register_element(ctx, coco_translate_t,			coco_translate_parse,				coco_translate_check,				coco_translate_dump			);
 /*
-	collada_ctx_register_element(ctx, collada__t, collada__parser, collada__dump);
+	coco_ctx_register_element(ctx, coco__t, coco__parse, coco__dump);
 */
 }
 
 /*-------------------------------------------------------------------------*/
 
-void collada_ctx_finalize(collada_ctx_t *ctx)
+void coco_ctx_finalize(coco_ctx_t *ctx)
 {
 	ctnr_pool_flush(&ctx->pool);
 }
 
 /*-------------------------------------------------------------------------*/
 
-void __collada_ctx_register_element(collada_ctx_t *ctx, const char *elm_name, void *elm_parser, void *elm_check, void *elm_dump)
+void __coco_ctx_register_element(coco_ctx_t *ctx, const char *elm_name, void *elm_parse, void *elm_check, void *elm_dump)
 {
-	collada_ctx_element_t *element = ctnr_pool_new(&ctx->pool, collada_ctx_element_t);
+	coco_ctx_elem_t *element = ctnr_pool_new(&ctx->pool, coco_ctx_elem_t);
 
-	element->name = collada_ctx_strdup(ctx, elm_name);
+	element->name = coco_ctx_strdup(ctx, elm_name);
 
-	element->parser = elm_parser;
+	element->parser = elm_parse;
 	element->check = elm_check;
 	element->dump = elm_dump;
 
-	ctnr_hash_add(&ctx->element_list, element);
+	ctnr_hash_add(&ctx->elem_list, element);
 }
 
 /*-------------------------------------------------------------------------*/
 
-void *__collada_ctx_get_parser(collada_ctx_t *ctx, unsigned hash)
+void *__coco_ctx_get_parse(coco_ctx_t *ctx, unsigned hash)
 {
-	collada_ctx_element_t *element = NULL;
+	coco_ctx_elem_t *element = NULL;
 
-	if(ctnr_hash_lookup_item_by_hash(&ctx->element_list, &element, hash) != false) {
+	if(ctnr_hash_lookup_item_by_hash(&ctx->elem_list, &element, hash) != false) {
 		return element->parser;
 	}
 	else {
@@ -187,11 +187,11 @@ void *__collada_ctx_get_parser(collada_ctx_t *ctx, unsigned hash)
 
 /*-------------------------------------------------------------------------*/
 
-void *__collada_ctx_get_check(struct collada_ctx_s *ctx, unsigned hash)
+void *__coco_ctx_get_check(struct coco_ctx_s *ctx, unsigned hash)
 {
-	collada_ctx_element_t *element = NULL;
+	coco_ctx_elem_t *element = NULL;
 
-	if(ctnr_hash_lookup_item_by_hash(&ctx->element_list, &element, hash) != false) {
+	if(ctnr_hash_lookup_item_by_hash(&ctx->elem_list, &element, hash) != false) {
 		return element->check;
 	}
 	else {
@@ -201,11 +201,11 @@ void *__collada_ctx_get_check(struct collada_ctx_s *ctx, unsigned hash)
 
 /*-------------------------------------------------------------------------*/
 
-void *__collada_ctx_get_dump(collada_ctx_t *ctx, unsigned hash)
+void *__coco_ctx_get_dump(coco_ctx_t *ctx, unsigned hash)
 {
-	collada_ctx_element_t *element = NULL;
+	coco_ctx_elem_t *element = NULL;
 
-	if(ctnr_hash_lookup_item_by_hash(&ctx->element_list, &element, hash) != false) {
+	if(ctnr_hash_lookup_item_by_hash(&ctx->elem_list, &element, hash) != false) {
 		return element->dump;
 	}
 	else {
@@ -215,7 +215,7 @@ void *__collada_ctx_get_dump(collada_ctx_t *ctx, unsigned hash)
 
 /*-------------------------------------------------------------------------*/
 
-bool collada_ctx_loader(collada_ctx_t *ctx, BUFF_t buff, size_t size)
+bool coco_ctx_loader(coco_ctx_t *ctx, BUFF_t buff, size_t size)
 {
 	yaxp_ctx_t yaxp;
 
@@ -227,7 +227,7 @@ bool collada_ctx_loader(collada_ctx_t *ctx, BUFF_t buff, size_t size)
 
 	if(result != false)
 	{
-		ctx->collada = collada_ctx_parser(ctx, collada_t, yaxp.node);
+		ctx->collada = coco_ctx_parse(ctx, coco_collada_t, yaxp.node);
 
 		yaxp_parser_finalize(&yaxp);
 	}
@@ -237,39 +237,39 @@ bool collada_ctx_loader(collada_ctx_t *ctx, BUFF_t buff, size_t size)
 
 /*-------------------------------------------------------------------------*/
 
-bool collada_ctx_check_all(struct collada_ctx_s *ctx)
+bool coco_ctx_check_all(struct coco_ctx_s *ctx)
 {
-	return collada_ctx_check(ctx, collada_t, ctx->collada);
+	return coco_ctx_check(ctx, coco_collada_t, ctx->collada);
 }
 
 /*-------------------------------------------------------------------------*/
 
-void collada_ctx_dump_all(collada_ctx_t *ctx)
+void coco_ctx_dump_all(coco_ctx_t *ctx)
 {
-	collada_ctx_dump(ctx, collada_t, ctx->collada, 0);
+	coco_ctx_dump(ctx, coco_collada_t, ctx->collada, 0);
 }
 
 /*-------------------------------------------------------------------------*/
 
-const char *collada_ctx_strdup(collada_ctx_t *ctx, const char *str)
+const char *coco_ctx_strdup(coco_ctx_t *ctx, const char *str)
 {
 	return strcpy(ctnr_pool_malloc(&ctx->pool, strlen(str) + 1), str);
 }
 
 /*-------------------------------------------------------------------------*/
 
-collada_base_t *__collada_ctx_lookup_by_hash(collada_ctx_t *ctx, unsigned type, unsigned hash)
+coco_base_t *__coco_ctx_lookup_by_hash(coco_ctx_t *ctx, unsigned type, unsigned hash)
 {
-	collada_base_t *base = NULL;
+	coco_base_t *base = NULL;
 
 	return ctnr_hash_lookup_item_by_hash(&ctx->hash_list, &base, hash) && base->type == type ? base : NULL;
 }
 
 /*-------------------------------------------------------------------------*/
 
-collada_base_t *__collada_ctx_lookup_by_name(collada_ctx_t *ctx, unsigned type, const char *name)
+coco_base_t *__coco_ctx_lookup_by_name(coco_ctx_t *ctx, unsigned type, const char *name)
 {
-	collada_base_t *base = NULL;
+	coco_base_t *base = NULL;
 
 	return ctnr_hash_lookup_item_by_name(&ctx->hash_list, &base, name) && base->type == type ? base : NULL;
 }

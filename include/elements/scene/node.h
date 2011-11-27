@@ -4,22 +4,22 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_NODE_H
-#define __COLLADA_NODE_H
+#ifndef __COCO_NODE_H
+#define __COCO_NODE_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_node_s
+typedef struct coco_node_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_node_s *prev, *next;
+	struct coco_node_s *prev, *next;
 
 	/**/
 
@@ -29,26 +29,26 @@ typedef struct collada_node_s
 	const char *type;
 	const char *layer;
 
-	struct collada_asset_s *asset;
+	struct coco_asset_s *asset;
 
-	struct collada_lookat_s *lookat_list;
-	struct collada_matrix_s *matrix_list;
-	struct collada_rotate_s *rotate_list;
-	struct collada_scale_s *scale_list;
-	/* TODO struct collada_skew_s *skew_list;*/
-	struct collada_translate_s *translate_list;
+	struct coco_lookat_s *lookat_list;
+	struct coco_matrix_s *matrix_list;
+	struct coco_rotate_s *rotate_list;
+	struct coco_scale_s *scale_list;
+	/* TODO struct coco_skew_s *skew_list;*/
+	struct coco_translate_s *translate_list;
 
-	struct collada_instance_camera_s *instance_camera_list;
-	/* TODO struct collada_instance_controller_s *instance_controller_list; */
-	struct collada_instance_geometry_s *instance_geometry_list;
-	struct collada_instance_light_s *instance_light_list;
-	struct collada_instance_node_s *instance_node_list;
+	struct coco_instance_camera_s *instance_camera_list;
+	/* TODO struct coco_instance_controller_s *instance_controller_list; */
+	struct coco_instance_geometry_s *instance_geometry_list;
+	struct coco_instance_light_s *instance_light_list;
+	struct coco_instance_node_s *instance_node_list;
 
-	struct collada_node_s *node_list;
+	struct coco_node_s *node_list;
 
-	struct collada_extra_s *extra_list;
+	struct coco_extra_s *extra_list;
 
-} collada_node_t;
+} coco_node_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -56,11 +56,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_node_s *collada_node_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_node_s *coco_node_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_node_check(struct collada_ctx_s *, struct collada_node_s *);
+DLL_PUBLIC bool coco_node_check(struct coco_ctx_s *, struct coco_node_s *);
 
-DLL_PUBLIC void collada_node_dump(struct collada_ctx_s *, struct collada_node_s *, int);
+DLL_PUBLIC void coco_node_dump(struct coco_ctx_s *, struct coco_node_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -68,7 +68,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_NODE_H */
+#endif /* __COCO_NODE_H */
 
 /*-------------------------------------------------------------------------*/
 

@@ -4,22 +4,22 @@
  * Version : 1.0 (2010-2011)
  *
  *
- * This file is part of COLLADA.
+ * This file is part of COCO.
  *
  */
 
 /*-------------------------------------------------------------------------*/
 
-#ifndef __COLLADA_P_H
-#define __COLLADA_P_H
+#ifndef __COCO_P_H
+#define __COCO_P_H
 
 /*-------------------------------------------------------------------------*/
 
-typedef struct collada_p_s
+typedef struct coco_p_s
 {
-	struct collada_base_s base;
+	struct coco_base_s base;
 
-	struct collada_p_s *prev, *next;
+	struct coco_p_s *prev, *next;
 
 	/**/
 
@@ -27,7 +27,7 @@ typedef struct collada_p_s
 
 	int *array;
 
-} collada_p_t;
+} coco_p_t;
 
 /*-------------------------------------------------------------------------*/
 
@@ -35,11 +35,11 @@ CTNR_BEGIN_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-DLL_PUBLIC struct collada_p_s *collada_p_parse(struct collada_ctx_s *, struct yaxp_node_s *);
+DLL_PUBLIC struct coco_p_s *coco_p_parse(struct coco_ctx_s *, struct yaxp_node_s *);
 
-DLL_PUBLIC bool collada_p_check(struct collada_ctx_s *, struct collada_p_s *);
+DLL_PUBLIC bool coco_p_check(struct coco_ctx_s *, struct coco_p_s *);
 
-DLL_PUBLIC void collada_p_dump(struct collada_ctx_s *, struct collada_p_s *, int);
+DLL_PUBLIC void coco_p_dump(struct coco_ctx_s *, struct coco_p_s *, int);
 
 /*-------------------------------------------------------------------------*/
 
@@ -47,7 +47,7 @@ CTNR_END_EXTERN_C
 
 /*-------------------------------------------------------------------------*/
 
-#endif /* __COLLADA_P_H */
+#endif /* __COCO_P_H */
 
 /*-------------------------------------------------------------------------*/
 
