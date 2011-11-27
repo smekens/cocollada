@@ -15,6 +15,7 @@
     <desc host="tux, osx, ios, android, win">
       <inc value="-I../game/SDK/libctnr/include" />
       <lib value="-L../game/SDK/libctnr/lib -lctnr" />
+      <lib value="-L../game/SDK/libctnr/lib64 -lctnr" />
     </desc>
   </dep>
 
@@ -22,6 +23,7 @@
     <desc host="tux, osx, ios, android, win">
       <inc value="-I../game/SDK/libyaxp/include" />
       <lib value="-L../game/SDK/libyaxp/lib -lyaxp" />
+      <lib value="-L../game/SDK/libyaxp/lib64 -lyaxp" />
     </desc>
   </dep>
 
