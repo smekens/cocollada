@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B892145F1483C98600642AC9 /* coco_dump.c in Sources */ = {isa = PBXBuildFile; fileRef = B892145E1483C98600642AC9 /* coco_dump.c */; };
 		B8DC48D51482731400B2ADDD /* context.c in Sources */ = {isa = PBXBuildFile; fileRef = B8DC48741482731400B2ADDD /* context.c */; };
 		B8DC48D71482731400B2ADDD /* camera.c in Sources */ = {isa = PBXBuildFile; fileRef = B8DC48781482731400B2ADDD /* camera.c */; };
 		B8DC48D91482731400B2ADDD /* optics.c in Sources */ = {isa = PBXBuildFile; fileRef = B8DC487A1482731400B2ADDD /* optics.c */; };
@@ -82,7 +83,6 @@
 		B8DC491F1482731400B2ADDD /* scale.c in Sources */ = {isa = PBXBuildFile; fileRef = B8DC48CC1482731400B2ADDD /* scale.c */; };
 		B8DC49201482731400B2ADDD /* translate.c in Sources */ = {isa = PBXBuildFile; fileRef = B8DC48CD1482731400B2ADDD /* translate.c */; };
 		B8DC49211482731400B2ADDD /* log.c in Sources */ = {isa = PBXBuildFile; fileRef = B8DC48CE1482731400B2ADDD /* log.c */; };
-		B8DC49241482731400B2ADDD /* collada_dump.c in Sources */ = {isa = PBXBuildFile; fileRef = B8DC48D21482731400B2ADDD /* collada_dump.c */; };
 		B8DC49251482731400B2ADDD /* vector.c in Sources */ = {isa = PBXBuildFile; fileRef = B8DC48D31482731400B2ADDD /* vector.c */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +99,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B892145E1483C98600642AC9 /* coco_dump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = coco_dump.c; sourceTree = "<group>"; };
 		B8DC480D148272BC00B2ADDD /* cocollada */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocollada; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DC481A1482731400B2ADDD /* coco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coco.h; sourceTree = "<group>"; };
 		B8DC481D1482731400B2ADDD /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
@@ -250,8 +251,6 @@
 		B8DC48CC1482731400B2ADDD /* scale.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scale.c; sourceTree = "<group>"; };
 		B8DC48CD1482731400B2ADDD /* translate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = translate.c; sourceTree = "<group>"; };
 		B8DC48CE1482731400B2ADDD /* log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log.c; sourceTree = "<group>"; };
-		B8DC48D11482731400B2ADDD /* collada_check.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = collada_check.c; sourceTree = "<group>"; };
-		B8DC48D21482731400B2ADDD /* collada_dump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = collada_dump.c; sourceTree = "<group>"; };
 		B8DC48D31482731400B2ADDD /* vector.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vector.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -684,8 +683,7 @@
 		B8DC48D01482731400B2ADDD /* test */ = {
 			isa = PBXGroup;
 			children = (
-				B8DC48D11482731400B2ADDD /* collada_check.c */,
-				B8DC48D21482731400B2ADDD /* collada_dump.c */,
+				B892145E1483C98600642AC9 /* coco_dump.c */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -815,8 +813,8 @@
 				B8DC491F1482731400B2ADDD /* scale.c in Sources */,
 				B8DC49201482731400B2ADDD /* translate.c in Sources */,
 				B8DC49211482731400B2ADDD /* log.c in Sources */,
-				B8DC49241482731400B2ADDD /* collada_dump.c in Sources */,
 				B8DC49251482731400B2ADDD /* vector.c in Sources */,
+				B892145F1483C98600642AC9 /* coco_dump.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,6 +925,7 @@
 				B8DC4816148272BC00B2ADDD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

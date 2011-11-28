@@ -25,25 +25,33 @@ coco_optics_technique_common_t *coco_optics_technique_common_parse(coco_ctx_t *c
 	result->base.line = node0->line;
 	result->base.column = node0->column;
 
-	/**/
+	/*-----------------------------------------------------------------*/
+
+	int nr1;
+	yaxp_node_t * node1;
 
 	coco_orthographic_t *orthographic;
 	coco_perspective_t *perspective;
 
-	/**/
-
-	int nr1;
-	yaxp_node_t * node1;
+	/*-----------------------------------------------------------------*/
 
 	yaxp_foreach_node(node0, node1, nr1)
 	{
 		switch(ctnr_hash(node1->name))
 		{
+			/*-------------------------------------------------*/
+			/* orthographic					   */
+			/*-------------------------------------------------*/
+
 			case 0x5780895E: /* orthographic */
 				orthographic = coco_ctx_parse(ctx, coco_orthographic_t, node1);
 
 				result->orthographic = orthographic;
 				break;
+
+			/*-------------------------------------------------*/
+			/* perspective					   */
+			/*-------------------------------------------------*/
 
 			case 0xCAFFBEBC: /* perspective */
 				perspective = coco_ctx_parse(ctx, coco_perspective_t, node1);
@@ -51,12 +59,17 @@ coco_optics_technique_common_t *coco_optics_technique_common_parse(coco_ctx_t *c
 				result->perspective = perspective;
 				break;
 
+			/*-------------------------------------------------*/
+
 			default:
 				coco_log(ctx, TYPE_WARNING, result->base.line, result->base.column, "node not supported <%s>\n", node1->name);
+				break;
+
+			/*-------------------------------------------------*/
 		}
 	}
 
-	/**/
+	/*-----------------------------------------------------------------*/
 
 	return result;
 }

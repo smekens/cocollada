@@ -180,9 +180,9 @@ DLL_PUBLIC void coco_ctx_finalize(struct coco_ctx_s *);
 
 /*-------------------------------------------------------------------------*/
 
-#define coco_ctx_factory(__ctx, __type)										\
+#define coco_ctx_factory(__ctx, __type)											\
 	({														\
-		struct coco_base_s *base = ctnr_cast(struct coco_base_s *, ctnr_pool_new(&__ctx->pool, __type));	\
+		struct coco_base_s *base = ctnr_cast(struct coco_base_s *, ctnr_pool_new_zero(&__ctx->pool, __type));	\
 															\
 		base->type = ctnr_hash(#__type);									\
 															\

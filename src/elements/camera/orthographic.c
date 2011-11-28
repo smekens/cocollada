@@ -27,21 +27,23 @@ coco_orthographic_t *coco_orthographic_parse(coco_ctx_t *ctx, yaxp_node_t *node0
 
 	/**/
 
+	int nr1;
+	yaxp_node_t * node1;
+
 	result->xmag = -9999.0f;
 	result->ymag = -9999.0f;
 	result->aspect_ratio = -9999.0f;
 	result->znear = -9999.0f;
 	result->zfar = -9999.0f;
 
-	/**/
-
-	int nr1;
-	yaxp_node_t * node1;
-
 	yaxp_foreach_node(node0, node1, nr1)
 	{
 		switch(ctnr_hash(node1->name))
 		{
+			/*-------------------------------------------------*/
+			/* asset					   */
+			/*-------------------------------------------------*/
+
 			case 0x32D06B34: /* xmag */
 				result->xmag = YAXP_GET_FLT_TEXT(node1, "-9999.0f");
 				break;
