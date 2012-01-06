@@ -135,8 +135,8 @@ typedef struct coco_ctx_s
 
 	/**/
 
-	struct ctnr_hash_list_s hash_list;
-	struct ctnr_hash_list_s elem_list;
+	struct ctnr_hash_s hash_list;
+	struct ctnr_hash_s elem_list;
 
 	struct ctnr_pool_s pool;
 

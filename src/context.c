@@ -219,7 +219,7 @@ bool coco_ctx_loader(coco_ctx_t *ctx, BUFF_t buff, size_t size)
 {
 	yaxp_ctx_t yaxp;
 
-	yaxp_parser_initialize(&yaxp);
+	yaxp_initialize(&yaxp);
 
 	bool result = yaxp_parser(&yaxp, buff, size);
 
@@ -229,7 +229,7 @@ bool coco_ctx_loader(coco_ctx_t *ctx, BUFF_t buff, size_t size)
 	{
 		ctx->collada = coco_ctx_parse(ctx, coco_collada_t, yaxp.node);
 
-		yaxp_parser_finalize(&yaxp);
+		yaxp_finalize(&yaxp);
 	}
 
 	return result;

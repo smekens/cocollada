@@ -3,61 +3,61 @@
 <xml>
 
   <dep name="libobjc" lang="objective-c">
-    <desc host="tux, osx, ios, android">
+    <desc target="tux, osx, ios, android">
       <lib value="-lobjc" />
     </desc>
-    <desc host="win">
+    <desc target="win">
       <lib value="-L/usr/i686-pc-mingw32/sys-root/mingw/bin -lobjc-2" />
     </desc>
   </dep>
 
   <dep name="libctnr" lang="c">
-    <desc host="osx, ios, android, win">
+    <desc target="osx, ios, android, win">
       <inc value="-I../game/SDK/libctnr/include" />
       <lib value="-L../game/SDK/libctnr/lib -lctnr" />
     </desc>
-    <desc host="tux">
+    <desc target="tux">
       <inc value="-I../game/SDK/libctnr/include" />
       <lib value="-L../game/SDK/libctnr/lib64 -lctnr" />
     </desc>
   </dep>
 
   <dep name="libyaxp" lang="c">
-    <desc host="osx, ios, android, win">
+    <desc target="osx, ios, android, win">
       <inc value="-I../game/SDK/libyaxp/include" />
       <lib value="-L../game/SDK/libyaxp/lib -lyaxp" />
     </desc>
-    <desc host="tux">
+    <desc target="tux">
       <inc value="-I../game/SDK/libyaxp/include" />
       <lib value="-L../game/SDK/libyaxp/lib64 -lyaxp" />
     </desc>
   </dep>
 
-  <target name="libcoco" type="lib" link="both">
+  <project name="libcoco" type="lib" link="both">
     <src path="src/*.c" opt="-std=c89" />
     <src path="src/elements/*/*.c" opt="-std=c89" />
     <use name="libobjc" optional="no" />
     <use name="libctnr" optional="no" />
     <use name="libyaxp" optional="no" />
-  </target>
+  </project>
 
-  <target name="coco_dump" type="exe" link="shared">
+  <project name="coco_dump" type="exe" link="shared">
     <src path="./src/test/coco_dump.c" opt="-std=c89" />
     <use name="libobjc" optional="no" />
     <use name="libctnr" optional="no" />
     <use name="libyaxp" optional="no" />
     <lib value="-L$(PWD_LIB) -lcoco" />
     <lib value="-lm" />
-  </target>
+  </project>
 
-  <target name="coco_check" type="exe" link="shared">
+  <project name="coco_check" type="exe" link="shared">
     <src path="./src/test/coco_check.c" opt="-std=c89" />
     <use name="libobjc" optional="no" />
     <use name="libctnr" optional="no" />
     <use name="libyaxp" optional="no" />
     <lib value="-L$(PWD_LIB) -lcoco" />
     <lib value="-lm" />
-  </target>
+  </project>
 
 </xml>
 
