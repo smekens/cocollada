@@ -3,33 +3,33 @@
 <xml>
 
   <dep name="libobjc" lang="objective-c">
-    <desc target="tux, osx, ios, android">
+    <desc targets="tux, osx, ios, android">
       <lib value="-lobjc" />
     </desc>
-    <desc target="win">
+    <desc targets="win">
       <lib value="-L/usr/i686-pc-mingw32/sys-root/mingw/bin -lobjc-2" />
     </desc>
   </dep>
 
   <dep name="libctnr" lang="c">
-    <desc target="osx, ios, android, win">
-      <inc value="-I../game/SDK/libctnr/include" />
-      <lib value="-L../game/SDK/libctnr/lib -lctnr" />
+    <desc targets="osx, ios, android, win">
+      <inc value="-I../Hypnos3D/targets/osx/include" />
+      <lib value="-L../Hypnos3D/targets/osx/lib -lctnr" />
     </desc>
-    <desc target="tux">
-      <inc value="-I../game/SDK/libctnr/include" />
-      <lib value="-L../game/SDK/libctnr/lib64 -lctnr" />
+    <desc targets="tux">
+      <inc value="-I../Hypnos3D/targets/linux64/include" />
+      <lib value="-L../Hypnos3D/targets/linux64/lib64 -lctnr" />
     </desc>
   </dep>
 
   <dep name="libyaxp" lang="c">
-    <desc target="osx, ios, android, win">
-      <inc value="-I../game/SDK/libyaxp/include" />
-      <lib value="-L../game/SDK/libyaxp/lib -lyaxp" />
+    <desc targets="osx, ios, android, win">
+      <inc value="-I../Hypnos3D/targets/osx/include" />
+      <lib value="-L../Hypnos3D/targets/osx/lib -lyaxp" />
     </desc>
-    <desc target="tux">
-      <inc value="-I../game/SDK/libyaxp/include" />
-      <lib value="-L../game/SDK/libyaxp/lib64 -lyaxp" />
+    <desc targets="tux">
+      <inc value="-I../Hypnos3D/targets/linux64/include" />
+      <lib value="-L../Hypnos3D/targets/linux64/lib64 -lyaxp" />
     </desc>
   </dep>
 
@@ -52,6 +52,15 @@
 
   <project name="coco_check" type="exe" link="shared">
     <src path="./src/test/coco_check.c" opt="-std=c89" />
+    <use name="libobjc" optional="no" />
+    <use name="libctnr" optional="no" />
+    <use name="libyaxp" optional="no" />
+    <lib value="-L$(PWD_LIB) -lcoco" />
+    <lib value="-lm" />
+  </project>
+
+  <project name="cococ" type="exe" link="shared">
+    <src path="./src/test/cococ.c" opt="-std=c89" />
     <use name="libobjc" optional="no" />
     <use name="libctnr" optional="no" />
     <use name="libyaxp" optional="no" />
