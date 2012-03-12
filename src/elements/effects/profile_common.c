@@ -58,7 +58,7 @@ coco_profile_common_technique_t *coco_profile_common_technique_parse(coco_ctx_t 
 			case 0x585AC335: /* image */
 				image = coco_ctx_parse(ctx, coco_image_t, node1);
 
-				ctnr_list_add(result->image_list, image);
+				ctnr_list_append(result->image_list, image);
 				break;
 
 			case 0x72C2F08D: /* lambert */
@@ -76,7 +76,7 @@ coco_profile_common_technique_t *coco_profile_common_technique_parse(coco_ctx_t 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:
@@ -181,13 +181,13 @@ coco_profile_common_t *coco_profile_common_parse(coco_ctx_t *ctx, yaxp_node_t *n
 			case 0x585AC335: /* image */
 				image = coco_ctx_parse(ctx, coco_image_t, node1);
 
-				ctnr_list_add(result->image_list, image);
+				ctnr_list_append(result->image_list, image);
 				break;
 
 			case 0x39385D1A: /* newparam */
 				newparam = coco_ctx_parse(ctx, coco_newparam_t, node1);
 
-				ctnr_list_add(result->newparam_list, newparam);
+				ctnr_list_append(result->newparam_list, newparam);
 				break;
 
 			case 0x2477201A: /* technique */
@@ -199,7 +199,7 @@ coco_profile_common_t *coco_profile_common_parse(coco_ctx_t *ctx, yaxp_node_t *n
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

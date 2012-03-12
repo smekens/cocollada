@@ -50,13 +50,13 @@ coco_library_visual_scenes_t *coco_library_visual_scenes_parse(coco_ctx_t *ctx, 
 			case 0x6C4754D5: /* visual_scene */
 				visual_scene = coco_ctx_parse(ctx, coco_visual_scene_t, node1);
 
-				ctnr_list_add(result->visual_scene_list, visual_scene);
+				ctnr_list_append(result->visual_scene_list, visual_scene);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

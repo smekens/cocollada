@@ -51,7 +51,7 @@ coco_mesh_t *coco_mesh_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0xB10CBC96: /* source */
 				source = coco_ctx_parse(ctx, coco_source_t, node1);
 
-				ctnr_list_add(result->source_list, source);
+				ctnr_list_append(result->source_list, source);
 				break;
 
 			case 0x752E6661: /* vertices */
@@ -63,54 +63,54 @@ coco_mesh_t *coco_mesh_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x5A583A75: /* lines */
 				/* TODO lines = coco_lines_parse(ctx, node1);		*/
 				/* TODO								*/
-				/* TODO ctnr_list_add(result->lines_list, lines);		*/
+				/* TODO ctnr_list_append(result->lines_list, lines);		*/
 				/* TODO break;							*/
 				goto __warning;
 
 			case 0xCD2B3CF2: /* linestrips */
 				/* TODO linestrips = coco_linestrips_parse(ctx, node1);	*/
 				/* TODO								*/
-				/* TODO ctnr_list_add(result->linestrips_list, linestrips);	*/
+				/* TODO ctnr_list_append(result->linestrips_list, linestrips);	*/
 				/* TODO break;							*/
 				goto __warning;
 
 			case 0xC21AE5BC: /* polygons */
 				/* TODO polygons = coco_polygons_parse(ctx, node1);	*/
 				/* TODO								*/
-				/* TODO ctnr_list_add(result->polygons_list, polygons);		*/
+				/* TODO ctnr_list_append(result->polygons_list, polygons);		*/
 				/* TODO break;							*/
 				goto __warning;
 
 			case 0xFB99F1AC: /* polylist */
 				polylist = coco_ctx_parse(ctx, coco_polylist_t, node1);
 
-				ctnr_list_add(result->polylist_list, polylist);
+				ctnr_list_append(result->polylist_list, polylist);
 				break;
 
 			case 0x288B8C15: /* triangles */
 				triangles = coco_ctx_parse(ctx, coco_triangles_t, node1);
 
-				ctnr_list_add(result->triangles_list, triangles);
+				ctnr_list_append(result->triangles_list, triangles);
 				break;
 
 			case 0x8D7658F7: /* trifans */
 				/* TODO trifans = coco_trifans_parse(ctx, node1);		*/
 				/* TODO								*/
-				/* TODO ctnr_list_add(result->trifans_list, trifans);		*/
+				/* TODO ctnr_list_append(result->trifans_list, trifans);		*/
 				/* TODO break;							*/
 				goto __warning;
 
 			case 0xF4A0A8E5: /* tristrips */
 				/* TODO tristrips = coco_tristrips_parse(ctx, node1);	*/
 				/* TODO								*/
-				/* TODO ctnr_list_add(result->tristrips_list, tristrips);	*/
+				/* TODO ctnr_list_append(result->tristrips_list, tristrips);	*/
 				/* TODO break;							*/
 				goto __warning;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 __warning:			default:

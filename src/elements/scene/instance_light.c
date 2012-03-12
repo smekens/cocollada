@@ -59,7 +59,7 @@ coco_instance_light_t *coco_instance_light_parse(coco_ctx_t *ctx, yaxp_node_t *n
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

@@ -50,13 +50,13 @@ coco_library_lights_t *coco_library_lights_parse(coco_ctx_t *ctx, yaxp_node_t *n
 			case 0xFC898F45: /* light */
 				light = coco_ctx_parse(ctx, coco_light_t, node1);
 
-				ctnr_list_add(result->light_list, light);
+				ctnr_list_append(result->light_list, light);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

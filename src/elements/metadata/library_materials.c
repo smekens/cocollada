@@ -50,13 +50,13 @@ coco_library_materials_t *coco_library_materials_parse(coco_ctx_t *ctx, yaxp_nod
 			case 0xEB378FC1: /* material */
 				material = coco_ctx_parse(ctx, coco_material_t, node1);
 
-				ctnr_list_add(result->material_list, material);
+				ctnr_list_append(result->material_list, material);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

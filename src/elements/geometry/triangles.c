@@ -60,7 +60,7 @@ coco_triangles_t *coco_triangles_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x9F642814: /* input */
 				input = coco_ctx_parse(ctx, coco_input_t, node1);
 
-				ctnr_list_add(result->input_list, input);
+				ctnr_list_append(result->input_list, input);
 				break;
 
 			case 0x64E723F2: /* p */
@@ -72,7 +72,7 @@ coco_triangles_t *coco_triangles_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

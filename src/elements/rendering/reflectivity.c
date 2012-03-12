@@ -47,7 +47,7 @@ coco_reflectivity_t *coco_reflectivity_parse(coco_ctx_t *ctx, yaxp_node_t *node0
 			case 0x657C2B30: /* param */
 				param = coco_ctx_parse(ctx, coco_fx_common_param_t, node1);
 
-				ctnr_list_add(result->param_list, param);
+				ctnr_list_append(result->param_list, param);
 				break;
 
 			default:

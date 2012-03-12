@@ -147,7 +147,7 @@ coco_asset_t *coco_asset_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x3C495F8A: /* contributor */
 				contributor = coco_ctx_parse(ctx, coco_asset_contributor_t, node1);
 
-				ctnr_list_add(result->contributor_list, contributor);
+				ctnr_list_append(result->contributor_list, contributor);
 				break;
 
 			case 0x3DC2C173: /* created */

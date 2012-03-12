@@ -50,13 +50,13 @@ coco_library_cameras_t *coco_library_cameras_parse(coco_ctx_t *ctx, yaxp_node_t 
 			case 0xB5FF3F9C: /* camera */
 				camera = coco_ctx_parse(ctx, coco_camera_t, node1);
 
-				ctnr_list_add(result->camera_list, camera);
+				ctnr_list_append(result->camera_list, camera);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

@@ -50,13 +50,13 @@ coco_library_nodes_t *coco_library_nodes_parse(coco_ctx_t *ctx, yaxp_node_t *nod
 			case 0xA173AB66: /* node */
 				node = coco_ctx_parse(ctx, coco_node_t, node1);
 
-				ctnr_list_add(result->node_list, node);
+				ctnr_list_append(result->node_list, node);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

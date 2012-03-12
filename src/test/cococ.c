@@ -377,7 +377,7 @@ input_t *build_input_list(coco_ctx_t *ctx, coco_input_t *input_list)
 
 			input->source = source;
 
-			ctnr_list_add(result, input);
+			ctnr_list_append(result, input);
 		}
 		else
 		{
@@ -396,7 +396,7 @@ input_t *build_input_list(coco_ctx_t *ctx, coco_input_t *input_list)
 
 				input->source = source;
 
-				ctnr_list_add(result, input);
+				ctnr_list_append(result, input);
 			}
 		}
 	}

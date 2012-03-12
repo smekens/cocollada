@@ -66,7 +66,7 @@ coco_extra_t *coco_extra_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x2477201A: /* technique */
 				technique_core = coco_ctx_parse(ctx, coco_technique_core_t, node1);
 
-				ctnr_list_add(result->technique_list, technique_core);
+				ctnr_list_append(result->technique_list, technique_core);
 				break;
 
 			default:

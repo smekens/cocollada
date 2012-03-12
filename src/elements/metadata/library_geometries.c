@@ -50,13 +50,13 @@ coco_library_geometries_t *coco_library_geometries_parse(coco_ctx_t *ctx, yaxp_n
 			case 0x4A1CA80F: /* geometry */
 				geometry = coco_ctx_parse(ctx, coco_geometry_t, node1);
 
-				ctnr_list_add(result->geometry_list, geometry);
+				ctnr_list_append(result->geometry_list, geometry);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

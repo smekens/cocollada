@@ -65,19 +65,19 @@ coco_visual_scene_t *coco_visual_scene_parse(coco_ctx_t *ctx, yaxp_node_t *node0
 			case 0xA173AB66: /* node */
 				node = coco_ctx_parse(ctx, coco_node_t, node1);
 
-				ctnr_list_add(result->node_list, node);
+				ctnr_list_append(result->node_list, node);
 				break;
 
 			case 0x9711B324: /* evaluate_scene */
 				/* TODO evaluate_scene = coco_sevaluate_scene_parse(ctx, node1);	*/
 				/* TODO									*/
-				/* TODO ctnr_list_add(result->evaluate_scene, evaluate_scene);	*/
+				/* TODO ctnr_list_append(result->evaluate_scene, evaluate_scene);	*/
 				goto __warning;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 __warning:		default:

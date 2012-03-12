@@ -66,13 +66,13 @@ coco_instance_material_t *coco_instance_material_parse(coco_ctx_t *ctx, yaxp_nod
 			case 0xC8DA7155: /* bind_vertex_input */
 				bind_vertex_input = coco_ctx_parse(ctx, coco_bind_vertex_input_t, node1);
 
-				ctnr_list_add(result->bind_vertex_input_list, bind_vertex_input);
+				ctnr_list_append(result->bind_vertex_input_list, bind_vertex_input);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

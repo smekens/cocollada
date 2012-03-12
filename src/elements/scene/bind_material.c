@@ -131,7 +131,7 @@ coco_bind_material_technique_common_t *coco_bind_material_technique_common_parse
 			case 0xD7BD5326: /* instance_material */
 				instance_material = coco_ctx_parse(ctx, coco_instance_material_t, node1);
 
-				ctnr_list_add(result->instance_material_list, instance_material);
+				ctnr_list_append(result->instance_material_list, instance_material);
 				break;
 
 			default:
@@ -216,7 +216,7 @@ coco_bind_material_t *coco_bind_material_parse(coco_ctx_t *ctx, yaxp_node_t *nod
 			case 0x657C2B30: /* param */
 				param = coco_ctx_parse(ctx, coco_bind_material_param_t, node1);
 
-				ctnr_list_add(result->param_list, param);
+				ctnr_list_append(result->param_list, param);
 				break;
 
 			case 0x8BA567DA: /* technique_common */
@@ -228,13 +228,13 @@ coco_bind_material_t *coco_bind_material_parse(coco_ctx_t *ctx, yaxp_node_t *nod
 			case 0x2477201A: /* technique */
 				technique = coco_ctx_parse(ctx, coco_technique_core_t, node1);
 
-				ctnr_list_add(result->technique_list, technique);
+				ctnr_list_append(result->technique_list, technique);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

@@ -92,81 +92,81 @@ coco_node_t *coco_node_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0xEDE531F3: /* lookat */
 				lookat = coco_ctx_parse(ctx, coco_lookat_t, node1);
 
-				ctnr_list_add(result->lookat_list, lookat);
+				ctnr_list_append(result->lookat_list, lookat);
 				break;
 
 			case 0x26E42922: /* matrix */
 				matrix = coco_ctx_parse(ctx, coco_matrix_t, node1);
 
-				ctnr_list_add(result->matrix_list, matrix);
+				ctnr_list_append(result->matrix_list, matrix);
 				break;
 
 			case 0x7A097F9F: /* rotate */
 				rotate = coco_ctx_parse(ctx, coco_rotate_t, node1);
 
-				ctnr_list_add(result->rotate_list, rotate);
+				ctnr_list_append(result->rotate_list, rotate);
 				break;
 
 			case 0x47CD74C6: /* scale */
 				scale = coco_ctx_parse(ctx, coco_scale_t, node1);
 
-				ctnr_list_add(result->scale_list, scale);
+				ctnr_list_append(result->scale_list, scale);
 				break;
 
 			case 0x1DC7DF9C: /* skew */
 				/* TODO skew = coco_skew_parse(ctx, node1);					*/
 				/* TODO										*/
-				/* TODO ctnr_list_add(result->skew_list, skew);					*/
+				/* TODO ctnr_list_append(result->skew_list, skew);					*/
 				/* TODO break;									*/
 				goto __warning;
 
 			case 0x3FD64B97: /* translate */
 				translate = coco_ctx_parse(ctx, coco_translate_t, node1);
 
-				ctnr_list_add(result->translate_list, translate);
+				ctnr_list_append(result->translate_list, translate);
 				break;
 
 			case 0x08C881B5: /* instance_camera */
 				instance_camera = coco_ctx_parse(ctx, coco_instance_camera_t, node1);
 
-				ctnr_list_add(result->instance_camera_list, instance_camera);
+				ctnr_list_append(result->instance_camera_list, instance_camera);
 				break;
 
 			case 0xF386B9C6: /* instance_controller */
 				/* TODO instance_controller = coco_instance_controller_parse(ctx, node1);	*/
 				/* TODO										*/
-				/* TODO ctnr_list_add(result->instance_controller_list, instance_controller);	*/
+				/* TODO ctnr_list_append(result->instance_controller_list, instance_controller);	*/
 				/* TODO break;									*/
 				goto __warning;
 
 			case 0x0957AC9B: /* instance_geometry */
 				instance_geometry = coco_ctx_parse(ctx, coco_instance_geometry_t, node1);
 
-				ctnr_list_add(result->instance_geometry_list, instance_geometry);
+				ctnr_list_append(result->instance_geometry_list, instance_geometry);
 				break;
 
 			case 0x8ADC99D4: /* instance_light */
 				instance_light = coco_ctx_parse(ctx, coco_instance_light_t, node1);
 
-				ctnr_list_add(result->instance_light_list, instance_light);
+				ctnr_list_append(result->instance_light_list, instance_light);
 				break;
 
 			case 0xA1BF1129: /* instance_node */
 				instance_node = coco_ctx_parse(ctx, coco_instance_node_t, node1);
 
-				ctnr_list_add(result->instance_node_list, instance_node);
+				ctnr_list_append(result->instance_node_list, instance_node);
 				break;
 
 			case 0xA173AB66: /* node */
 				child = coco_ctx_parse(ctx, coco_node_t, node1);
 
-				ctnr_list_add(result->node_list, child);
+				ctnr_list_append(result->node_list, child);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 __warning:		default:

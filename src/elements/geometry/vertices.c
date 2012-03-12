@@ -128,13 +128,13 @@ coco_vertices_t *coco_vertices_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x9F642814: /* input */
 				vertices_input = coco_ctx_parse(ctx, coco_vertices_input_t, node1);
 
-				ctnr_list_add(result->input_list, vertices_input);
+				ctnr_list_append(result->input_list, vertices_input);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

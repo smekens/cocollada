@@ -179,7 +179,7 @@ coco_source_t *coco_source_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x2477201A: /* technique */
 				/* TODO technique = coco_technique_parse(ctx, node1);		*/
 				/* TODO									*/
-				/* TODO ctnr_list_add(result->technique_list, technique);		*/
+				/* TODO ctnr_list_append(result->technique_list, technique);		*/
 				goto __warning;
 
 __warning:		default:

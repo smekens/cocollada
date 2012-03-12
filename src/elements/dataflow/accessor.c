@@ -148,7 +148,7 @@ coco_accessor_t *coco_accessor_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			{
 				param = coco_ctx_parse(ctx, coco_accessor_param_t, node1);
 
-				ctnr_list_add(result->param_list, param);
+				ctnr_list_append(result->param_list, param);
 				break;
 			}
 			default:

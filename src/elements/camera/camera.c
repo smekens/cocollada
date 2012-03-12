@@ -71,7 +71,7 @@ coco_camera_t *coco_camera_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x3BCDA5FD: /* asset */
 				asset = coco_ctx_parse(ctx, coco_asset_t, node1);
 
-				ctnr_list_add(result->asset, asset);
+				ctnr_list_append(result->asset, asset);
 				break;
 
 			/*-------------------------------------------------*/
@@ -81,7 +81,7 @@ coco_camera_t *coco_camera_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x752C065A: /* optics */
 				optics = coco_ctx_parse(ctx, coco_optics_t, node1);
 
-				ctnr_list_add(result->optics, optics);
+				ctnr_list_append(result->optics, optics);
 				break;
 
 			/*-------------------------------------------------*/
@@ -91,7 +91,7 @@ coco_camera_t *coco_camera_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			/*-------------------------------------------------*/

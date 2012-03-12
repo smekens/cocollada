@@ -50,13 +50,13 @@ coco_library_images_t *coco_library_images_parse(coco_ctx_t *ctx, yaxp_node_t *n
 			case 0x585AC335: /* image */
 				image = coco_ctx_parse(ctx, coco_image_t, node1);
 
-				ctnr_list_add(result->image_list, image);
+				ctnr_list_append(result->image_list, image);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

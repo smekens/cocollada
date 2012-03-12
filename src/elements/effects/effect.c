@@ -66,25 +66,25 @@ coco_effect_t *coco_effect_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x585AC335: /* image */
 				image = coco_ctx_parse(ctx, coco_image_t, node1);
 
-				ctnr_list_add(result->image_list, image);
+				ctnr_list_append(result->image_list, image);
 				break;
 
 			case 0x39385D1A: /* newparam */
 				newparam = coco_ctx_parse(ctx, coco_newparam_t, node1);
 
-				ctnr_list_add(result->newparam_list, newparam);
+				ctnr_list_append(result->newparam_list, newparam);
 				break;
 
 			case 0xC723EC8D: /* profile_COMMON */
 				profile_common = coco_ctx_parse(ctx, coco_profile_common_t, node1);
 
-				ctnr_list_add(result->profile_common_list, profile_common);
+				ctnr_list_append(result->profile_common_list, profile_common);
 				break;
 
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:

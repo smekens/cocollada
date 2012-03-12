@@ -58,49 +58,49 @@ coco_collada_t *coco_collada_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0xC8EC4766: /* library_cameras */
 				library_cameras = coco_ctx_parse(ctx, coco_library_cameras_t, node1);
 
-				ctnr_list_add(result->library_cameras_list, library_cameras);
+				ctnr_list_append(result->library_cameras_list, library_cameras);
 				break;
 
 			case 0x8630FB77: /* library_effects */
 				library_effects = coco_ctx_parse(ctx, coco_library_effects_t, node1);
 
-				ctnr_list_add(result->library_effects_list, library_effects);
+				ctnr_list_append(result->library_effects_list, library_effects);
 				break;
 
 			case 0x913819CF: /* library_geometries */
 				library_geometries = coco_ctx_parse(ctx, coco_library_geometries_t, node1);
 
-				ctnr_list_add(result->library_geometries_list, library_geometries);
+				ctnr_list_append(result->library_geometries_list, library_geometries);
 				break;
 
 			case 0x9EF17CD7: /* library_images */
 				library_images = coco_ctx_parse(ctx, coco_library_images_t, node1);
 
-				ctnr_list_add(result->library_images_list, library_images);
+				ctnr_list_append(result->library_images_list, library_images);
 				break;
 
 			case 0x7E936CE2: /* library_lights */
 				library_lights = coco_ctx_parse(ctx, coco_library_lights_t, node1);
 
-				ctnr_list_add(result->library_lights_list, library_lights);
+				ctnr_list_append(result->library_lights_list, library_lights);
 				break;
 
 			case 0x0C2EE9D6: /* library_materials */
 				library_materials = coco_ctx_parse(ctx, coco_library_materials_t, node1);
 
-				ctnr_list_add(result->library_materials_list, library_materials);
+				ctnr_list_append(result->library_materials_list, library_materials);
 				break;
 
 			case 0xE6379657: /* library_nodes */
 				library_nodes = coco_ctx_parse(ctx, coco_library_nodes_t, node1);
 
-				ctnr_list_add(result->library_nodes_list, library_nodes);
+				ctnr_list_append(result->library_nodes_list, library_nodes);
 				break;
 
 			case 0x922656B4: /* library_visual_scenes */
 				library_visual_scenes = coco_ctx_parse(ctx, coco_library_visual_scenes_t, node1);
 
-				ctnr_list_add(result->library_visual_scenes_list, library_visual_scenes);
+				ctnr_list_append(result->library_visual_scenes_list, library_visual_scenes);
 				break;
 
 			case 0x26EC4721: /* scene */
@@ -112,7 +112,7 @@ coco_collada_t *coco_collada_parse(coco_ctx_t *ctx, yaxp_node_t *node0)
 			case 0x2FAFA2F4: /* extra */
 				extra = coco_ctx_parse(ctx, coco_extra_t, node1);
 
-				ctnr_list_add(result->extra_list, extra);
+				ctnr_list_append(result->extra_list, extra);
 				break;
 
 			default:
